@@ -12,16 +12,21 @@ INSERT INTO help_topics (topic_name)
 VALUES('Curriculum'),
         ('Pathways Program'),
         ('Motivation'),
-        ('Open Positions');
+        ('Finding Open Positions');
+
+/*
+DELETE FROM help_topics;
+*/
 
 SELECT * FROM help_topics;        
         
 ROLLBACK;
         
-    /*    
+    
 CREATE TABLE curriculum (
 id BIGSERIAL,
 curriculum_name VARCHAR(150)
 
 );
-*/
+
+
