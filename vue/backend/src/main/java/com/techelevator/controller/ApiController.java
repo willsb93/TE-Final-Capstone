@@ -2,7 +2,10 @@ package com.techelevator.controller;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
+import com.techelevator.model.Topic;
 import com.techelevator.model.TopicDao;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,17 @@ public class ApiController {
     private TopicDao topicDao;
 
    
+    @RequestMapping(path = "/topic", method = RequestMethod.GET)
+    	public List<Topic> getAllTopics(){
+    		return topicDao.getAllTopics();
+    	}
+    
+    
+    
+    
+    
+    
+    
     // Do we need this??
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String authorizedOnly() throws UnauthorizedException {
