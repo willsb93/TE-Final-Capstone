@@ -2,7 +2,7 @@
 
 
 CREATE TABLE help_topics (
-id BIGSERIAL,
+id SERIAL,
 topic_name VARCHAR(150)
 );
 
@@ -24,9 +24,11 @@ ROLLBACK;
         
     
 CREATE TABLE curriculum (
-id BIGSERIAL,
-curriculum_name VARCHAR(150)
+id SERIAL,
+topic VARCHAR(150)
 
 );
+
+
 
 
