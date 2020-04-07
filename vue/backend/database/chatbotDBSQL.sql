@@ -19,7 +19,7 @@ INSERT INTO help_topics (topic_name)
 VALUES('Curriculum'),
       ('Pathways Program'),
       ('Motivation'),
-      ('Finding Open Positions');
+      ('Finding a Job');
 
 /*
 DELETE FROM help_topics;

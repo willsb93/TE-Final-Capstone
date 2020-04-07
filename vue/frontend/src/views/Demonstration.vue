@@ -1,9 +1,14 @@
 
 <template>
     <div>
-        v-for="post in posts" v-vind:key="post">{{post.topicName}}
-        {{posts}}
-        
+<ul>
+<li v-for="post in posts" :key="post">
+{{post.topicName}}
+    </li>
+
+    </ul>    
+    
+
     </div>
 
 </template>
