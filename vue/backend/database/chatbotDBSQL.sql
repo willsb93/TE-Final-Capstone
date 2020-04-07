@@ -17,9 +17,9 @@ topic VARCHAR(150)
 
 INSERT INTO help_topics (topic_name) 
 VALUES('Curriculum'),
-      ('Pathways Program'),
+      ('Pathways'),
       ('Motivation'),
-      ('Finding a Job');
+      ('Find a Job');
 
 /*
 DELETE FROM help_topics;
