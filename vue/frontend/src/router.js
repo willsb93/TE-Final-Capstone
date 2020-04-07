@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import auth from './auth'
 import Home from './views/Home.vue'
-import Login from './views/Login.vue'
-import Register from './views/Register.vue'
+import Features from './views/Features.vue'
+import Demonstration from './views/Demonstration.vue'
+import MeetTheTeam from './views/MeetTheTeam.vue'
 
 Vue.use(Router)
 
@@ -23,27 +24,24 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
-      meta: {
-        requiresAuth: true
-      }
+      component: Home
     },
     {
-      path: "/login",
-      name: "login",
-      component: Login,
-      meta: {
-        requiresAuth: false
-      }
+      path: '/features',
+      name: 'features',
+      component: Features
     },
     {
-      path: "/register",
-      name: "register",
-      component: Register,
-      meta: {
-        requiresAuth: false
-      }
+      path: '/demo',
+      name: 'demonstration',
+      component: Demonstration
     },
+    {
+      path: '/team',
+      name: 'meettheteam',
+      component: MeetTheTeam
+    }
+
   ]
 })
 
