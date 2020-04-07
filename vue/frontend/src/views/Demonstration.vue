@@ -1,7 +1,7 @@
 
 <template>
     <div>
-
+        v-for="post in posts" v-vind:key="post">{{post.topicName}}
         {{posts}}
         
     </div>
@@ -16,9 +16,9 @@ export default {
 
     },
     mounted: function() {
-        axios.get('')
+        axios.get('http://localhost:8080/AuthenticationApplication/api/topic')
         .then(response => { this.posts = response.data
-
+           
         })
     },
     data(){
