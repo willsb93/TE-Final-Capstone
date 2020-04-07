@@ -27,7 +27,7 @@ public class JdbcTopicDao implements TopicDao {
 	public List<Topic> getAllTopics() {
 		List<Topic> allHelpTopics = new ArrayList<Topic>();
 
-		String sqlGetAllTopics = "SELECT id, topic_name FROM help_topics";
+		String sqlGetAllTopics = "SELECT topic_name FROM help_topics";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllTopics);
 
 		while (results.next()) {
@@ -55,8 +55,7 @@ public class JdbcTopicDao implements TopicDao {
 
 	private Topic mapRowToTopic(SqlRowSet results) {
 		Topic topic = new Topic();
-		topic.setTopicName(results.getString("topicName"));
-		topic.setTopicId(results.getInt("topicID"));
+		topic.setTopicName(results.getString("topic_name"));
 
 		return topic;
 
