@@ -16,7 +16,7 @@ export default {
 
     },
     mounted: function() {
-        axios.get('')
+        axios.get('http://localhost:8080/AuthenticationApplication/api/topic')
         .then(response => { this.posts = response.data
 
         })
