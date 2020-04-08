@@ -88,8 +88,17 @@ background-color:#00A6ED;
 color: white;
 }
 
+.chatInput{
+    padding-top: 4em;
+    display: flex;
+    align-content: flex-end;
+}
+
 #chatInput {
     width: 100%;
+    line-height: 2em;
+    text-align: right;
+
 }
 
 </style>
