@@ -14,7 +14,8 @@
     <hr>
 
     <div class="chatInput">
-        <input type="text" id="chatInput" name="chatInput" placeholder="chat me up"/>  <!--v-on:keyup="EVENT HANDLER" --> 
+        <input type="text" id="chatInput" name="chatInput" placeholder="chat me up"/>  <!--v-on:keyup="EVENT HANDLER"  
+                                                                                TodoSearch.vue from nested components--> 
     </div>
 
     </div>
@@ -88,8 +89,19 @@ background-color:#00A6ED;
 color: white;
 }
 
+.chatInput {
+    padding-top: 4em;  /*this is not the right way to put it on the bottom*/
+    display: flex;
+    align-content: flex-end;
+}
+
 #chatInput {
     width: 100%;
+    line-height: 3em;
+    text-align:right;
+    font-size: .75em;
+    font-weight: bold;
+    
 }
 
 </style>
