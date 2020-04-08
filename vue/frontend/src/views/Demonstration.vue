@@ -3,13 +3,22 @@
     <div> 
 
     <div class = "viewWindow">    
+        
    <ul id = "topicContainer">
     <li v-for="post in posts" :key="post" class = "topics">
         {{post.topicName}}
     </li>
+    
 
     </ul>
+    <hr>
+
+    <div class="chatInput">
+        <input type="text" id="chatInput" name="chatInput" placeholder="chat me up"/>  <!--v-on:keyup="EVENT HANDLER" --> 
     </div>
+
+    </div>
+    
     </div>
 
 </template>
@@ -42,18 +51,23 @@ export default {
 #topicContainer{
     display : flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    
 }
 
 .viewWindow{
     width: 30%;
     height: 15em;
     border: solid black 1px;
+    border-radius: 5px;
     margin-left: 5%;
+    background-color:azure;
+
 }
 
 .topics {
-  background: none;
+  background-color: white;
   line-height: 1;
   margin: 0.5em;
   padding: 0.5em;
@@ -64,6 +78,7 @@ export default {
   border-radius: 6px;
   display: inline-block;
   transition: all 0.3s ease 0s;
+  font-size: .75em;
 }
 
 .topics:hover{
@@ -72,4 +87,10 @@ transition: all 0.3s ease 0s;
 background-color:#00A6ED;
 color: white;
 }
+
+#chatInput {
+    width: 100%;
+}
+
 </style>
+
