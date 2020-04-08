@@ -1,10 +1,8 @@
 
 <template>
     <div> 
-        <chatbox></chatbox>
-
-
-    <div class = "viewWindow">    
+        <chatbox>
+             <div class = "viewWindow">    
         
    <ul id = "topicContainer">
     <li v-for="post in posts" :key="post" class = "topics">
@@ -16,11 +14,16 @@
     <hr>
 
     <div class="chatInput">
-        <input type="text" id="chatInput" name="chatInput" placeholder="chat me up"/>  <!--v-on:keyup="EVENT HANDLER"  
-                                                                                TodoSearch.vue from nested components--> 
+         <input type="text" id="chatInput" name="chatInput" placeholder="chat me up"/> <!-- v-on:keyup="EVENT HANDLER"  
+                                                                                TodoSearch.vue from nested components  -->
     </div>
 
-    </div>
+    </div> 
+
+        </chatbox>
+
+
+   
     
     </div>
 
