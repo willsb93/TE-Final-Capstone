@@ -1,6 +1,8 @@
 
 <template>
     <div> 
+        <chatbox></chatbox>
+
 
     <div class = "viewWindow">    
         
@@ -24,13 +26,14 @@
 
 </template>
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import ChatBox from '@/components/ChatBox.vue';
 export default {
     
     name: "demonstration",
-    components:{
-
-    },
+   components: {
+    ChatBox
+  },
     mounted: function() {
         axios.get('http://localhost:8080/AuthenticationApplication/api/topic')
         .then(response => { this.posts = response.data
@@ -105,4 +108,3 @@ color: white;
 }
 
 </style>
-

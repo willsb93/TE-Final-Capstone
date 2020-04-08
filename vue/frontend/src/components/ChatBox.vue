@@ -1,0 +1,335 @@
+<template>
+  <section class="msger">
+    <header class="msger-header">
+      <div class="msger-header-title">
+        <i class="fas fa-comment"></i> Chatbot
+      </div>
+      <div class="msger-header-options">
+        <a @click="toggleChat" href="#" class="text-danger">
+          <i class="fas fa-times"></i>
+        </a>
+      </div>
+    </header>
+
+    <main class="msger-chat">
+      <div v-for="(message, i) in messages" :key="i" :class="addMessageClass(message)">
+        <div class="msg-img" :style="getImageStyle(message)"></div>
+        <div v-if="message.isLoading" class="msg-bubble">
+          <span class="loader">
+          <span class="loader__dot"></span>
+          <span class="loader__dot"></span>
+          <span class="loader__dot"></span>
+        </span>
+        </div>
+        <div v-else class="msg-bubble">
+          <div class="msg-text">{{message.text}}</div>
+        </div>
+      </div>
+      <!-- <div class="msg left-msg">
+
+      </div> -->
+    </main>
+
+    <form class="msger-inputarea" @submit.prevent="sendMessage">
+      <input
+        type="text"
+        class="msger-input"
+        placeholder="Enter your message..."
+        v-model="userMessage"
+      />
+      <button type="submit" class="msger-send-btn">Send</button>
+    </form>
+  </section>
+</template>
+
+<script>
+export default {
+  name: 'chatbox',
+  props: ['toggleChat'],
+  data() {
+    return {
+      userMessage: '',
+      questionIndex: 0,
+      questions: ['Greetings, what is your name?', '[response], What do you need help with today?  Type "help" for a list of topics.'],
+      messages: [],
+    };
+  },
+  mounted() {
+    this.sendBotMessage();
+  },
+  methods: {
+    addMessageClass(message) {
+      const msgAlignment =
+        message.user === 'bot' ? 'msg left-msg' : 'msg right-msg';
+      return msgAlignment;
+    },
+    getImageStyle(message) {
+      const userImage = message.image
+        ? message.image
+        : 'http://emilcarlsson.se/assets/harveyspecter.png';
+      const imgUrl =
+        message.user === 'bot'
+          ? 'http://emilcarlsson.se/assets/haroldgunderson.png'
+          : userImage;
+      return `background-image: url(${imgUrl})`;
+    },
+    sendMessage() {
+      this.messages.push({
+        user: 'User',
+        text: this.userMessage,
+        // time: new Date().toTimeString().split(' GMT')[0],
+        image: null,
+      });
+      this.scrollDown('before bot >>>>');
+      this.sendBotMessage(this.userMessage);
+      this.userMessage = '';
+    },
+    sendBotMessage(userResponse) {
+      let lastMessageIndex;
+      setTimeout(() => {
+        this.scrollDown('before loader >>>>');
+        this.messages.push({
+          user: 'bot',
+          text: null,
+          // time: new Date().toTimeString().split(' GMT')[0],
+          image: null,
+          isLoading: true,
+        });
+        lastMessageIndex = this.messages.length - 1;
+        this.scrollDown('after loader >>>>');
+      }, 0);
+      // this.scrollDown('after bot message >>>>>');
+      setTimeout(() => {
+        this.messages[lastMessageIndex].isLoading = false;
+        const question = this.questions[this.questionIndex] || "That's all, enjoy 😄";
+        this.messages[lastMessageIndex].text = this.formatResponse(userResponse, question);
+        this.questionIndex = this.questionIndex + 1;
+        this.scrollDown('after bot message >>>>>');
+      }, 2000);
+    },
+    formatResponse(response, text) {
+      if (!response) return text;
+      return text.replace(/\[.*?\]/g, response);
+    },
+    scrollDown(loc) {
+      const scrollTop = document.getElementsByClassName('msger-chat')[0].scrollHeight - document.getElementsByClassName('msger-chat')[0].offsetHeight;
+      console.log('current scrollTop', document.getElementsByClassName('msger-chat')[0].scrollTop);
+      console.log('scrollTop, loc :', scrollTop, loc);
+      console.log('---------');
+      if (scrollTop !== 0) {
+        document.getElementsByClassName('msger-chat')[0].scrollTop = scrollTop + 100;
+      }
+    },
+  },
+};
+</script>
+
+<style>
+.msger {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 867px;
+  margin: 25px 10px;
+  height: calc(100% - 50px);
+  border: var(--border);
+  border-radius: 5px;
+  background: var(--msger-bg);
+  box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+}
+
+.msger-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: var(--border);
+  background: #eee;
+  color: #666;
+}
+
+.msger-chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+.msger-chat::-webkit-scrollbar {
+  width: 6px;
+}
+.msger-chat::-webkit-scrollbar-track {
+  background: #ddd;
+}
+.msger-chat::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+}
+.msg {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.msg:last-of-type {
+  margin: 0;
+}
+.msg-img {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+  background: #ddd;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+.msg-bubble {
+  width: calc(100% - 25px);
+  font-size: 0.9em;
+}
+.msg-text {
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 300px;
+}
+.left-msg .msg-text {
+  background: var(--left-msg-bg);
+}
+.right-msg .msg-text {
+  float: right;
+  background: var(--right-msg-bg);
+}
+.msg-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.msg-info-name {
+  margin-right: 10px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.msg-info-time {
+  font-size: 0.85em;
+}
+
+.left-msg .msg-bubble {
+  border-bottom-left-radius: 0;
+}
+
+.right-msg {
+  flex-direction: row-reverse;
+}
+.right-msg .msg-bubble {
+  color: #fff;
+  border-bottom-right-radius: 0;
+}
+.right-msg .msg-img {
+  margin: 0 0 0 10px;
+}
+
+.msger-inputarea {
+  display: flex;
+  padding: 10px;
+  border-top: var(--border);
+  background: #eee;
+}
+.msger-inputarea * {
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 1em;
+}
+.msger-input {
+  flex: 1;
+  background: #ddd;
+}
+input.msger-input:focus {
+  outline: none;
+}
+.msger-send-btn {
+  margin-left: 10px;
+  background: rgb(0, 196, 65);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
+}
+.msger-send-btn:hover {
+  background: rgb(0, 180, 50);
+}
+
+.msger-chat {
+  background-color: #fcfcfe;
+  background-image: url("https://static1.squarespace.com/static/55ef2da9e4b03f6e1ef0cd28/t/5dceda76b702913cebc1d05e/1586356440148/?format=1500w");
+}
+.loader {
+  margin-bottom: -2px;
+  text-align: center;
+  opacity: 0.3;
+}
+
+.loader__dot {
+  display: inline-block;
+  vertical-align: middle;
+  width: 6px;
+  height: 6px;
+  margin: 0 1px;
+  background: #007bff;
+  border-radius: 50px;
+  -webkit-animation: loader 0.45s infinite alternate;
+          animation: loader 0.45s infinite alternate;
+}
+.loader__dot:nth-of-type(2) {
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+}
+.loader__dot:nth-of-type(3) {
+  -webkit-animation-delay: 0.35s;
+          animation-delay: 0.35s;
+}
+
+@-webkit-keyframes loader {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
+  }
+}
+
+@keyframes loader {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
+  }
+}
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+}
+</style>
