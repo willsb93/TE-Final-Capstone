@@ -54,17 +54,22 @@ export default {
 
 .topics {
   background: none;
-  border: 2px solid;
-  font: inherit;
   line-height: 1;
   margin: 0.5em;
   padding: 0.5em;
   width: 8em;
   text-align: center;
-  
+  color: #222E50;
+  border: 2px solid green;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
 }
 
 .topics:hover{
-     background-color: #3273DC;
+border-radius: 50px;
+transition: all 0.3s ease 0s;
+background-color:#00A6ED;
+color: white;
 }
 </style>
