@@ -11,7 +11,7 @@
                   <figure class="image is-128x128"><img class="is-rounded" src="https://media-exp1.licdn.com/dms/image/C4E03AQGKoi8H0XUGsQ/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=73LL-nR_Qj4ANbI6rA-NvNJNUB84F1fC9Bavnq_kv_o" alt=""></figure></div>
               </div>
               <h5 class="title is-5">Mark Maire</h5>
-              <p class="subtitle is-6"></p>
+              <p class="subtitle is-6">Software Developer</p>
               <p>Look. If you had one shot, or one opportunity to seize everything you ever wanted. In one moment, would you capture it or just let it slip?</p>
             </div>
             <div class="column is-4">
