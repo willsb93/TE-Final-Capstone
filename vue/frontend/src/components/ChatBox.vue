@@ -64,7 +64,7 @@ export default {
         console.log("response data==>>", response.data);
         this.posts = response.data;
       });
-    
+    //http://localhost:8080/AuthenticationApplication/api/curriculum
   },
   data() {
     return {
@@ -77,7 +77,9 @@ export default {
       messages: [],
       posts: null,
       curriculums: [],
-      curriculum: null
+      curriculum: null,
+      pathways: [],
+      pathway: null
     };
   },
   methods: {
@@ -87,9 +89,21 @@ export default {
           .get("http://localhost:8080/AuthenticationApplication/api/curriculum")
           .then(response => {
             this.curriculums = response.data;
+            console.log("response data==>>", response.data);
 
-            this.sendBotMessage("What topic do you need help you with?");
+            this.sendBotMessage("What topic do you need help with?");
             this.curriculum = topicName;
+          });
+      }
+      if (topicName === "Pathways") {
+          axios
+          .get("http://localhost:8080/AuthenticationApplication/api/pathway")
+          .then(response => {
+            this.pathways = response.data;
+            console.log("response data==>>", response.data);
+
+            this.sendBotMessage("What pathway topic do you need help with?");
+            this.pathway = topicName;
           });
       }
     },
@@ -111,43 +125,67 @@ export default {
     },
 
     sendMessage() {
+      let response;
       if (this.curriculum === "Curriculum") {
-        let response = this.findCurriculum(this.userMessage);
+           response = this.findCurriculum(this.userMessage);
 
         this.messages.push({
           user: "bot",
-          text:
-            "Here is what I found on " +
-            this.userMessage +
-            "...." +
-            response.message,
+          text: 'Here is what I found on ' +this.userMessage+ '....' + response.message,
           image: null,
           type: "text"
         });
 
         this.messages.push({
           user: "bot",
-          text:
-            "Here is some reading that we suggest, the article is called  " +
-            response.readingTitle +
-            " that can be found at: " +
-            response.readingLink,
+          text: "Here is an article we recommend you reading called, " + response.readingTitle + " found at, " + 
+          response.readingLink,
+          image: null,
+          type: "text"
+        });
+
+            this.messages.push({
+          user: "bot",
+          text: "Here is a video we recommend you reading called, " + response.videoTitle + " found at, " + 
+          response.videoLink,
+          image: null,
+          type: "text"
+          
+        });
+
+        
+
+
+
+      }
+      else if (this.pathway === "Pathways"){
+        response = this.findPathway(this.userMessage);
+
+                this.messages.push({
+          user: "bot",
+          text: 'Here is what I found on ' +this.userMessage+ '....' + response.message,
           image: null,
           type: "text"
         });
 
         this.messages.push({
           user: "bot",
-          text:
-            "Here is a video that we think you should watch, called  " +
-            response.videoTitle +
-            " that can be found at: " +
-            response.videoLink,
+          text: "Here is an article we recommend you reading called, " + response.readingTitle + " found at, " + 
+          response.readingLink,
           image: null,
           type: "text"
         });
 
-      } else {
+            this.messages.push({
+          user: "bot",
+          text: "Here is a video we recommend you reading called, " + response.videoTitle + " found at, " + 
+          response.videoLink,
+          image: null,
+          type: "text"
+        });
+        
+      } 
+      else {
         this.messages.push({
           user: "User",
           text: this.userMessage,
@@ -166,6 +204,14 @@ export default {
       for (let i = 0; i < this.curriculums.length; i++) {
         if (topicName === this.curriculums[i]["topic"]) {
           return this.curriculums[i];
+        }
+      }
+      return null;
+    },
+     findPathway(topicName) {
+      for (let i = 0; i < this.pathways.length; i++) {
+        if (topicName === this.pathways[i]["topic"]) {
+          return this.pathways[i];
         }
       }
       return null;
