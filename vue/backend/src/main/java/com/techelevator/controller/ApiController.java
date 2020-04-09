@@ -4,6 +4,8 @@ import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.model.Curriculum;
 import com.techelevator.model.CurriculumDao;
+import com.techelevator.model.Pathway;
+import com.techelevator.model.PathwayDao;
 import com.techelevator.model.Topic;
 import com.techelevator.model.TopicDao;
 
@@ -30,7 +32,9 @@ public class ApiController {
     private TopicDao topicDao;
     @Autowired
     private CurriculumDao curriculumDao;
-
+    @Autowired
+    private PathwayDao pathwayDao;
+    
    
     @GetMapping(path = "/topic")
     	public List<Topic> getAllTopics(){
@@ -45,25 +49,26 @@ public class ApiController {
 	}
     
     
-    
-    
-    
-    
+    @GetMapping(path = "/pathway")
+	public List<Pathway> getAllPathway(){
+		return pathwayDao.getAllPathway();
+	}
+
     
     
     // Do we need this??
-    @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String authorizedOnly() throws UnauthorizedException {
-        /*
-        You can lock down which roles are allowed by checking
-        if the current user has a role.
-        
-        In this example, if the user does not have the admin role
-        we send back an unauthorized error.
-        */
-        if (!authProvider.userHasRole(new String[] { "admin" })) {
-            throw new UnauthorizedException();
-        }
-        return "Success";
-    }
+//    @RequestMapping(path = "/", method = RequestMethod.GET)
+//    public String authorizedOnly() throws UnauthorizedException {
+//        /*
+//        You can lock down which roles are allowed by checking
+//        if the current user has a role.
+//        
+//        In this example, if the user does not have the admin role
+//        we send back an unauthorized error.
+//        */
+//        if (!authProvider.userHasRole(new String[] { "admin" })) {
+//            throw new UnauthorizedException();
+//        }
+//        return "Success";
+//    }
 }
