@@ -36,7 +36,7 @@ INSERT INTO curriculum (id,topic,message,readingLink,readingTitle,videoLink,vide
 VALUES (DEFAULT,'Data Types', 'Java is a strongly typed language that uses different data types to store numbers, text,  boolean (true/false) and more...', 'https://www.geeksforgeeks.org/data-types-in-java/', 'Data Types In Java', 'https://www.youtube.com/watch?v=NqGv5hdbhWQ', 'Primitive Data Types in Java');
 
 INSERT INTO curriculum (id,topic,message,readingLink,readingTitle,videoLink,videoTitle)
-VALUES (DEFAULT,'Variables', 'Variables are containers for storing Data values.', 'https://www.geeksforgeeks.org/variables-in-java/', 'Java Variables', 'https://youtu.be/W1GEMdHnCQE?t=105', 'Declaring & Initializing Variables, Displaying Text');
+VALUES (DEFAULT,'variables', 'Variables are containers for storing Data values.', 'https://www.geeksforgeeks.org/variables-in-java/', 'Java Variables', 'https://youtu.be/W1GEMdHnCQE?t=105', 'Declaring & Initializing Variables, Displaying Text');
 
 INSERT INTO curriculum (id,topic,message,readingLink,readingTitle,videoLink,videoTitle)
 VALUES (DEFAULT,'Operators', 'Operators are used to perform operations on variables and values. ( W3 Schools). Operaters can be be used for arithmetic or logical comparisons', 'https://www.w3schools.com/java/java_operators.asp', 'Java Operators', 'https://youtu.be/RA7wkTV6z4k?t=71', 'Java Programming Tutorial 12 - Numeric Expressions and Operators');
@@ -45,16 +45,16 @@ INSERT INTO curriculum (id,topic,message,readingLink,readingTitle,videoLink,vide
 VALUES (DEFAULT,'Logical Branching (if-else)', 'If-Else logic in Java allows us to test whether a condition is true [e.g. (age>=18)] and only execute selected code if the condition is true.', 'https://www.w3schools.com/java/java_conditions.asp', 'Java If ... Else', 'https://www.youtube.com/watch?v=3gTIKus7zLk', '15 - Single-Line IF Statements in Java Programming');
 
 INSERT INTO curriculum (id,topic,message,readingLink,readingTitle,videoLink,videoTitle)
-VALUES (DEFAULT,'Methods', 'A method is a block of code which only runs when it is called. You can pass data, known as parameters, into a method. Methods are used to perform certain actions, and they are also known as functions.', 'https://www.w3schools.com/java/java_methods.asp', 'Java Methods', 'https://www.youtube.com/watch?v=cQ_aQDohrts', 'Beginner Java Tutorial #5 Declaring and Calling Methods in Java');
+VALUES (DEFAULT,'methods', 'A method is a block of code which only runs when it is called. You can pass data, known as parameters, into a method. Methods are used to perform certain actions, and they are also known as functions.', 'https://www.w3schools.com/java/java_methods.asp', 'Java Methods', 'https://www.youtube.com/watch?v=cQ_aQDohrts', 'Beginner Java Tutorial #5 Declaring and Calling Methods in Java');
 
 INSERT INTO curriculum (id,topic,message,readingLink,readingTitle,videoLink,videoTitle)
-VALUES (DEFAULT,'Loops', 'Looping in programming languages is a feature which facilitates the execution of a set of instructions/functions repeatedly while some condition evaluates to true. Loops help you process large amounts of data quickly following rules and logic that you determine. ', 'https://www.geeksforgeeks.org/loops-in-java/', 'Loops in Java', 'https://youtu.be/wtXhu-VS_sE?t=42', 'Java Programming Tutorial 24 - Intro to Loops (While Loops)');
+VALUES (DEFAULT,'loops', 'Looping in programming languages is a feature which facilitates the execution of a set of instructions/functions repeatedly while some condition evaluates to true. Loops help you process large amounts of data quickly following rules and logic that you determine. ', 'https://www.geeksforgeeks.org/loops-in-java/', 'Loops in Java', 'https://youtu.be/wtXhu-VS_sE?t=42', 'Java Programming Tutorial 24 - Intro to Loops (While Loops)');
 
 INSERT INTO curriculum (id,topic,message,readingLink,readingTitle,videoLink,videoTitle)
-VALUES (DEFAULT,'Class', 'A class is a grouping of variables and methods in a source code file that generates objects. It acts as a blueprint for instances of objects.', 'https://www.w3schools.com/java/java_classes.asp', 'Java Classes and Objects', 'https://www.youtube.com/watch?v=4xKihjI6HJ0', 'Java Programming Tutorial - 04 - Defining a Class and Creating Objects in Java');
+VALUES (DEFAULT,'class', 'A class is a grouping of variables and methods in a source code file that generates objects. It acts as a blueprint for instances of objects.', 'https://www.w3schools.com/java/java_classes.asp', 'Java Classes and Objects', 'https://www.youtube.com/watch?v=4xKihjI6HJ0', 'Java Programming Tutorial - 04 - Defining a Class and Creating Objects in Java');
 
 INSERT INTO curriculum (id,topic,message,readingLink,readingTitle,videoLink,videoTitle)
-VALUES (DEFAULT,'Object', 'An object is an in-memory data structure that combines state (with variables) and behavior (with methods) into a usable and useful abstraction.', 'https://www.w3schools.com/java/java_classes.asp', 'Java Classes and Objects', 'https://www.youtube.com/watch?v=4xKihjI6HJ0', 'Java Programming Tutorial - 04 - Defining a Class and Creating Objects in Java');
+VALUES (DEFAULT,'object', 'An object is an in-memory data structure that combines state (with variables) and behavior (with methods) into a usable and useful abstraction.', 'https://www.w3schools.com/java/java_classes.asp', 'Java Classes and Objects', 'https://www.youtube.com/watch?v=4xKihjI6HJ0', 'Java Programming Tutorial - 04 - Defining a Class and Creating Objects in Java');
 
 INSERT INTO curriculum (id,topic,message,readingLink,readingTitle,videoLink,videoTitle)
 VALUES (DEFAULT,'Collections', 'A Collection is a group of individual objects represented as a single unit.', 'https://www.geeksforgeeks.org/collections-in-java-2/', 'Collections in Java', 'https://www.youtube.com/watch?v=jU5ACV5MucM', 'Introduction to Collections');
