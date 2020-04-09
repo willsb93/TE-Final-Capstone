@@ -25,7 +25,12 @@
           <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
           <div v-else>
             <ul id="topicContainer">
-              <li v-for="(post, i) in posts" :key="i" class="topics">{{post.topicName}}</li>
+              <li
+                v-for="(post, i) in posts"
+                :key="i"
+                class="topics"
+                @click="doRequest(post.topicName)"
+              >{{post.topicName}}</li>
             </ul>
           </div>
         </div>
@@ -56,9 +61,10 @@ export default {
     axios
       .get("http://localhost:8080/AuthenticationApplication/api/topic")
       .then(response => {
-        console.log("response dataa==>>", response.data);
+        console.log("response data==>>", response.data);
         this.posts = response.data;
       });
+    
   },
   data() {
     return {
@@ -69,10 +75,25 @@ export default {
         '[response], Type "help" for a list of topics'
       ],
       messages: [],
-      posts: null
+      posts: null,
+      curriculums: [],
+      curriculum: null
     };
   },
   methods: {
+    doRequest(topicName) {
+      if (topicName === "Curriculum") {
+        axios
+          .get("http://localhost:8080/AuthenticationApplication/api/curriculum")
+          .then(response => {
+            this.curriculums = response.data;
+
+            this.sendBotMessage("What topic do you need help you with?");
+            this.curriculum = topicName;
+          });
+      }
+    },
+
     addMessageClass(message) {
       const msgAlignment =
         message.user === "bot" ? "msg left-msg" : "msg right-msg";
@@ -88,29 +109,79 @@ export default {
           : userImage;
       return `background-image: url(${imgUrl})`;
     },
+
     sendMessage() {
-      this.messages.push({
-        user: "User",
-        text: this.userMessage,
-        // time: new Date().toTimeString().split(' GMT')[0],
-        image: null,
-        type: 'text'
-      });
-      this.scrollDown("before bot >>>>");
-      this.sendBotMessage(this.userMessage);
+      if (this.curriculum === "Curriculum") {
+        let response = this.findCurriculum(this.userMessage);
+
+        this.messages.push({
+          user: "bot",
+          text:
+            "Here is what I found on " +
+            this.userMessage +
+            "...." +
+            response.message,
+          image: null,
+          type: "text"
+        });
+
+        this.messages.push({
+          user: "bot",
+          text:
+            "Here is some reading that we suggest, the article is called  " +
+            response.readingTitle +
+            " that can be found at: " +
+            response.readingLink,
+          image: null,
+          type: "text"
+        });
+
+        this.messages.push({
+          user: "bot",
+          text:
+            "Here is a video that we think you should watch, called  " +
+            response.videoTitle +
+            " that can be found at: " +
+            response.videoLink,
+          image: null,
+          type: "text"
+        });
+
+      } else {
+        this.messages.push({
+          user: "User",
+          text: this.userMessage,
+          // time: new Date().toTimeString().split(' GMT')[0],
+          image: null,
+          type: "text"
+        });
+        this.scrollDown("before bot >>>>");
+        this.sendBotMessage(this.userMessage);
+      }
+
       this.userMessage = "";
     },
+
+    findCurriculum(topicName) {
+      for (let i = 0; i < this.curriculums.length; i++) {
+        if (topicName === this.curriculums[i]["topic"]) {
+          return this.curriculums[i];
+        }
+      }
+      return null;
+    },
+
     sendBotMessage(userResponse) {
       let lastMessageIndex;
       setTimeout(() => {
         this.scrollDown("before loader >>>>");
         this.messages.push({
           user: "bot",
-          text: null,
+          text: userResponse,
           // time: new Date().toTimeString().split(' GMT')[0],
           image: null,
           isLoading: true,
-          type: 'text'
+          type: "text"
         });
         lastMessageIndex = this.messages.length - 1;
         this.scrollDown("after loader >>>>");
@@ -312,22 +383,20 @@ input.msger-input:focus {
   animation-delay: 0.35s;
 }
 
-#topicContainer{
-    display : flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    
+#topicContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.viewWindow{
-    width: 30%;
-    height: 15em;
-    border: solid black 1px;
-    border-radius: 5px;
-    margin-left: 5%;
-    background-color:azure;
-
+.viewWindow {
+  width: 30%;
+  height: 15em;
+  border: solid black 1px;
+  border-radius: 5px;
+  margin-left: 5%;
+  background-color: azure;
 }
 
 .topics {
@@ -337,34 +406,33 @@ input.msger-input:focus {
   padding: 0.5em;
   width: 8em;
   text-align: center;
-  color: #222E50;
+  color: #222e50;
   border: 2px solid green;
   border-radius: 6px;
   display: inline-block;
   transition: all 0.3s ease 0s;
-  font-size: .75em;
+  font-size: 0.75em;
 }
 
-.topics:hover{
-border-radius: 50px;
-transition: all 0.3s ease 0s;
-background-color:#00A6ED;
-color: white;
+.topics:hover {
+  border-radius: 50px;
+  transition: all 0.3s ease 0s;
+  background-color: #00a6ed;
+  color: white;
 }
 
 .chatInput {
-    padding-top: 4em;  /*this is not the right way to put it on the bottom*/
-    display: flex;
-    align-content: flex-end;
+  padding-top: 4em; /*this is not the right way to put it on the bottom*/
+  display: flex;
+  align-content: flex-end;
 }
 
 #chatInput {
-    width: 100%;
-    line-height: 3em;
-    text-align:right;
-    font-size: .75em;
-    font-weight: bold;
-    
+  width: 100%;
+  line-height: 3em;
+  text-align: right;
+  font-size: 0.75em;
+  font-weight: bold;
 }
 
 @-webkit-keyframes loader {

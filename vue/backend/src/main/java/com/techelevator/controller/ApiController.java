@@ -39,9 +39,11 @@ public class ApiController {
     
     @GetMapping(path = "/curriculum")
 	public List<Curriculum> getAllCurriculum(){
-		return curriculumDao.getAllCurriculum();
-	}
 
+    	
+    	return curriculumDao.getAllCurriculum();
+	}
+    
     
     
     
