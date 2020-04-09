@@ -2,10 +2,10 @@
   <section class="msger">
     <header class="msger-header">
       <div class="msger-header-title">
-        <i class="fas fa-comment"></i> Chatbot
+        <i class="fas fa-comment"></i> Student Chat Bot
       </div>
       <div class="msger-header-options">
-        <a @click="toggleChat" href="#" class="text-danger">
+        <a href="#" class="text-danger">
           <i class="fas fa-times"></i>
         </a>
       </div>
@@ -16,18 +16,23 @@
         <div class="msg-img" :style="getImageStyle(message)"></div>
         <div v-if="message.isLoading" class="msg-bubble">
           <span class="loader">
-          <span class="loader__dot"></span>
-          <span class="loader__dot"></span>
-          <span class="loader__dot"></span>
-        </span>
+            <span class="loader__dot"></span>
+            <span class="loader__dot"></span>
+            <span class="loader__dot"></span>
+          </span>
         </div>
         <div v-else class="msg-bubble">
-          <div class="msg-text">{{message.text}}</div>
+          <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
+          <div v-else>
+            <ul id="topicContainer">
+              <li v-for="(post, i) in posts" :key="i" class="topics">{{post.topicName}}</li>
+            </ul>
+          </div>
         </div>
       </div>
       <!-- <div class="msg left-msg">
 
-      </div> -->
+      </div>-->
     </main>
 
     <form class="msger-inputarea" @submit.prevent="sendMessage">
@@ -43,84 +48,104 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  name: 'chatbox',
-  props: ['toggleChat'],
+  name: "chatbox",
+  mounted: function() {
+    this.sendBotMessage();
+    axios
+      .get("http://localhost:8080/AuthenticationApplication/api/topic")
+      .then(response => {
+        console.log("response dataa==>>", response.data);
+        this.posts = response.data;
+      });
+  },
   data() {
     return {
-      userMessage: '',
+      userMessage: "",
       questionIndex: 0,
-      questions: ['Greetings, what is your name?', '[response], What do you need help with today?  Type "help" for a list of topics.'],
+      questions: [
+        "Greetings, what is your name?",
+        '[response], Type "help" for a list of topics'
+      ],
       messages: [],
+      posts: null
     };
-  },
-  mounted() {
-    this.sendBotMessage();
   },
   methods: {
     addMessageClass(message) {
       const msgAlignment =
-        message.user === 'bot' ? 'msg left-msg' : 'msg right-msg';
+        message.user === "bot" ? "msg left-msg" : "msg right-msg";
       return msgAlignment;
     },
     getImageStyle(message) {
       const userImage = message.image
         ? message.image
-        : 'http://emilcarlsson.se/assets/harveyspecter.png';
+        : "https://images.squarespace-cdn.com/content/v1/55ef2da9e4b03f6e1ef0cd28/1550515940004-B2POQR56AVHRYE6HH9P2/ke17ZwdGBToddI8pDm48kBMm0qsaWmhf6YioOPsbQVBZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpztGiDCIISkDGDF1GVNm0HcOi8zoxy7Sck35deyBoYp2gqHToPHO9-l107kPLfFMFo/Steve.png?format=300w.png";
       const imgUrl =
-        message.user === 'bot'
-          ? 'http://emilcarlsson.se/assets/haroldgunderson.png'
+        message.user === "bot"
+          ? "https://images.squarespace-cdn.com/content/v1/55ef2da9e4b03f6e1ef0cd28/1550508597684-0SHJ6IJRQ6N350ELXIIZ/ke17ZwdGBToddI8pDm48kBMm0qsaWmhf6YioOPsbQVBZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpztGiDCIISkDGDF1GVNm0HcOi8zoxy7Sck35deyBoYp2gqHToPHO9-l107kPLfFMFo/Andrew+F.png?format=300w"
           : userImage;
       return `background-image: url(${imgUrl})`;
     },
     sendMessage() {
       this.messages.push({
-        user: 'User',
+        user: "User",
         text: this.userMessage,
         // time: new Date().toTimeString().split(' GMT')[0],
         image: null,
+        type: 'text'
       });
-      this.scrollDown('before bot >>>>');
+      this.scrollDown("before bot >>>>");
       this.sendBotMessage(this.userMessage);
-      this.userMessage = '';
+      this.userMessage = "";
     },
     sendBotMessage(userResponse) {
       let lastMessageIndex;
       setTimeout(() => {
-        this.scrollDown('before loader >>>>');
+        this.scrollDown("before loader >>>>");
         this.messages.push({
-          user: 'bot',
+          user: "bot",
           text: null,
           // time: new Date().toTimeString().split(' GMT')[0],
           image: null,
           isLoading: true,
+          type: 'text'
         });
         lastMessageIndex = this.messages.length - 1;
-        this.scrollDown('after loader >>>>');
+        this.scrollDown("after loader >>>>");
       }, 0);
       // this.scrollDown('after bot message >>>>>');
       setTimeout(() => {
         this.messages[lastMessageIndex].isLoading = false;
-        const question = this.questions[this.questionIndex] || "That's all, enjoy 😄";
-        this.messages[lastMessageIndex].text = this.formatResponse(userResponse, question);
-        this.questionIndex = this.questionIndex + 1;
-        this.scrollDown('after bot message >>>>>');
+        const question = this.questions[this.questionIndex];
+        if (question) {
+          this.messages[lastMessageIndex].text = this.formatResponse(
+            userResponse,
+            question
+          );
+          this.messages[lastMessageIndex].type = "text";
+          this.questionIndex = this.questionIndex + 1;
+        } else if (userResponse === "help") {
+          this.messages[lastMessageIndex].type = "html";
+        }
+        this.scrollDown("after bot message >>>>>");
       }, 2000);
     },
     formatResponse(response, text) {
       if (!response) return text;
       return text.replace(/\[.*?\]/g, response);
     },
-    scrollDown(loc) {
-      const scrollTop = document.getElementsByClassName('msger-chat')[0].scrollHeight - document.getElementsByClassName('msger-chat')[0].offsetHeight;
-      console.log('current scrollTop', document.getElementsByClassName('msger-chat')[0].scrollTop);
-      console.log('scrollTop, loc :', scrollTop, loc);
-      console.log('---------');
+    scrollDown() {
+      const scrollTop =
+        document.getElementsByClassName("msger-chat")[0].scrollHeight -
+        document.getElementsByClassName("msger-chat")[0].offsetHeight;
       if (scrollTop !== 0) {
-        document.getElementsByClassName('msger-chat')[0].scrollTop = scrollTop + 100;
+        document.getElementsByClassName("msger-chat")[0].scrollTop =
+          scrollTop + 100;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -259,7 +284,7 @@ input.msger-input:focus {
 
 .msger-chat {
   background-color: #fcfcfe;
-  background-image: url("https://static1.squarespace.com/static/55ef2da9e4b03f6e1ef0cd28/t/5dceda76b702913cebc1d05e/1586356440148/?format=1500w");
+  background-image: url("https://images.unsplash.com/photo-1522441815192-d9f04eb0615c?ixlib=rb-1.2.1&dpr=1&auto=format&fit=crop&w=416&h=312&q=60");
 }
 .loader {
   margin-bottom: -2px;
@@ -276,36 +301,91 @@ input.msger-input:focus {
   background: #007bff;
   border-radius: 50px;
   -webkit-animation: loader 0.45s infinite alternate;
-          animation: loader 0.45s infinite alternate;
+  animation: loader 0.45s infinite alternate;
 }
 .loader__dot:nth-of-type(2) {
   -webkit-animation-delay: 0.15s;
-          animation-delay: 0.15s;
+  animation-delay: 0.15s;
 }
 .loader__dot:nth-of-type(3) {
   -webkit-animation-delay: 0.35s;
-          animation-delay: 0.35s;
+  animation-delay: 0.35s;
+}
+
+#topicContainer{
+    display : flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+.viewWindow{
+    width: 30%;
+    height: 15em;
+    border: solid black 1px;
+    border-radius: 5px;
+    margin-left: 5%;
+    background-color:azure;
+
+}
+
+.topics {
+  background-color: white;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 0.5em;
+  width: 8em;
+  text-align: center;
+  color: #222E50;
+  border: 2px solid green;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+  font-size: .75em;
+}
+
+.topics:hover{
+border-radius: 50px;
+transition: all 0.3s ease 0s;
+background-color:#00A6ED;
+color: white;
+}
+
+.chatInput {
+    padding-top: 4em;  /*this is not the right way to put it on the bottom*/
+    display: flex;
+    align-content: flex-end;
+}
+
+#chatInput {
+    width: 100%;
+    line-height: 3em;
+    text-align:right;
+    font-size: .75em;
+    font-weight: bold;
+    
 }
 
 @-webkit-keyframes loader {
   0% {
     -webkit-transform: translateY(0);
-            transform: translateY(0);
+    transform: translateY(0);
   }
   100% {
     -webkit-transform: translateY(-5px);
-            transform: translateY(-5px);
+    transform: translateY(-5px);
   }
 }
 
 @keyframes loader {
   0% {
     -webkit-transform: translateY(0);
-            transform: translateY(0);
+    transform: translateY(0);
   }
   100% {
     -webkit-transform: translateY(-5px);
-            transform: translateY(-5px);
+    transform: translateY(-5px);
   }
 }
 @-webkit-keyframes fadein {

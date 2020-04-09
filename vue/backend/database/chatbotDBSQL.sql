@@ -20,6 +20,17 @@ videoTitle VARCHAR(150) NOT NULL
 );
 
 
+CREATE TABLE pathway ( 
+id SERIAL PRIMARY KEY NOT NULL, 
+topic VARCHAR (150) NOT NULL,
+message VARCHAR(400) NOT NULL,
+readingLink VARCHAR(150) NOT NULL,
+readingTitle VARCHAR(150) NOT NULL,
+videoLink VARCHAR(150) NOT NULL,
+videoTitle VARCHAR(150) NOT NULL
+
+);
+
 INSERT INTO help_topics (topic_name) 
 VALUES('Curriculum'),
       ('Pathways'),
@@ -105,17 +116,17 @@ INSERT INTO curriculum (id,topic,message,readingLink,readingTitle,videoLink,vide
 VALUES (DEFAULT,'agile', 'Agile software development refers to a group of software development methodologies based on iterative development, where requirements and solutions evolve through collaboration between self-organizing cross-functional teams', 'https://www.cprime.com/resources/what-is-agile-what-is-scrum/', 'What is Agile? - What is Scrum?', 'https://www.youtube.com/watch?v=Z9QbYZh1YXY', 'What is Agile?');
 
 
-
-
-
-
-
-
-
+INSERT INTO pathway (topic, message, readingLink, readingTitle, videoLink, videoTitle)
+VALUES('resume', 'A resume a document used and created by a person to present their background, skills, and accomplishments.', 'https://www.freecodecamp.org/news/writing-a-killer-software-engineering-resume-b11c91ef699d/', 'How to write a killer Software Engineering', 'https://www.youtube.com/watch?v=xpaz7nrNmXA', '7 Tips for the Coding Resume (for Software Engineers)'),
+        ('linkedin', 'LinkedIn is an essential tool for networking and locating career opportunities. A Standout LinkedIn profile includes: a profiessional photo, a headline that summarizes you, your location, an interesting summary.', 'https://www.hatchit.io/how-to-make-your-linkedin-profile-stand-out-as-a-software-engineer/', 'how to make your linkedin profile stand out as a software engineer', 'https://www.youtube.com/watch?v=JojewsL_E5Y', 'How to boost your Linkedin Profile (Software Dev Career)'),
+        ('elevator pitch', 'Elevator Pitch Tips: \n1) Keep it short - 30 Seconds.  \n2) Describe how you will benefit the employer. \n3) Connect your experiences to your goals. \n4) Describe where you excel.', 'https://www.monster.com/career-advice/article/how-to-do-an-elevator-pitch', 'How to craft the perfect elevator pitch', 'https://www.youtube.com/watch?v=uyxfERV5ttY', 'Elevator pitch examples'),
+        ('star questions', 'Respond to behavioral interview questions with the STAR Method. Discuss the: Situation, Task, Action, and Result to richly address each question.', 'https://www.theladders.com/career-advice/a-guide-to-the-star-method', '19 examples of STAR interview questions (plus how to answer them)', 'https://www.youtube.com/watch?v=WSbN-0swDgM', 'How to Answer BEHAVIORAL INTERVIEW QUESTIONS Using the STAR Method (TOP 10 Behavioral Questions)'),
+        ('career paths', 'You can have great IT career without writing a single line of Java. Database administrators, Architects, DevOps, Business Analysts, Data Analysts, and more. Keep and open mind to find a great career!', 'https://www.forbes.com/sites/quora/2018/07/06/what-are-different-career-paths-in-tech/#3d22be04d11d', 'What Are Different Career Paths In Tech?', 'https://www.youtube.com/watch?v=gTWsHpTc58M', 'IT Career Paths & Certifications');
 
 
 SELECT * FROM help_topics;
 SELECT * FROM curriculum;          
+SELECT * FROM pathway;        
         
 COMMIT;
         
