@@ -2,6 +2,8 @@ package com.techelevator.controller;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
+import com.techelevator.model.Curriculum;
+import com.techelevator.model.CurriculumDao;
 import com.techelevator.model.Topic;
 import com.techelevator.model.TopicDao;
 
@@ -26,12 +28,20 @@ public class ApiController {
     private AuthProvider authProvider;
     @Autowired
     private TopicDao topicDao;
+    @Autowired
+    private CurriculumDao curriculumDao;
 
    
     @GetMapping(path = "/topic")
     	public List<Topic> getAllTopics(){
     		return topicDao.getAllTopics();
     	}
+    
+    @GetMapping(path = "/curriculum")
+	public List<Curriculum> getAllCurriculum(){
+		return curriculumDao.getAllCurriculum();
+	}
+
     
     
     
