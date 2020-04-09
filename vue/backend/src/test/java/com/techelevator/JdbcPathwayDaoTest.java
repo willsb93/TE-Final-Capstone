@@ -16,22 +16,24 @@ import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
-import com.techelevator.model.Curriculum;
-import com.techelevator.model.CurriculumDao;
-import com.techelevator.model.JdbcCurriculumDao;
+import com.techelevator.model.JdbcPathwayDao;
+import com.techelevator.model.Pathway;
+import com.techelevator.model.PathwayDao;
 
 
 
 
 
-public class JdbcCurriculumDaoTest {
+
+
+public class JdbcPathwayDaoTest {
 	private static final String TEST_TOPIC = "JavaGreenTest";
 	private static final String TEST_MESSAGE = "A Simple Test";
 	private static final String TEST_READINGLINK = "book";
 	private static final String TEST_READINGTITLE = "Student Book";
 	private static final String TEST_VIDEOLINK = "Youtube";
 	private static final String TEST_VIDEOTITLE = "Evolution Of Dancing";
-	private CurriculumDao dao;
+	private PathwayDao dao;
 	
 	/* Using this particular implementation of DataSource so that
 	 * every database interaction is part of the same database
@@ -73,19 +75,19 @@ public class JdbcCurriculumDaoTest {
 	
 	@Before
 	public void setup() {
-		String sqlInsertNewCurriculum = "INSERT INTO curriculum (topic, message, readinglink, readingtitle, videolink, videotitle ) VALUES (?,?,?,?,?,?)";
+		String sqlInsertNewPathway = "INSERT INTO pathway (topic, message, readinglink, readingtitle, videolink, videotitle ) VALUES (?,?,?,?,?,?)";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sqlInsertNewCurriculum, TEST_TOPIC, TEST_MESSAGE, TEST_READINGLINK, TEST_READINGTITLE, TEST_VIDEOLINK, TEST_VIDEOTITLE ) ;
-		dao = new JdbcCurriculumDao(dataSource);
+		jdbcTemplate.update(sqlInsertNewPathway, TEST_TOPIC, TEST_MESSAGE, TEST_READINGLINK, TEST_READINGTITLE, TEST_VIDEOLINK, TEST_VIDEOTITLE ) ;
+		dao = new JdbcPathwayDao(dataSource);
 		
 	}
 	
 	@Test
-	public void getAllTopics() {
-		List<Curriculum> curriculumTest = dao.getAllCurriculum();
-		for(Curriculum curriculum : curriculumTest){
-			if(curriculum.getTopic().equals(TEST_TOPIC))
-			assertEquals(TEST_TOPIC, curriculum.getTopic());
+	public void getAllPathway() {
+		List<Pathway> pathwayTest = dao.getAllPathway();
+		for(Pathway pathway : pathwayTest){
+			if(pathway.getTopic().equals(TEST_TOPIC))
+			assertEquals(TEST_TOPIC, pathway.getTopic());
 			
 		}
 	}
@@ -93,9 +95,9 @@ public class JdbcCurriculumDaoTest {
 	
 	@Test 
 	public void getCurriculumByTopicName() {
-		Curriculum curriculum = dao.getCurriculumByName(TEST_TOPIC);
+		Pathway pathway = dao.getPathWayByName(TEST_TOPIC);
 		
-		assertEquals(curriculum.getTopic(), TEST_TOPIC);
+		assertEquals(pathway.getTopic(), TEST_TOPIC);
 		
 	}
 
