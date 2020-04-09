@@ -100,6 +100,6 @@ public class JdbcPathwayDaoTest {
 		assertEquals(pathway.getTopic(), TEST_TOPIC);
 		
 	}
-
+  
 }
 

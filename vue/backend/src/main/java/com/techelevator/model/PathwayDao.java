@@ -8,3 +8,4 @@ public interface PathwayDao {
 	
 	public Pathway getPathWayByName(String pathwayName);
 }
+  

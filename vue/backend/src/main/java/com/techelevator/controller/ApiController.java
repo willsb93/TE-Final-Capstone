@@ -33,7 +33,7 @@ public class ApiController {
     @Autowired
     private CurriculumDao curriculumDao;
     @Autowired
-    private PathwayDao pathwayDao;
+    private PathwayDao pathwayDao;  
     
    
     @GetMapping(path = "/topic")

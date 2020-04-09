@@ -95,7 +95,7 @@ public class JdbcCurriculumDaoTest {
 	public void getCurriculumByTopicName() {
 		Curriculum curriculum = dao.getCurriculumByName(TEST_TOPIC);
 		
-		assertEquals(curriculum.getTopic(), TEST_TOPIC);
+		assertEquals(curriculum.getTopic(), TEST_TOPIC);  
 		
 	}
 
