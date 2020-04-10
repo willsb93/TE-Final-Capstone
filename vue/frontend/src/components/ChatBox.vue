@@ -178,8 +178,8 @@ export default {
 
             this.messages.push({
           user: "bot",
-          text: "Here is a video we recommend you reading called, " + response.videoTitle + " found at, " + 
-          response.videoLink,
+          text: "Here is a video we recommend you watching called, " + response.videoTitle + " found at, " + 
+          videoLink,
           image: null,
           type: "text"
         });
