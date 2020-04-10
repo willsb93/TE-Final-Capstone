@@ -8,7 +8,7 @@
 </template>
 <script>
 
-import chatbox from "@/components/chatbox.vue";
+import chatbox from "@/components/ChatBox.vue";
 export default {
   name: "demonstration",
   components: {
