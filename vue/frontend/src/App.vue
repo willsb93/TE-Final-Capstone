@@ -7,12 +7,10 @@
 
 <script>
 import NavBar from "./components/NavBar.vue";
-import Demonstration from "./views/Demonstration.vue";
 export default {
   name: "app",
   components: {
-    NavBar,
-    Demonstration
+    NavBar
   }
 };
 </script>
