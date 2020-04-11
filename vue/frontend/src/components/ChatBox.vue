@@ -251,9 +251,9 @@ export default {
           this.messages.push({
             user: "bot",
             text:
-              "Here is an article we recommend you reading called, " +
+              "Here is an article that might be helpful, " +
               response.readingTitle +
-              " found at, " +
+              " found at: " +
               response.readingLink,
             image: null,
             type: "text"
@@ -262,9 +262,9 @@ export default {
           this.messages.push({
             user: "bot",
             text:
-              "Here is a video we recommend you watching called, " +
+              "Here is a video that might be helpful, " +
               response.videoTitle +
-              " found at, " +
+              " found at: " +
               response.videoLink,
             image: null,
             type: "text"
@@ -309,9 +309,9 @@ export default {
           this.messages.push({
             user: "bot",
             text:
-              "Here is an article we recommend you reading called, " +
+              "Here is an article that might be helpful, " +
               response.readingTitle +
-              " found at, " +
+              " found at: " +
               response.readingLink,
             image: null,
             type: "text"
@@ -320,9 +320,9 @@ export default {
           this.messages.push({
             user: "bot",
             text:
-              "Here is a video we recommend you watching called, " +
+              "Here is a video that might be helpful, " +
               response.videoTitle +
-              " found at, " +
+              " found at: " +
               response.videoLink,
             image: null,
             type: "text"
@@ -498,7 +498,7 @@ export default {
 .msg-text {
   padding: 10px 15px;
   border-radius: 20px;
-  max-width: 300px;
+  max-width: 400px;
   font-weight: bold;
 }
 .left-msg .msg-text {
@@ -586,7 +586,7 @@ input.msger-input:focus {
 
 .msger-chat {
   background-color: #fcfcfe;
-  background-image: url("https://images.unsplash.com/photo-1522441815192-d9f04eb0615c?ixlib=rb-1.2.1&dpr=1&auto=format&fit=crop&w=416&h=312&q=60");
+  background-image: url("https://i.pinimg.com/originals/f0/b9/52/f0b9523dacbecc5bd4e2aae496a9c8c2.jpg");
 }
 
 /* this is the new loader */
@@ -676,7 +676,7 @@ input.msger-input:focus {
   border-radius: 6px;
   display: inline-block;
   transition: all 0.3s ease 0s;
-  font-size: 0.75em;
+  font-size: 0.9em;
 }
 
 .topics:hover {
@@ -684,6 +684,7 @@ input.msger-input:focus {
   transition: all 0.3s ease 0s;
   background-color: #00a6ed;
   color: white;
+  cursor: pointer;
 }
 
 .chatInput {
