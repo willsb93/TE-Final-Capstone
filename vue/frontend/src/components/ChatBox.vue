@@ -2,7 +2,7 @@
   <section class="msger">
     <header class="msger-header">
       <div class="msger-header-title">
-        <i class="fas fa-comment"></i> Student Chat Bot
+        <i class="fas fa-comment"></i> <span id="product-name-2title">Increment++</span>
       </div>
       <div class="msger-header-options">
         <a href="#" class="text-danger">
@@ -97,7 +97,7 @@ export default {
       userMessage: "",
       questionIndex: 0,
       questions: [
-        "Greetings I am ChatBot! May I please know your name?",
+        "Greetings I am Increment++, a ChatBot! May I please know your name?",
         '[response] nice to meet you! You can start our chat by typing "help" for a list of topics.'
       ],
       messages: [],
@@ -164,7 +164,7 @@ export default {
           .then(response => {
             this.curriculums = response.data;
             console.log("response data==>>", response.data);
-            this.sendBotMessage("What topic do you need help with?");
+            this.sendBotMessage("What topic do you need help with? You can search terms like 'object' or 'variables'");
             this.curriculum = actionTopicName;
           });
       } else if (actionTopicName === "Pathways") {
@@ -746,5 +746,11 @@ input.msger-input:focus {
    margin-top: 0;
    margin-bottom: 10px;
  }
+}
+
+#product-name-2title {
+  color: #3273dc;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 </style>
