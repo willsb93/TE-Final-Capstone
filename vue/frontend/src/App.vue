@@ -16,15 +16,5 @@ export default {
 </script>
 
 <style>
-
-body {
-  background-color: #eee;
-}
-
-.product-name {
-  color:#3273dc;
-  font-weight: bold;
-  font-size: 1em;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 </style>
