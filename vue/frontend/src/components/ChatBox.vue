@@ -15,11 +15,10 @@
       <div v-for="(message, i) in messages" :key="i" :class="addMessageClass(message)">
         <div class="msg-img" :style="getImageStyle(message)"></div>
         <div v-if="message.isLoading" class="msg-bubble">
-          <span class="loader">
-            <span class="loader__dot"></span>
-            <span class="loader__dot"></span>
-            <span class="loader__dot"></span>
-          </span>
+         <div class="lds-ellipsis"><div>
+          </div><div>
+          </div><div></div>
+          <div></div></div>
         </div>
         <div v-else class="msg-bubble">
           <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
@@ -98,8 +97,8 @@ export default {
       userMessage: "",
       questionIndex: 0,
       questions: [
-        "Greetings, what is your name?",
-        '[response], Type "help" for a list of topics'
+        "Greetings I am ChatBot! May I please know your name?",
+        '[response] nice to meet you! You can start our chat by typing "help" for a list of topics.'
       ],
       messages: [],
       posts: null,
@@ -263,7 +262,7 @@ export default {
           this.messages.push({
             user: "bot",
             text:
-              "Here is a video we recommend you reading called, " +
+              "Here is a video we recommend you watching called, " +
               response.videoTitle +
               " found at, " +
               response.videoLink,
@@ -321,7 +320,7 @@ export default {
           this.messages.push({
             user: "bot",
             text:
-              "Here is a video we recommend you reading called, " +
+              "Here is a video we recommend you watching called, " +
               response.videoTitle +
               " found at, " +
               response.videoLink,
@@ -491,7 +490,8 @@ export default {
   border-radius: 50%;
 }
 .msg-bubble {
-  width: calc(100% - 25px);
+  font-family: 'Open Sans', sans-serif;
+  width: max-content;
   font-size: 0.9em;
   padding: 5px;
 }
@@ -499,6 +499,7 @@ export default {
   padding: 10px 15px;
   border-radius: 20px;
   max-width: 300px;
+  font-weight: bold;
 }
 .left-msg .msg-text {
   background: var(--left-msg-bg);
@@ -523,16 +524,31 @@ export default {
 }
 
 .left-msg .msg-bubble {
-  border-bottom-left-radius: 0;
+   background: #7cc283;
+    border: 1px solid #a7a7a7;
+    -webkit-border-radius: .4em;
+            border-radius: .4em;
+    -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+            width: max-content;
 }
 
 .right-msg {
   flex-direction: row-reverse;
 }
-.right-msg .msg-bubble {
-  color: #fff;
-  border-bottom-right-radius: 0;
+
+
+.right-msg .msg-bubble  {
+    background: #00d0e6;;
+    border: 1px solid #a7a7a7;
+    -webkit-border-radius: .4em;
+            border-radius: .4em;
+    -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+            width: max-content;
+    
 }
+
 .right-msg .msg-img {
   margin: 0 0 0 10px;
 }
@@ -572,31 +588,65 @@ input.msger-input:focus {
   background-color: #fcfcfe;
   background-image: url("https://images.unsplash.com/photo-1522441815192-d9f04eb0615c?ixlib=rb-1.2.1&dpr=1&auto=format&fit=crop&w=416&h=312&q=60");
 }
-.loader {
-  margin-bottom: -2px;
-  text-align: center;
-  opacity: 0.3;
-}
 
-.loader__dot {
+/* this is the new loader */
+
+.lds-ellipsis {
   display: inline-block;
-  vertical-align: middle;
-  width: 6px;
-  height: 6px;
-  margin: 0 1px;
-  background: #007bff;
-  border-radius: 50px;
-  -webkit-animation: loader 0.45s infinite alternate;
-  animation: loader 0.45s infinite alternate;
+  position: relative;
+  width: 70px;
+  height: 35px;
 }
-.loader__dot:nth-of-type(2) {
-  -webkit-animation-delay: 0.15s;
-  animation-delay: 0.15s;
+.lds-ellipsis div {
+  position: absolute;
+  top: 17px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cef;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
-.loader__dot:nth-of-type(3) {
-  -webkit-animation-delay: 0.35s;
-  animation-delay: 0.35s;
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
 }
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+/* end of new loader */
 
 #topicContainer {
   display: flex;
