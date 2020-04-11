@@ -219,7 +219,7 @@ export default {
       let response;
 
       if (this.curriculum === "Curriculum") {
-        response = this.findCurriculum(this.userMessage);
+        response = this.findCurriculum(this.userMessage.toLowerCase());
 
         if (response == null) {
           this.messages.push({
@@ -277,7 +277,7 @@ export default {
           });
         }
       } else if (this.pathway === "Pathways") {
-        response = this.findPathway(this.userMessage);
+        response = this.findPathway(this.userMessage.toLowerCase());
 
         if (response == null) {
           this.messages.push({
