@@ -34,7 +34,7 @@ videoTitle VARCHAR(150) NOT NULL
 
 INSERT INTO help_topics (topic_name) 
 VALUES('Curriculum'),
-      ('Pathways'),
+      ('Pathway'),
       ('Motivation'),
       ('Find a Job');
 
