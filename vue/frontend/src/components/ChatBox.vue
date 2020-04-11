@@ -84,7 +84,7 @@
     </form>
   </section>
 </template>
-
+ 
 <script>
 import axios from "axios";
 export default {
@@ -430,7 +430,7 @@ export default {
   }
 };
 </script>
-
+ 
 <style>
 .msger {
   display: flex;
@@ -449,45 +449,45 @@ export default {
 }
 
 .msger-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: var(--border);
-  background: #eee;
-  color: #666;
+ display: flex;
+ justify-content: space-between;
+ padding: 10px;
+ border-bottom: var(--border);
+ background: #eee;
+ color: #666;
 }
-
+ 
 .msger-chat {
   flex: 1;
   overflow-y: scroll;
   padding: 10px;
 }
 .msger-chat::-webkit-scrollbar {
-  width: 6px;
+ width: 6px;
 }
 .msger-chat::-webkit-scrollbar-track {
-  background: #ddd;
+ background: #ddd;
 }
 .msger-chat::-webkit-scrollbar-thumb {
-  background: #bdbdbd;
+ background: #bdbdbd;
 }
 .msg {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+ display: flex;
+ align-items: center;
+ margin-bottom: 10px;
 }
 .msg:last-of-type {
-  margin: 0;
+ margin: 0;
 }
 .msg-img {
-  width: 32px;
-  height: 32px;
-  margin-right: 10px;
-  background: #ddd;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  border-radius: 50%;
+ width: 32px;
+ height: 32px;
+ margin-right: 10px;
+ background: #ddd;
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: cover;
+ border-radius: 50%;
 }
 .msg-bubble {
   font-family: 'Open Sans', sans-serif;
@@ -495,6 +495,7 @@ export default {
   font-size: 0.9em;
   padding: 5px;
 }
+
 .msg-text {
   padding: 10px 15px;
   border-radius: 20px;
@@ -502,27 +503,27 @@ export default {
   font-weight: bold;
 }
 .left-msg .msg-text {
-  background: var(--left-msg-bg);
+ background: var(--left-msg-bg);
 }
 .right-msg .msg-text {
-  float: right;
-  background: var(--right-msg-bg);
+ float: right;
+ background: var(--right-msg-bg);
 }
 .msg-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 10px;
 }
 .msg-info-name {
-  margin-right: 10px;
-  font-weight: bold;
-  text-transform: capitalize;
+ margin-right: 10px;
+ font-weight: bold;
+ text-transform: capitalize;
 }
 .msg-info-time {
-  font-size: 0.85em;
+ font-size: 0.85em;
 }
-
+ 
 .left-msg .msg-bubble {
    background: #7cc283;
     border: 1px solid #a7a7a7;
@@ -532,9 +533,9 @@ export default {
             box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
             width: max-content;
 }
-
+ 
 .right-msg {
-  flex-direction: row-reverse;
+ flex-direction: row-reverse;
 }
 
 
@@ -550,40 +551,40 @@ export default {
 }
 
 .right-msg .msg-img {
-  margin: 0 0 0 10px;
+ margin: 0 0 0 10px;
 }
-
+ 
 .msger-inputarea {
-  display: flex;
-  padding: 10px;
-  border-top: var(--border);
-  background: #eee;
+ display: flex;
+ padding: 10px;
+ border-top: var(--border);
+ background: #eee;
 }
 .msger-inputarea * {
-  padding: 10px;
-  border: none;
-  border-radius: 3px;
-  font-size: 1em;
+ padding: 10px;
+ border: none;
+ border-radius: 3px;
+ font-size: 1em;
 }
 .msger-input {
-  flex: 1;
-  background: #ddd;
+ flex: 1;
+ background: #ddd;
 }
 input.msger-input:focus {
-  outline: none;
+ outline: none;
 }
 .msger-send-btn {
-  margin-left: 10px;
-  background: rgb(0, 196, 65);
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.23s;
+ margin-left: 10px;
+ background: rgb(0, 196, 65);
+ color: #fff;
+ font-weight: bold;
+ cursor: pointer;
+ transition: background 0.23s;
 }
 .msger-send-btn:hover {
-  background: rgb(0, 180, 50);
+ background: rgb(0, 180, 50);
 }
-
+ 
 .msger-chat {
   background-color: #fcfcfe;
   background-image: url("https://i.pinimg.com/originals/f0/b9/52/f0b9523dacbecc5bd4e2aae496a9c8c2.jpg");
@@ -649,21 +650,21 @@ input.msger-input:focus {
 /* end of new loader */
 
 #topicContainer {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
+ display: flex;
+ flex-wrap: wrap;
+ flex-direction: row;
+ justify-content: center;
 }
-
+ 
 .viewWindow {
-  width: 30%;
-  height: 15em;
-  border: solid black 1px;
-  border-radius: 5px;
-  margin-left: 5%;
-  background-color: azure;
+ width: 30%;
+ height: 15em;
+ border: solid black 1px;
+ border-radius: 5px;
+ margin-left: 5%;
+ background-color: azure;
 }
-
+ 
 .topics {
   background-color: white;
   line-height: 1;
@@ -686,64 +687,64 @@ input.msger-input:focus {
   color: white;
   cursor: pointer;
 }
-
+ 
 .chatInput {
-  padding-top: 4em; /*this is not the right way to put it on the bottom*/
-  display: flex;
-  align-content: flex-end;
+ padding-top: 4em; /*this is not the right way to put it on the bottom*/
+ display: flex;
+ align-content: flex-end;
 }
-
+ 
 #chatInput {
-  width: 100%;
-  line-height: 3em;
-  text-align: right;
-  font-size: 0.75em;
-  font-weight: bold;
+ width: 100%;
+ line-height: 3em;
+ text-align: right;
+ font-size: 0.75em;
+ font-weight: bold;
 }
-
+ 
 @-webkit-keyframes loader {
-  0% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  100% {
-    -webkit-transform: translateY(-5px);
-    transform: translateY(-5px);
-  }
+ 0% {
+   -webkit-transform: translateY(0);
+   transform: translateY(0);
+ }
+ 100% {
+   -webkit-transform: translateY(-5px);
+   transform: translateY(-5px);
+ }
 }
-
+ 
 @keyframes loader {
-  0% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  100% {
-    -webkit-transform: translateY(-5px);
-    transform: translateY(-5px);
-  }
+ 0% {
+   -webkit-transform: translateY(0);
+   transform: translateY(0);
+ }
+ 100% {
+   -webkit-transform: translateY(-5px);
+   transform: translateY(-5px);
+ }
 }
 @-webkit-keyframes fadein {
-  from {
-    opacity: 0;
-    margin-top: 10px;
-    margin-bottom: 0;
-  }
-  to {
-    opacity: 1;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
+ from {
+   opacity: 0;
+   margin-top: 10px;
+   margin-bottom: 0;
+ }
+ to {
+   opacity: 1;
+   margin-top: 0;
+   margin-bottom: 10px;
+ }
 }
 @keyframes fadein {
-  from {
-    opacity: 0;
-    margin-top: 10px;
-    margin-bottom: 0;
-  }
-  to {
-    opacity: 1;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
+ from {
+   opacity: 0;
+   margin-top: 10px;
+   margin-bottom: 0;
+ }
+ to {
+   opacity: 1;
+   margin-top: 0;
+   margin-bottom: 10px;
+ }
 }
 </style>
