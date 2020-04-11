@@ -14,3 +14,17 @@ export default {
   }
 };
 </script>
+
+<style>
+
+body {
+  background-color: #eee;
+}
+
+.product-name {
+  color:#3273dc;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+</style>
