@@ -22,7 +22,6 @@
         </div>
         <div v-else class="msg-bubble">
           <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
-
           <div v-if="message.type === 'action'">
             <ul id="topicContainer">
               <li
@@ -264,8 +263,7 @@ export default {
             text:
               "Here is a video that might be helpful, " +
               response.videoTitle +
-              " found at: " +
-              response.videoLink,
+              " found at: " + response.videoLink,
             image: null,
             type: "text"
           });
@@ -686,6 +684,9 @@ input.msger-input:focus {
   background-color: #00a6ed;
   color: white;
   cursor: pointer;
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
 }
  
 .chatInput {
