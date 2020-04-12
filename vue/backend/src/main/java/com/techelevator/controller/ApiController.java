@@ -8,6 +8,8 @@ import com.techelevator.model.Pathway;
 import com.techelevator.model.PathwayDao;
 import com.techelevator.model.Topic;
 import com.techelevator.model.TopicDao;
+import com.techelevator.model.Motivation;
+import com.techelevator.model.MotivationDao;
 
 import java.util.List;
 
@@ -34,6 +36,9 @@ public class ApiController {
     private CurriculumDao curriculumDao;
     @Autowired
     private PathwayDao pathwayDao;  
+    @Autowired
+    private MotivationDao motivationDao;
+    
     
    
     @GetMapping(path = "/topic")
@@ -52,6 +57,13 @@ public class ApiController {
     @GetMapping(path = "/pathway")
 	public List<Pathway> getAllPathway(){
 		return pathwayDao.getAllPathway();
+	}
+
+    
+    @GetMapping(path = "/motivation")
+	public List<Motivation> getAllMotivation(){
+    	
+		return motivationDao.getAllMotivation();
 	}
 
     

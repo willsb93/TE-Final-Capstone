@@ -105,6 +105,8 @@ export default {
       curriculum: null,
       pathways: [],
       pathway: null,
+      //  motivations:[],
+      // motivation:null,
 
       actions: [
         {
@@ -149,7 +151,24 @@ export default {
           name: "exit",
           label: "Exit."
         }
-      ]
+      ] //,
+
+      // motivationActions: [
+      //   {
+      //     name: "motivation-search-again",
+      //     label: "Search Again"
+      //   },
+      //   {
+      //     name: "help-topics",
+      //     label: "Help"
+      //   },
+      //   {
+      //     name: "exit",
+      //     label: "Exit."
+      //   } 
+      // ]
+
+
     };
 
     
@@ -166,7 +185,7 @@ export default {
             this.sendBotMessage("What topic do you need help with? You can search terms like 'object' or 'variables'");
             this.curriculum = actionTopicName;
           });
-      } else if (actionTopicName === "Pathways") {
+      } else if (actionTopicName === "Pathway") {
         axios
           .get("http://localhost:8080/AuthenticationApplication/api/pathway")
           .then(response => {
@@ -179,13 +198,23 @@ export default {
 
           
       } else if (actionTopicName === "Motivation"){
-        // 
+        /* this.doRequest("Motivation");
+           .get("http://localhost:8080/AuthenticationApplication/api/motivation")
+          .then(response => {
+            this.motivations = response.data;
+            console.log("response data==>>", response.data);
+
+            this.sendBotMessage("I know you can do this!!!");
+            this.motivation = actionTopicName; 
+          });
+
+        */
       }else if (actionTopicName === "Find a Job"){
         //
       }else if(actionTopicName === "curriculum-search-again"){
         this.doRequest("Curriculum");
       }else if(actionTopicName === "pathway-search-again"){
-        this.doRequest("Pathways");
+        this.doRequest("Pathway");
       }
       
       else if(actionTopicName === "help-topics"){
@@ -274,7 +303,7 @@ export default {
             actions: this.curriculumActions
           });
         }
-      } else if (this.pathway === "Pathways") {
+      } else if (this.pathway === "Pathway") {
         response = this.findPathway(this.userMessage.toLowerCase());
 
         if (response == null) {
@@ -291,6 +320,16 @@ export default {
             type: "pathwayAction",
             actions: this.pathwayActions
           });
+
+        //  } else if (this.motivation ==="Motivation") {
+        //    this.messages.push({
+        //      user: "bot",
+        //      text: "We all have hard moments... " + response.message + " by " + response.author,
+        //      image: null,
+        //      type: "text" 
+        //    });
+
+        
           
         } else {
           this.messages.push({

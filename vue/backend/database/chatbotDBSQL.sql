@@ -32,6 +32,14 @@ videoTitle VARCHAR(150) NOT NULL
 
 );
 
+CREATE TABLE motivation (
+id SERIAL PRIMARY KEY NOT NULL,
+message VARCHAR(400) NOT NULL,
+author VARCHAR (150) NOT NULL
+
+);
+
+
 INSERT INTO help_topics (topic_name) 
 VALUES('Curriculum'),
       ('Pathway'),
@@ -125,9 +133,35 @@ VALUES('resume', 'A resume a document used and created by a person to present th
         ('career paths', 'You can have great IT career without writing a single line of Java. Database administrators, Architects, DevOps, Business Analysts, Data Analysts, and more. Keep and open mind to find a great career!', 'https://www.forbes.com/sites/quora/2018/07/06/what-are-different-career-paths-in-tech/#3d22be04d11d', 'What Are The Different Career Paths In Tech?', 'https://www.youtube.com/watch?v=gTWsHpTc58M', 'IT Career Paths & Certifications');
 
 
+INSERT INTO motivation(message, author)
+VALUES('With the new day comes new strength and new thoughts.', 'Eleanor Roosevelt'),
+        ('Any sufficiently advanced technology is equivalent to magic.', 'Sir Arthur C. Clarke'),
+        ('Blaze with the fire that is never extinguished.', 'Luisa Sigea'),
+        ('Happiness depends upon ourselves.', 'Aristotle'),
+        ('Nothing will work unless you do.', 'Maya Angelou'),
+        ('Action may not always bring happiness; but there is no happiness without action', 'Benjamin Disraeli'),
+        ('If we did the things we are capable of, we would astound ourselves.', 'Thomas Edison'),
+        ('Inspiration exists, but it has to find us working.', 'Pablo Picasso'),
+        ('Continuous effort - not strength or intelligence - is the key to unlocking our potential.', 'Winston Churchill'),
+        ('Aim for success, not perfection. Never give up your right to be wrong, because then you will lose the ability to learn new things and move forward with your life.', 'Dr. David M. Burns'),
+        ('Goals are the fuel in the furnace of achievement.', 'Brian Tracy'),
+        ('Every great dream begins with a dreamer. Always remember, you have within you the strength, the patience, and the passion to reach for the stars to change the world.', 'Harriet Tubman'),
+        ('Our strength grows out of our weaknesses.', 'Ralph Waldo Emerson'),
+        ('If you find yourself in a hole, the first thing to do is stop digging.', 'Will Rogers'),
+        ('The best way out is always through.', 'Robert Frost'),
+        ('The greatest danger for most of us is not that our aim is too high and we miss it, but that it is too low and we reach it.', 'Michelangelo'),
+        ('Into each life rain must fall but rain can be the giver of life and it is all in your attitude that makes rain produce sunshine.', 'Byron Pulsifer'),
+        ('We love life, not because we are used to living but because we are used to loving', 'Friedrich Nietzsche'),
+        ('It has long been an axiom of mine that the little things are infinitely the most important.', 'Arthur Conan Doyle'),
+        ('You measure the size of the accomplishment by the obstacles you had to overcome to reach your goals', 'Booker T. Washington'),
+        ('A goal is not always meant to be reached; it often serves simply as something to aim at.', 'Bruce Lee');
+        
+
+
 SELECT * FROM help_topics;
 SELECT * FROM curriculum;          
 SELECT * FROM pathway;        
+SELECT * FROM motivation;
         
 COMMIT;
         
