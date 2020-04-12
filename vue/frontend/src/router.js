@@ -40,7 +40,13 @@ const router = new Router({
       path: '/team',
       name: 'meettheteam',
       component: MeetTheTeam
+    },
+    {  //rb added this Sunday 4-12
+      path: '/searchresults',
+      name: 'searchresults',
+      component: SearchResults
     }
+
 
   ]
 })
