@@ -545,6 +545,7 @@ export default {
     -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
             box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
             width: max-content;
+    animation: pulse 1.5s;                  
     
 }
 
@@ -676,6 +677,7 @@ input.msger-input:focus {
   display: inline-block;
   transition: all 0.3s ease 0s;
   font-size: 0.9em;
+ 
 }
 
 .topics:hover {

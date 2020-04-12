@@ -10,6 +10,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "animate.css": "^3.7.2",
     "axios": "^0.19.2",
     "basic-vue-chat": "^0.3.5",
     "bulma": "^0.8.1",
