@@ -529,7 +529,7 @@ export default {
             border-radius: .4em;
     -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
             box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
-            width: max-content;
+            width: max-content;       
 }
  
 .right-msg {
@@ -545,7 +545,7 @@ export default {
     -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
             box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
             width: max-content;
-    animation: pulse 1.5s;                  
+    animation: pulse 0.5s;                  
     
 }
 
