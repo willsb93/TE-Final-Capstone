@@ -686,9 +686,7 @@ input.msger-input:focus {
   background-color: #00a6ed;
   color: white;
   cursor: pointer;
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
+  animation: pulse 1.3s infinite;
 }
  
 .chatInput {
