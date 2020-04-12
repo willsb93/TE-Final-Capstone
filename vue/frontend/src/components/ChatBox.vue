@@ -653,6 +653,18 @@ input.msger-input:focus {
  flex-wrap: wrap;
  flex-direction: row;
  justify-content: center;
+ animation: topicContainer 0.5s 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes topicContainer {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
  
 .viewWindow {
@@ -677,7 +689,6 @@ input.msger-input:focus {
   display: inline-block;
   transition: all 0.3s ease 0s;
   font-size: 0.9em;
- 
 }
 
 .topics:hover {
