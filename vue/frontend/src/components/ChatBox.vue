@@ -22,7 +22,6 @@
         </div>
         <div v-else class="msg-bubble">
           <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
-
           <div v-if="message.type === 'action'">
             <ul id="topicContainer">
               <li
@@ -219,7 +218,7 @@ export default {
       let response;
 
       if (this.curriculum === "Curriculum") {
-        response = this.findCurriculum(this.userMessage);
+        response = this.findCurriculum(this.userMessage.toLowerCase());
 
         if (response == null) {
           this.messages.push({
@@ -264,8 +263,7 @@ export default {
             text:
               "Here is a video that might be helpful, " +
               response.videoTitle +
-              " found at: " +
-              response.videoLink,
+              " found at: " + response.videoLink,
             image: null,
             type: "text"
           });
@@ -277,7 +275,7 @@ export default {
           });
         }
       } else if (this.pathway === "Pathways") {
-        response = this.findPathway(this.userMessage);
+        response = this.findPathway(this.userMessage.toLowerCase());
 
         if (response == null) {
           this.messages.push({
@@ -531,7 +529,7 @@ export default {
             border-radius: .4em;
     -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
             box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
-            width: max-content;
+            width: max-content;       
 }
  
 .right-msg {
@@ -547,6 +545,7 @@ export default {
     -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
             box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
             width: max-content;
+    animation: pulse 0.5s;                  
     
 }
 
@@ -654,6 +653,18 @@ input.msger-input:focus {
  flex-wrap: wrap;
  flex-direction: row;
  justify-content: center;
+ animation: topicContainer 0.5s 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes topicContainer {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
  
 .viewWindow {
@@ -686,6 +697,7 @@ input.msger-input:focus {
   background-color: #00a6ed;
   color: white;
   cursor: pointer;
+  animation: pulse 1.3s infinite;
 }
  
 .chatInput {
