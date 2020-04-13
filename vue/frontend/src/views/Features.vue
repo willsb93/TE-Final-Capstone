@@ -18,9 +18,9 @@
                   class="subtitle is-6"
                 ><span class= "product-name-body">Increment++</span> provides on-demand access to numerous learning resources in technical and non-tecnical areas including: </p>
                   <ul>
-                     <li>Beginner to advanced programming topics</li>
-                     <li>Resume and networking tips</li>
-                     <li>Smart Job Search</li> 
+                     <li>&#10122; Beginner to advanced programming topics</li>
+                     <li>&#10123; Resume and networking tips</li>
+                     <li>&#10124; Smart Job Search</li> 
                   </ul>
               </div>
             </div>
@@ -36,7 +36,11 @@
                 <p
                   class="subtitle is-6"
                 >Your team needs to eat and sleep, but <span class= "product-name-body">Increment++</span> finds that <strong>boring</strong>. Students can get the support they need 24/7 with 99.9% up-time. </p>
+                <img class="home-page-img" src="@/assets/maclisa.jpg" alt="Mac Lisa 1980s" />
+
               </div>
+
+
             </div>
           </div>
           <div class="column is-4">
@@ -50,9 +54,9 @@
                   class="subtitle is-6"
                 >The content in <span class= "product-name-body">Increment++</span> can be easily expanded to meet your students' specific needs. Some logical additions might include: </p>
                 <ul>
-                     <li>Resources for data science and analytics</li>
-                     <li>Resources for machine learning and AI</li>
-                     <li>Access to recommended reading lists or books</li> 
+                     <li> &#10122; Resources for data science and analytics</li>
+                     <li> &#10123; Resources for machine learning and AI</li>
+                     <li> &#10124; Access to recommended reading lists or books</li> 
                   </ul>
               </div>
             </div>
