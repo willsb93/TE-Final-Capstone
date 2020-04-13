@@ -65,6 +65,16 @@
               >{{action.label}}</li>
             </ul>
           </div>
+           <div v-if="message.type === 'findAJob'">
+            <ul id="topicContainer">
+              <li
+                v-for="(action, i) in message.actions"
+                :key="i"
+                class="topics"
+                @click="doRequest(action.name)"
+              >{{action.label}}</li>
+            </ul>
+          </div>
 
           <!-- <div v-else>
             <ul id="topicContainer">
@@ -118,6 +128,8 @@ export default {
       pathway: null,
       //  motivations:[],
       // motivation:null,
+      // findJobs: [],
+      findJob: null,
 
       actions: [
         {
@@ -162,7 +174,26 @@ export default {
           name: "exit",
           label: "Exit."
         }
-      ] //,
+      ], 
+
+      findAJobActions: [
+        {
+          name: "Search-another-Job",
+          label: "Search Again"
+        },
+        {
+          name: "help-topics",
+          label: "Help"
+        },
+        {
+          name: "exit",
+          label: "Exit."
+        }
+      ] 
+      
+      
+      
+      //,
 
       // motivationActions: [
       //   {
@@ -193,6 +224,7 @@ export default {
               "What topic do you need help with? You can search terms like 'object' or 'variables'"
             );
             this.pathway = null;
+            this.findJob = null;
             this.curriculum = actionTopicName;
           });
         this.scrollDown("before loader >>>>");
@@ -203,8 +235,9 @@ export default {
             this.pathways = response.data;
             console.log("response data==>>", response.data);
 
-            this.sendBotMessage("What pathway topic do you need help with?");
+            this.sendBotMessage("What Pathway topic do you need help with? You can search for terms like resume or LinkedIn");
             this.curriculum = null;
+            this.findJob = null;
             this.pathway = actionTopicName;
           });
         this.scrollDown("before loader >>>>");
@@ -224,29 +257,26 @@ export default {
 
         */
       else if (actionTopicName === "Find a Job") {
-        /*axios
-          .get("http://localhost:8080/AuthenticationApplication/api/jobsearch")   CORRECT API PATH???
-          .then(response => {
-            this.pathways = response.data;
-            console.log("response data==>>", response.data);
 
-            this.sendBotMessage("What City, State are you looking in?");
-            this.sendBotMessage("What position? e.g. java engineer, front-end developer");
-            this.sendBotMessage("Some other characteristic to ask about ??? );
-
-            this.pathway = actionTopicName;
-          });
-
-
-
-        */
+            this.sendBotMessage("What position are you interested in? e.g. java engineer, front-end developer");
+            
+            
+            this.curriculum = null;
+            this.pathway = null;
+            this.findJob = actionTopicName;
+           
+          
       } else if (actionTopicName === "curriculum-search-again") {
         this.doRequest("Curriculum");
         this.scrollDown("after loader >>>>");
       } else if (actionTopicName === "pathway-search-again") {
         this.doRequest("Pathway");
         this.scrollDown("after loader >>>>");
-      } else if (actionTopicName === "help-topics") {
+      }else if (actionTopicName === "Search-another-Job") {
+        this.doRequest("Find a Job");
+        this.scrollDown("after loader >>>>");
+      }
+      else if (actionTopicName === "help-topics") {
         this.sendBotMessage("help");
         this.scrollDown("after loader >>>>");
       } else {
@@ -468,7 +498,44 @@ export default {
           actions: this.pathwayActions
         });
         this.scrollDown("before loader >>>>");
-      } else {
+      } 
+      
+      else if (this.findJob === "Find a Job") {
+           let jobStringIndeed = "https://www.indeed.com/jobs?q=" +this.userMessage+ "&l=Columbus%2C+OH"
+          //  let jobStringLinkedin = "https://www.linkedin.com/jobs/search?keywords=" + this.userMessage+ "&location=Columbus%2C%20Ohio%2C%20United%20States&trk=homepage-jobseeker_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0"
+          //  let jobStringDice = "https://www.dice.com/jobs?q=" + this.userMessage +"&location=Columbus,%20OH,%20USA&latitude=39.9611755&longitude=-82.99879419999999&countryCode=US&locationPrecision=City&adminDistrictCode=OH&radius=30&radiusUnit=mi&page=1&pageSize=20&language=en"
+           
+           this.messages.push({
+           user: "User",
+           text: this.userMessage,
+           image: null,
+           type: "text"
+          });
+           
+           this.messages.push({
+            user: "bot",
+            text: "Awesome! Here is a link from indeed that might help you:",
+            image: null,
+            type: "text"
+          });
+  
+          this.messages.push({
+            user: "bot",
+            text: jobStringIndeed,
+            image: null,
+            type: "link"
+          });
+        
+          this.messages.push({
+          user: "bot",
+          image: null,
+          type: "findAJob",
+          actions: this.findAJobActions
+        });
+        this.scrollDown("before loader >>>>");
+      }
+    
+      else {
         this.messages.push({
           user: "User",
           text: this.userMessage,
@@ -667,6 +734,7 @@ export default {
   border-radius: 0.4em;
   -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  max-width: 600px;
   width: max-content;
 }
 
