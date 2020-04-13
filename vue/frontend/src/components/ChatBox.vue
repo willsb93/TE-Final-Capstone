@@ -197,8 +197,9 @@ export default {
           });
 
           
-      } else if (actionTopicName === "Motivation"){
-        /* this.doRequest("Motivation");
+      // } else if (actionTopicName === "Motivation"){
+        /* axios
+        this.doRequest("Motivation");
            .get("http://localhost:8080/AuthenticationApplication/api/motivation")
           .then(response => {
             this.motivations = response.data;
@@ -210,7 +211,22 @@ export default {
 
         */
       }else if (actionTopicName === "Find a Job"){
-        //
+        /*axios
+          .get("http://localhost:8080/AuthenticationApplication/api/jobsearch")   CORRECT API PATH???
+          .then(response => {
+            this.pathways = response.data;
+            console.log("response data==>>", response.data);
+
+            this.sendBotMessage("What City, State are you looking in?");
+            this.sendBotMessage("What position? e.g. java engineer, front-end developer");
+            this.sendBotMessage("Some other characteristic to ask about ??? );
+
+            this.pathway = actionTopicName;
+          });
+
+
+
+        */
       }else if(actionTopicName === "curriculum-search-again"){
         this.doRequest("Curriculum");
       }else if(actionTopicName === "pathway-search-again"){

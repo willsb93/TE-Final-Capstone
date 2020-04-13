@@ -157,7 +157,6 @@ VALUES('With the new day comes new strength and new thoughts.', 'Eleanor Rooseve
         ('A goal is not always meant to be reached; it often serves simply as something to aim at.', 'Bruce Lee');
         
 
-
 SELECT * FROM help_topics;
 SELECT * FROM curriculum;          
 SELECT * FROM pathway;        
