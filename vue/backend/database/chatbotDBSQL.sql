@@ -127,7 +127,8 @@ INSERT INTO curriculum (id,topic,message,readingLink,readingTitle,videoLink,vide
 VALUES (DEFAULT,'agile', 'Agile software development refers to a group of software development methodologies based on iterative development, where requirements and solutions evolve through collaboration between self-organizing cross-functional teams', 'https://www.cprime.com/resources/what-is-agile-what-is-scrum/', 'What is Agile? - What is Scrum?', 'https://www.youtube.com/watch?v=Z9QbYZh1YXY', 'What is Agile?');
 
 
-INSERT INTO pathway (topic, message, readingLink, readingTitle, videoLink, videoTitle)
+INSERT INTO 
+ (topic, message, readingLink, readingTitle, videoLink, videoTitle)
 VALUES('resume', 'A resume a document used and created by a person to present their background, skills, and accomplishments.', 'https://www.freecodecamp.org/news/writing-a-killer-software-engineering-resume-b11c91ef699d/', 'How to write a killer Software Engineering resume', 'https://www.youtube.com/watch?v=xpaz7nrNmXA', '7 Tips for the Coding Resume (for Software Engineers)'),
         ('linkedin', 'LinkedIn is an essential tool for networking and locating career opportunities. A Standout LinkedIn profile includes: a professional photo, a headline that summarizes you, your location, an interesting summary.', 'https://www.hatchit.io/how-to-make-your-linkedin-profile-stand-out-as-a-software-engineer/', 'how to make your linkedin profile stand out as a software engineer', 'https://www.youtube.com/watch?v=JojewsL_E5Y', 'How to boost your Linkedin Profile (Software Dev Career)'),
         ('elevator pitch', 'Elevator Pitch Tips: \n1) Keep it short - 30 Seconds.  \n2) Describe how you will benefit the employer. \n3) Connect your experiences to your goals. \n4) Describe where you excel.', 'https://www.monster.com/career-advice/article/how-to-do-an-elevator-pitch', 'How to craft the perfect elevator pitch', 'https://www.youtube.com/watch?v=uyxfERV5ttY', 'Elevator pitch examples'),
