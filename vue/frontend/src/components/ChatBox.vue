@@ -2,7 +2,8 @@
   <section class="msger">
     <header class="msger-header">
       <div class="msger-header-title">
-        <i class="fas fa-comment"></i> <span id="product-name-2title">Increment++</span>
+        <i class="fas fa-comment"></i>
+        <span id="product-name-2title">Increment++</span>
       </div>
       <div class="msger-header-options">
         <a href="#" class="text-danger">
@@ -15,15 +16,23 @@
       <div v-for="(message, i) in messages" :key="i" :class="addMessageClass(message)">
         <div class="msg-img" :style="getImageStyle(message)"></div>
         <div v-if="message.isLoading" class="msg-bubble">
-
-         <div class="lds-ellipsis"><div>
-          </div><div>
-          </div><div></div>
-          <div></div></div>
+          <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
+
         <div v-else class="msg-bubble">
           <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
-          <a v-if="message.type === 'link'" class="msg-text" v-bind:href="message.text" target="_blank">{{ message.text }}</a>  <!--RB-->
+          <a
+            v-if="message.type === 'link'"
+            class="msg-text"
+            v-bind:href="message.text"
+            target="_blank"
+          >{{ message.text }}</a>
+          <!--RB-->
           <div v-if="message.type === 'action'">
             <ul id="topicContainer">
               <li
@@ -114,7 +123,6 @@ export default {
         {
           topicName: "action-1",
           text: "Action 1"
-          
         },
         {
           topicName: "action-2",
@@ -124,7 +132,6 @@ export default {
           topicName: "action-3",
           text: "Action 3"
         }
-       
       ],
 
       curriculumActions: [
@@ -169,13 +176,9 @@ export default {
       //   {
       //     name: "exit",
       //     label: "Exit."
-      //   } 
+      //   }
       // ]
-
-
     };
-
-    
   },
   methods: {
     doRequest(actionTopicName) {
@@ -186,10 +189,13 @@ export default {
           .then(response => {
             this.curriculums = response.data;
             console.log("response data==>>", response.data);
-            this.sendBotMessage("What topic do you need help with? You can search terms like 'object' or 'variables'");
+            this.sendBotMessage(
+              "What topic do you need help with? You can search terms like 'object' or 'variables'"
+            );
+            this.pathway = null;
             this.curriculum = actionTopicName;
           });
-          this.scrollDown("before loader >>>>");
+        this.scrollDown("before loader >>>>");
       } else if (actionTopicName === "Pathway") {
         axios
           .get("http://localhost:8080/AuthenticationApplication/api/pathway")
@@ -198,13 +204,14 @@ export default {
             console.log("response data==>>", response.data);
 
             this.sendBotMessage("What pathway topic do you need help with?");
+            this.curriculum = null;
             this.pathway = actionTopicName;
           });
-          this.scrollDown("before loader >>>>");
+        this.scrollDown("before loader >>>>");
       }
-          
+
       // } else if (actionTopicName === "Motivation"){
-        /* axios
+      /* axios
         this.doRequest("Motivation");
            .get("http://localhost:8080/AuthenticationApplication/api/motivation")
           .then(response => {
@@ -216,7 +223,7 @@ export default {
           });
 
         */
-      else if (actionTopicName === "Find a Job"){
+      else if (actionTopicName === "Find a Job") {
         /*axios
           .get("http://localhost:8080/AuthenticationApplication/api/jobsearch")   CORRECT API PATH???
           .then(response => {
@@ -233,21 +240,16 @@ export default {
 
 
         */
-      }else if(actionTopicName === "curriculum-search-again"){
+      } else if (actionTopicName === "curriculum-search-again") {
         this.doRequest("Curriculum");
         this.scrollDown("after loader >>>>");
-      }else if(actionTopicName === "pathway-search-again"){
+      } else if (actionTopicName === "pathway-search-again") {
         this.doRequest("Pathway");
         this.scrollDown("after loader >>>>");
-      }
-      
-      else if(actionTopicName === "help-topics"){
+      } else if (actionTopicName === "help-topics") {
         this.sendBotMessage("help");
-        this.scrollDown("after loader >>>>"); 
-      }
-
-      
-      else {
+        this.scrollDown("after loader >>>>");
+      } else {
         console.log(actionTopicName);
       }
     },
@@ -270,10 +272,18 @@ export default {
 
     sendMessage() {
       let response;
-
+    
       if (this.curriculum === "Curriculum") {
+        this.messages.push({
+          user: "User",
+          text: this.userMessage,
+          // time: new Date().toTimeString().split(' GMT')[0],
+          image: null,
+          type: "text"
+        });
+
         response = this.findCurriculum(this.userMessage.toLowerCase());
-        this.scrollDown("before loader >>>>")
+        this.scrollDown("before loader >>>>");
         if (response == null) {
           this.messages.push({
             user: "bot",
@@ -282,7 +292,7 @@ export default {
             type: "text"
           });
 
-            this.messages.push({
+          this.messages.push({
             user: "bot",
             image: null,
             type: "curriculumAction",
@@ -300,19 +310,20 @@ export default {
             image: null,
             type: "text"
           });
-         this.scrollDown("before loader >>>>")
+          this.scrollDown("after bot message >>>>>");
           this.messages.push({
             user: "bot",
             text:
               "Here is an article that might be helpful, " +
               response.readingTitle +
-              " found at: "  ,
-              // response.readingLink,
+              " found at: ",
+            // response.readingLink,
             image: null,
             type: "text"
           });
-            //<!--RB Add-->
-            this.messages.push({
+          this.scrollDown("after bot message >>>>>");
+          //<!--RB Add-->
+          this.messages.push({
             user: "bot",
             text:
               // "Here is an article that might be helpful, " +
@@ -321,40 +332,56 @@ export default {
               response.readingLink,
             image: null,
             type: "link"
-          });  
-
+          });
+          this.scrollDown("after bot message >>>>>");
 
           this.messages.push({
             user: "bot",
             text:
               "Here is a video that might be helpful, " +
               response.videoTitle +
-               " found at: ",  //+ response.videoLink,
+              " found at: ", //+ response.videoLink,
             image: null,
             type: "text"
           });
+          this.scrollDown("after bot message >>>>>");
 
           //RB ADD
-                    this.messages.push({
+          this.messages.push({
             user: "bot",
             text:
               // "Here is a video that might be helpful, " +
               // response.videoTitle +
-              // " found at: " + 
+              // " found at: " +
               response.videoLink,
             image: null,
             type: "link"
           });
+          this.scrollDown("after bot message >>>>>");
 
-         this.messages.push({
+          this.messages.push({
             user: "bot",
             image: null,
             type: "curriculumAction",
             actions: this.curriculumActions
           });
+           this.scrollDown("after bot message >>>>>");
         }
       } else if (this.pathway === "Pathway") {
+        this.messages.push({
+          user: "User",
+          text: this.userMessage,
+          // time: new Date().toTimeString().split(' GMT')[0],
+          image: null,
+          type: "text"
+        });
         response = this.findPathway(this.userMessage.toLowerCase());
+        console.log(
+          "Pathway usermgs===>>>",
+          this.userMessage,
+          "responseeeeee===>>",
+          response
+        );
 
         if (response == null) {
           this.messages.push({
@@ -364,23 +391,20 @@ export default {
             type: "text"
           });
 
-            this.messages.push({
+          this.messages.push({
             user: "bot",
             image: null,
             type: "pathwayAction",
             actions: this.pathwayActions
           });
 
-        //  } else if (this.motivation ==="Motivation") {
-        //    this.messages.push({
-        //      user: "bot",
-        //      text: "We all have hard moments... " + response.message + " by " + response.author,
-        //      image: null,
-        //      type: "text" 
-        //    });
-
-        
-          
+          //  } else if (this.motivation ==="Motivation") {
+          //    this.messages.push({
+          //      user: "bot",
+          //      text: "We all have hard moments... " + response.message + " by " + response.author,
+          //      image: null,
+          //      type: "text"
+          //    });
         } else {
           this.messages.push({
             user: "bot",
@@ -398,13 +422,13 @@ export default {
             text:
               "Here is an article that might be helpful, " +
               response.readingTitle +
-              " found at: ",  //+
-              // response.readingLink,
+              " found at: ", //+
+            // response.readingLink,
             image: null,
             type: "text"
           });
 
-            this.messages.push({
+          this.messages.push({
             user: "bot",
             text:
               // "Here is an article that might be helpful, " +
@@ -415,20 +439,18 @@ export default {
             type: "link"
           });
 
-
-
           this.messages.push({
             user: "bot",
             text:
               "Here is a video that might be helpful, " +
               response.videoTitle +
               " found at: ", // +
-              // response.videoLink,
+            // response.videoLink,
             image: null,
             type: "text"
           });
 
-                    this.messages.push({
+          this.messages.push({
             user: "bot",
             text:
               // "Here is a video that might be helpful, " +
@@ -438,16 +460,14 @@ export default {
             image: null,
             type: "link"
           });
-
-
         }
-           this.messages.push({
-            user: "bot",
-            image: null,
-            type: "pathwayAction",
-            actions: this.pathwayActions
-          });
-       this.scrollDown("before loader >>>>")
+        this.messages.push({
+          user: "bot",
+          image: null,
+          type: "pathwayAction",
+          actions: this.pathwayActions
+        });
+        this.scrollDown("before loader >>>>");
       } else {
         this.messages.push({
           user: "User",
@@ -496,28 +516,25 @@ export default {
                 image: null,
                 type: "action",
                 actions: response.data
-                
               });
-         
             });
-          
+
           //this.messages[lastMessageIndex].type = "action";
+        } else {
+          this.scrollDown("before loader >>>>");
+          this.messages.push({
+            user: "bot",
+            text: userResponse,
+            // time: new Date().toTimeString().split(' GMT')[0],
+            image: null,
+            isLoading: true,
+            type: "text"
+          });
+          lastMessageIndex = this.messages.length - 1;
+          this.scrollDown("after loader >>>>");
         }
-        else{
-        
-        this.scrollDown("before loader >>>>");
-        this.messages.push({
-          user: "bot",
-          text: userResponse,
-          // time: new Date().toTimeString().split(' GMT')[0],
-          image: null,
-          isLoading: true,
-          type: "text"
-        });
-        lastMessageIndex = this.messages.length - 1;
-        this.scrollDown("after loader >>>>");
-      }}, 200);
-      // this.scrollDown('after bot message >>>>>');
+      }, 200);
+      this.scrollDown('after bot message >>>>>');
       setTimeout(() => {
         this.messages[lastMessageIndex].isLoading = false;
         const question = this.questions[this.questionIndex];
@@ -526,10 +543,10 @@ export default {
             userResponse,
             question
           );
-          this.scrollDown("before loader >>>>")
+          this.scrollDown("before loader >>>>");
           this.messages[lastMessageIndex].type = "text";
           this.questionIndex = this.questionIndex + 1;
-        } 
+        }
         this.scrollDown("after bot message >>>>>");
       }, 500);
     },
@@ -568,48 +585,48 @@ export default {
 }
 
 .msger-header {
- display: flex;
- justify-content: space-between;
- padding: 10px;
- border-bottom: var(--border);
- background: #eee;
- color: #666;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: var(--border);
+  background: #eee;
+  color: #666;
 }
- 
+
 .msger-chat {
   flex: 1;
   overflow-y: scroll;
   padding: 10px;
 }
 .msger-chat::-webkit-scrollbar {
- width: 6px;
+  width: 6px;
 }
 .msger-chat::-webkit-scrollbar-track {
- background: #ddd;
+  background: #ddd;
 }
 .msger-chat::-webkit-scrollbar-thumb {
- background: #bdbdbd;
+  background: #bdbdbd;
 }
 .msg {
- display: flex;
- align-items: center;
- margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 .msg:last-of-type {
- margin: 0;
+  margin: 0;
 }
 .msg-img {
- width: 32px;
- height: 32px;
- margin-right: 10px;
- background: #ddd;
- background-repeat: no-repeat;
- background-position: center;
- background-size: cover;
- border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+  background: #ddd;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
 }
 .msg-bubble {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   width: max-content;
   font-size: 0.9em;
   padding: 5px;
@@ -622,89 +639,87 @@ export default {
   font-weight: bold;
 }
 .left-msg .msg-text {
- background: var(--left-msg-bg);
+  background: var(--left-msg-bg);
 }
 .right-msg .msg-text {
- float: right;
- background: var(--right-msg-bg);
+  float: right;
+  background: var(--right-msg-bg);
 }
 .msg-info {
- display: flex;
- justify-content: space-between;
- align-items: center;
- margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 .msg-info-name {
- margin-right: 10px;
- font-weight: bold;
- text-transform: capitalize;
+  margin-right: 10px;
+  font-weight: bold;
+  text-transform: capitalize;
 }
 .msg-info-time {
- font-size: 0.85em;
+  font-size: 0.85em;
 }
- 
+
 .left-msg .msg-bubble {
-   background: #7cc283;
-    border: 1px solid #a7a7a7;
-    -webkit-border-radius: .4em;
-            border-radius: .4em;
-    -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
-            width: max-content;       
+  background: #7cc283;
+  border: 1px solid #a7a7a7;
+  -webkit-border-radius: 0.4em;
+  border-radius: 0.4em;
+  -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  width: max-content;
 }
- 
+
 .right-msg {
- flex-direction: row-reverse;
+  flex-direction: row-reverse;
 }
 
-
-.right-msg .msg-bubble  {
-    background: #00d0e6;;
-    border: 1px solid #a7a7a7;
-    -webkit-border-radius: .4em;
-            border-radius: .4em;
-    -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
-            width: max-content;
-    animation: pulse 0.5s;                  
-    
+.right-msg .msg-bubble {
+  background: #00d0e6;
+  border: 1px solid #a7a7a7;
+  -webkit-border-radius: 0.4em;
+  border-radius: 0.4em;
+  -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  width: max-content;
+  animation: pulse 0.5s;
 }
 
 .right-msg .msg-img {
- margin: 0 0 0 10px;
+  margin: 0 0 0 10px;
 }
- 
+
 .msger-inputarea {
- display: flex;
- padding: 10px;
- border-top: var(--border);
- background: #eee;
+  display: flex;
+  padding: 10px;
+  border-top: var(--border);
+  background: #eee;
 }
 .msger-inputarea * {
- padding: 10px;
- border: none;
- border-radius: 3px;
- font-size: 1em;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 1em;
 }
 .msger-input {
- flex: 1;
- background: #ddd;
+  flex: 1;
+  background: #ddd;
 }
 input.msger-input:focus {
- outline: none;
+  outline: none;
 }
 .msger-send-btn {
- margin-left: 10px;
- background: rgb(0, 196, 65);
- color: #fff;
- font-weight: bold;
- cursor: pointer;
- transition: background 0.23s;
+  margin-left: 10px;
+  background: rgb(0, 196, 65);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
 }
 .msger-send-btn:hover {
- background: rgb(0, 180, 50);
+  background: rgb(0, 180, 50);
 }
- 
+
 .msger-chat {
   background-color: #fcfcfe;
   background-image: url("https://i.pinimg.com/originals/f0/b9/52/f0b9523dacbecc5bd4e2aae496a9c8c2.jpg");
@@ -770,11 +785,11 @@ input.msger-input:focus {
 /* end of new loader */
 
 #topicContainer {
- display: flex;
- flex-wrap: wrap;
- flex-direction: row;
- justify-content: center;
- animation: topicContainer 0.5s 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  animation: topicContainer 0.5s 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 @keyframes topicContainer {
@@ -787,16 +802,16 @@ input.msger-input:focus {
     opacity: 1;
   }
 }
- 
+
 .viewWindow {
- width: 30%;
- height: 15em;
- border: solid black 1px;
- border-radius: 5px;
- margin-left: 5%;
- background-color: azure;
+  width: 30%;
+  height: 15em;
+  border: solid black 1px;
+  border-radius: 5px;
+  margin-left: 5%;
+  background-color: azure;
 }
- 
+
 .topics {
   background-color: white;
   line-height: 1;
@@ -820,65 +835,65 @@ input.msger-input:focus {
   cursor: pointer;
   animation: pulse 1.3s infinite;
 }
- 
+
 .chatInput {
- padding-top: 4em; /*this is not the right way to put it on the bottom*/
- display: flex;
- align-content: flex-end;
+  padding-top: 4em; /*this is not the right way to put it on the bottom*/
+  display: flex;
+  align-content: flex-end;
 }
- 
+
 #chatInput {
- width: 100%;
- line-height: 3em;
- text-align: right;
- font-size: 0.75em;
- font-weight: bold;
+  width: 100%;
+  line-height: 3em;
+  text-align: right;
+  font-size: 0.75em;
+  font-weight: bold;
 }
- 
+
 @-webkit-keyframes loader {
- 0% {
-   -webkit-transform: translateY(0);
-   transform: translateY(0);
- }
- 100% {
-   -webkit-transform: translateY(-5px);
-   transform: translateY(-5px);
- }
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
 }
- 
+
 @keyframes loader {
- 0% {
-   -webkit-transform: translateY(0);
-   transform: translateY(0);
- }
- 100% {
-   -webkit-transform: translateY(-5px);
-   transform: translateY(-5px);
- }
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
 }
 @-webkit-keyframes fadein {
- from {
-   opacity: 0;
-   margin-top: 10px;
-   margin-bottom: 0;
- }
- to {
-   opacity: 1;
-   margin-top: 0;
-   margin-bottom: 10px;
- }
+  from {
+    opacity: 0;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
 }
 @keyframes fadein {
- from {
-   opacity: 0;
-   margin-top: 10px;
-   margin-bottom: 0;
- }
- to {
-   opacity: 1;
-   margin-top: 0;
-   margin-bottom: 10px;
- }
+  from {
+    opacity: 0;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
 }
 
 #product-name-2title {
