@@ -22,6 +22,7 @@
         </div>
         <div v-else class="msg-bubble">
           <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
+          <a v-if="message.type === 'link'" class="msg-text" v-bind:href="message.text" target="_blank">{{ message.text }}</a> <!--RB-->
           <div v-if="message.type === 'action'">
             <ul id="topicContainer">
               <li
@@ -112,6 +113,7 @@ export default {
         {
           topicName: "action-1",
           text: "Action 1"
+          
         },
         {
           topicName: "action-2",
@@ -121,6 +123,7 @@ export default {
           topicName: "action-3",
           text: "Action 3"
         }
+       
       ],
 
       curriculumActions: [
@@ -185,6 +188,7 @@ export default {
             this.sendBotMessage("What topic do you need help with? You can search terms like 'object' or 'variables'");
             this.curriculum = actionTopicName;
           });
+          this.scrollDown("before loader >>>>");
       } else if (actionTopicName === "Pathway") {
         axios
           .get("http://localhost:8080/AuthenticationApplication/api/pathway")
@@ -195,9 +199,10 @@ export default {
             this.sendBotMessage("What pathway topic do you need help with?");
             this.pathway = actionTopicName;
           });
-
+          this.scrollDown("before loader >>>>");
+      }
           
-      } else if (actionTopicName === "Motivation"){
+       else if (actionTopicName === "Motivation"){
         /* this.doRequest("Motivation");
            .get("http://localhost:8080/AuthenticationApplication/api/motivation")
           .then(response => {
@@ -213,12 +218,15 @@ export default {
         //
       }else if(actionTopicName === "curriculum-search-again"){
         this.doRequest("Curriculum");
+        this.scrollDown("after loader >>>>");
       }else if(actionTopicName === "pathway-search-again"){
         this.doRequest("Pathway");
+        this.scrollDown("after loader >>>>");
       }
       
       else if(actionTopicName === "help-topics"){
-        this.sendBotMessage("help"); 
+        this.sendBotMessage("help");
+        this.scrollDown("after loader >>>>"); 
       }
 
       
@@ -248,7 +256,7 @@ export default {
 
       if (this.curriculum === "Curriculum") {
         response = this.findCurriculum(this.userMessage.toLowerCase());
-
+        this.scrollDown("before loader >>>>")
         if (response == null) {
           this.messages.push({
             user: "bot",
@@ -263,7 +271,7 @@ export default {
             type: "curriculumAction",
             actions: this.curriculumActions
           });
-
+          this.scrollDown("before loader >>>>");
         } else {
           this.messages.push({
             user: "bot",
@@ -275,33 +283,39 @@ export default {
             image: null,
             type: "text"
           });
-
+         this.scrollDown("before loader >>>>")
           this.messages.push({
             user: "bot",
             text:
               "Here is an article that might be helpful, " +
               response.readingTitle +
-              " found at: " +
-              response.readingLink,
+              " found at: "  , 
             image: null,
             type: "text"
           });
+       this.scrollDown("before loader >>>>")
+                this.messages.push({
+        user: "bot",
+        text:
+          "Here is a video that might be helpful, " +
+          response.videoTitle +
+          " found at: ", // +
+          // response.videoLink,
+        image: null,
+        type: "text"
+      });
 
-          this.messages.push({
-            user: "bot",
-            text:
-              "Here is a video that might be helpful, " +
-              response.videoTitle +
-              " found at: " + response.videoLink,
-            image: null,
-            type: "text"
-          });
-         this.messages.push({
-            user: "bot",
-            image: null,
-            type: "curriculumAction",
-            actions: this.curriculumActions
-          });
+                this.messages.push({
+        user: "bot",
+        text:
+          // "Here is a video that might be helpful, " +
+          // response.videoTitle +
+          // " found at: " +
+          response.videoLink,
+        image: null,
+        type: "link"
+      });
+          this.scrollDown("before loader >>>>");
         }
       } else if (this.pathway === "Pathway") {
         response = this.findPathway(this.userMessage.toLowerCase());
@@ -371,7 +385,7 @@ export default {
             type: "pathwayAction",
             actions: this.pathwayActions
           });
-       
+       this.scrollDown("before loader >>>>")
       } else {
         this.messages.push({
           user: "User",
@@ -407,6 +421,28 @@ export default {
     sendBotMessage(userResponse) {
       let lastMessageIndex;
       setTimeout(() => {
+        if (userResponse === "help") {
+          axios
+            .get("http://localhost:8080/AuthenticationApplication/api/topic")
+            .then(response => {
+              console.log("response data==>>", response.data);
+
+              //this.posts = response.data;
+              this.scrollDown("before loader >>>>");
+              this.messages.push({
+                user: "bot",
+                image: null,
+                type: "action",
+                actions: response.data
+                
+              });
+         
+            });
+          
+          //this.messages[lastMessageIndex].type = "action";
+        }
+        else{
+        
         this.scrollDown("before loader >>>>");
         this.messages.push({
           user: "bot",
@@ -418,7 +454,7 @@ export default {
         });
         lastMessageIndex = this.messages.length - 1;
         this.scrollDown("after loader >>>>");
-      }, 0);
+      }}, 200);
       // this.scrollDown('after bot message >>>>>');
       setTimeout(() => {
         this.messages[lastMessageIndex].isLoading = false;
@@ -428,28 +464,12 @@ export default {
             userResponse,
             question
           );
+          this.scrollDown("before loader >>>>")
           this.messages[lastMessageIndex].type = "text";
           this.questionIndex = this.questionIndex + 1;
-        } else if (userResponse === "help") {
-          axios
-            .get("http://localhost:8080/AuthenticationApplication/api/topic")
-            .then(response => {
-              console.log("response data==>>", response.data);
-
-              //this.posts = response.data;
-
-              this.messages.push({
-                user: "bot",
-                image: null,
-                type: "action",
-                actions: response.data
-              });
-            });
-
-          //this.messages[lastMessageIndex].type = "action";
-        }
+        } 
         this.scrollDown("after bot message >>>>>");
-      }, 2000);
+      }, 500);
     },
     formatResponse(response, text) {
       if (!response) return text;
