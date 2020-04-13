@@ -15,6 +15,7 @@
       <div v-for="(message, i) in messages" :key="i" :class="addMessageClass(message)">
         <div class="msg-img" :style="getImageStyle(message)"></div>
         <div v-if="message.isLoading" class="msg-bubble">
+
          <div class="lds-ellipsis"><div>
           </div><div>
           </div><div></div>
@@ -22,6 +23,7 @@
         </div>
         <div v-else class="msg-bubble">
           <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
+          <a v-if="message.type === 'link'" class="msg-text" v-bind:href="message.text" target="_blank">{{ message.text }}</a>  <!--RB-->
           <div v-if="message.type === 'action'">
             <ul id="topicContainer">
               <li
@@ -297,21 +299,46 @@ export default {
             text:
               "Here is an article that might be helpful, " +
               response.readingTitle +
-              " found at: " +
-              response.readingLink,
+              " found at: "  ,
+              // response.readingLink,
             image: null,
             type: "text"
           });
+            //<!--RB Add-->
+            this.messages.push({
+            user: "bot",
+            text:
+              // "Here is an article that might be helpful, " +
+              // response.readingTitle +
+              // " found at: " +
+              response.readingLink,
+            image: null,
+            type: "link"
+          });  
+
 
           this.messages.push({
             user: "bot",
             text:
               "Here is a video that might be helpful, " +
               response.videoTitle +
-              " found at: " + response.videoLink,
+               " found at: ",  //+ response.videoLink,
             image: null,
             type: "text"
           });
+
+          //RB ADD
+                    this.messages.push({
+            user: "bot",
+            text:
+              // "Here is a video that might be helpful, " +
+              // response.videoTitle +
+              // " found at: " + 
+              response.videoLink,
+            image: null,
+            type: "link"
+          });
+
          this.messages.push({
             user: "bot",
             image: null,
@@ -364,22 +391,48 @@ export default {
             text:
               "Here is an article that might be helpful, " +
               response.readingTitle +
-              " found at: " +
-              response.readingLink,
+              " found at: ",  //+
+              // response.readingLink,
             image: null,
             type: "text"
           });
+
+            this.messages.push({
+            user: "bot",
+            text:
+              // "Here is an article that might be helpful, " +
+              // response.readingTitle +
+              // " found at: " +
+              response.readingLink,
+            image: null,
+            type: "link"
+          });
+
+
 
           this.messages.push({
             user: "bot",
             text:
               "Here is a video that might be helpful, " +
               response.videoTitle +
-              " found at: " +
-              response.videoLink,
+              " found at: ", // +
+              // response.videoLink,
             image: null,
             type: "text"
           });
+
+                    this.messages.push({
+            user: "bot",
+            text:
+              // "Here is a video that might be helpful, " +
+              // response.videoTitle +
+              // " found at: " +
+              response.videoLink,
+            image: null,
+            type: "link"
+          });
+
+
         }
            this.messages.push({
             user: "bot",
