@@ -3,6 +3,8 @@ BEGIN TRANSACTION;
 DROP TABLE IF EXISTS help_topics;
 DROP TABLE IF EXISTS curriculum;
 DROP TABLE IF EXISTS pathway;
+DROP TABLE IF EXISTS motivation;
+
 
 CREATE TABLE help_topics (
 id SERIAL PRIMARY KEY NOT NULL,
@@ -156,7 +158,6 @@ VALUES('With the new day comes new strength and new thoughts.', 'Eleanor Rooseve
         ('You measure the size of the accomplishment by the obstacles you had to overcome to reach your goals', 'Booker T. Washington'),
         ('A goal is not always meant to be reached; it often serves simply as something to aim at.', 'Bruce Lee');
         
-
 
 SELECT * FROM help_topics;
 SELECT * FROM curriculum;          

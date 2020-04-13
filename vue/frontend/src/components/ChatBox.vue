@@ -15,6 +15,7 @@
       <div v-for="(message, i) in messages" :key="i" :class="addMessageClass(message)">
         <div class="msg-img" :style="getImageStyle(message)"></div>
         <div v-if="message.isLoading" class="msg-bubble">
+
          <div class="lds-ellipsis"><div>
           </div><div>
           </div><div></div>
@@ -22,7 +23,7 @@
         </div>
         <div v-else class="msg-bubble">
           <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
-          <a v-if="message.type === 'link'" class="msg-text" v-bind:href="message.text" target="_blank">{{ message.text }}</a> <!--RB-->
+          <a v-if="message.type === 'link'" class="msg-text" v-bind:href="message.text" target="_blank">{{ message.text }}</a>  <!--RB-->
           <div v-if="message.type === 'action'">
             <ul id="topicContainer">
               <li
@@ -202,8 +203,9 @@ export default {
           this.scrollDown("before loader >>>>");
       }
           
-       else if (actionTopicName === "Motivation"){
-        /* this.doRequest("Motivation");
+      // } else if (actionTopicName === "Motivation"){
+        /* axios
+        this.doRequest("Motivation");
            .get("http://localhost:8080/AuthenticationApplication/api/motivation")
           .then(response => {
             this.motivations = response.data;
@@ -214,8 +216,23 @@ export default {
           });
 
         */
-      }else if (actionTopicName === "Find a Job"){
-        //
+      else if (actionTopicName === "Find a Job"){
+        /*axios
+          .get("http://localhost:8080/AuthenticationApplication/api/jobsearch")   CORRECT API PATH???
+          .then(response => {
+            this.pathways = response.data;
+            console.log("response data==>>", response.data);
+
+            this.sendBotMessage("What City, State are you looking in?");
+            this.sendBotMessage("What position? e.g. java engineer, front-end developer");
+            this.sendBotMessage("Some other characteristic to ask about ??? );
+
+            this.pathway = actionTopicName;
+          });
+
+
+
+        */
       }else if(actionTopicName === "curriculum-search-again"){
         this.doRequest("Curriculum");
         this.scrollDown("after loader >>>>");
@@ -289,33 +306,52 @@ export default {
             text:
               "Here is an article that might be helpful, " +
               response.readingTitle +
-              " found at: "  , 
+              " found at: "  ,
+              // response.readingLink,
             image: null,
             type: "text"
           });
-       this.scrollDown("before loader >>>>")
-                this.messages.push({
-        user: "bot",
-        text:
-          "Here is a video that might be helpful, " +
-          response.videoTitle +
-          " found at: ", // +
-          // response.videoLink,
-        image: null,
-        type: "text"
-      });
+            //<!--RB Add-->
+            this.messages.push({
+            user: "bot",
+            text:
+              // "Here is an article that might be helpful, " +
+              // response.readingTitle +
+              // " found at: " +
+              response.readingLink,
+            image: null,
+            type: "link"
+          });  
 
-                this.messages.push({
-        user: "bot",
-        text:
-          // "Here is a video that might be helpful, " +
-          // response.videoTitle +
-          // " found at: " +
-          response.videoLink,
-        image: null,
-        type: "link"
-      });
-          this.scrollDown("before loader >>>>");
+
+          this.messages.push({
+            user: "bot",
+            text:
+              "Here is a video that might be helpful, " +
+              response.videoTitle +
+               " found at: ",  //+ response.videoLink,
+            image: null,
+            type: "text"
+          });
+
+          //RB ADD
+                    this.messages.push({
+            user: "bot",
+            text:
+              // "Here is a video that might be helpful, " +
+              // response.videoTitle +
+              // " found at: " + 
+              response.videoLink,
+            image: null,
+            type: "link"
+          });
+
+         this.messages.push({
+            user: "bot",
+            image: null,
+            type: "curriculumAction",
+            actions: this.curriculumActions
+          });
         }
       } else if (this.pathway === "Pathway") {
         response = this.findPathway(this.userMessage.toLowerCase());
@@ -362,22 +398,48 @@ export default {
             text:
               "Here is an article that might be helpful, " +
               response.readingTitle +
-              " found at: " +
-              response.readingLink,
+              " found at: ",  //+
+              // response.readingLink,
             image: null,
             type: "text"
           });
+
+            this.messages.push({
+            user: "bot",
+            text:
+              // "Here is an article that might be helpful, " +
+              // response.readingTitle +
+              // " found at: " +
+              response.readingLink,
+            image: null,
+            type: "link"
+          });
+
+
 
           this.messages.push({
             user: "bot",
             text:
               "Here is a video that might be helpful, " +
               response.videoTitle +
-              " found at: " +
-              response.videoLink,
+              " found at: ", // +
+              // response.videoLink,
             image: null,
             type: "text"
           });
+
+                    this.messages.push({
+            user: "bot",
+            text:
+              // "Here is a video that might be helpful, " +
+              // response.videoTitle +
+              // " found at: " +
+              response.videoLink,
+            image: null,
+            type: "link"
+          });
+
+
         }
            this.messages.push({
             user: "bot",
