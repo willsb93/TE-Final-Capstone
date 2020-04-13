@@ -118,6 +118,8 @@ export default {
       pathway: null,
       //  motivations:[],
       // motivation:null,
+      // findJobs: [],
+      //findJob: null;
 
       actions: [
         {
@@ -203,7 +205,7 @@ export default {
             this.pathways = response.data;
             console.log("response data==>>", response.data);
 
-            this.sendBotMessage("What pathway topic do you need help with?");
+            this.sendBotMessage("What Pathway topic do you need help with? You can search for terms like resume or LinkedIn");
             this.curriculum = null;
             this.pathway = actionTopicName;
           });
@@ -224,22 +226,11 @@ export default {
 
         */
       else if (actionTopicName === "Find a Job") {
-        /*axios
-          .get("http://localhost:8080/AuthenticationApplication/api/jobsearch")   CORRECT API PATH???
-          .then(response => {
-            this.pathways = response.data;
-            console.log("response data==>>", response.data);
 
-            this.sendBotMessage("What City, State are you looking in?");
             this.sendBotMessage("What position? e.g. java engineer, front-end developer");
-            this.sendBotMessage("Some other characteristic to ask about ??? );
-
-            this.pathway = actionTopicName;
-          });
-
-
-
-        */
+            
+            this.findJob = actionTopicName;
+          
       } else if (actionTopicName === "curriculum-search-again") {
         this.doRequest("Curriculum");
         this.scrollDown("after loader >>>>");
