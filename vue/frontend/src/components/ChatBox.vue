@@ -128,8 +128,8 @@ export default {
       curriculum: null,
       pathways: [],
       pathway: null,
-      //  motivations:[],
-      // motivation:null,
+      motivations:[],
+      motivation:null,
       // findJobs: [],
       findJob: null,
 
@@ -262,19 +262,21 @@ export default {
         this.scrollDown("before loader >>>>");
       }
 
-      // } else if (actionTopicName === "Motivation"){
-      /* axios
-        this.doRequest("Motivation");
-           .get("http://localhost:8080/AuthenticationApplication/api/motivation")
+       else if (actionTopicName === "Motivation"){
+       axios
+       .get("http://localhost:8080/AuthenticationApplication/api/motivation")
           .then(response => {
-            this.motivations = response.data;
+            this.pathways = response.data;
             console.log("response data==>>", response.data);
 
-            this.sendBotMessage("I know you can do this!!!");
-            this.motivation = actionTopicName; 
+            this.sendMessage("M");
+            this.curriculum = null;
+            this.findJob = null;
+            this.pathway = actionTopicName;
           });
-
-        */
+        this.scrollDown("before loader >>>>");
+       }
+       
       else if (actionTopicName === "Find a Job") {
 
             this.sendBotMessage("What position are you interested in? e.g. java engineer, front-end developer");
@@ -318,9 +320,9 @@ export default {
       return `background-image: url(${imgUrl})`;
     },
 
-    sendMessage() {
+    sendMessage(input) {
       let response;
-         if (this.motivation ==="Motivation") {
+         if (input === "M") {
              this.messages.push({
                user: "bot",
                text: "We all have hard moments... " + response.message + " by " + response.author,
@@ -517,9 +519,7 @@ export default {
       } 
       
       else if (this.findJob === "Find a Job") {
-           let jobStringIndeed = "https://www.indeed.com/jobs?q=" +this.userMessage+ "&l=Columbus%2C+OH&sort=date"
-          //let jobStringLinkedin = "https://www.linkedin.com/jobs/search?keywords=" + this.userMessage + "&location=Columbus%2C%20Ohio%2C%20United%20States&trk=homepage-jobseeker_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0"
-          //  let jobStringDice = "https://www.dice.com/jobs?q=" + this.userMessage +"&location=Columbus,%20OH,%20USA&latitude=39.9611755&longitude=-82.99879419999999&countryCode=US&locationPrecision=City&adminDistrictCode=OH&radius=30&radiusUnit=mi&page=1&pageSize=20&language=en"
+           let jobStringIndeed = <a>"https://www.indeed.com/jobs?q=" +this.userMessage+ "&l=Columbus%2C+OH&sort=date" </a>
            
            this.messages.push({
            user: "User",
