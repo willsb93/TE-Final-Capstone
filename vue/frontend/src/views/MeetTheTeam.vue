@@ -37,6 +37,13 @@
           </div>
         </div>
       </section>
+          <section class="section">
+      <div class="container has-text-centered">
+
+        <h2 class="title">Our Mission - <span id="mission-text">to change the world, one byte at a time.</span></h2>
+       
+      </div>
+    </section>
     </div>
 </template>
 
@@ -57,5 +64,9 @@ export default {
   color: #3273dc;
 }
 
+#mission-text {
+  font-size: .75em;
+  font-style: italic;
+}
 
 </style>
