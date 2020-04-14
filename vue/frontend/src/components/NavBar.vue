@@ -14,7 +14,7 @@
         </div>
         <div class="navbar-menu">
           <div class="navbar-start">
-            <router-link :to="{ name: 'features' }" class="navbar-item">Features</router-link>
+            <!-- <router-link :to="{ name: 'features' }" class="navbar-item">Features</router-link> -->
             <router-link :to="{ name: 'demonstration' }" class="navbar-item">Demo Increment++</router-link>
             <router-link :to="{ name: 'meettheteam' }" class="navbar-item">Meet The Team</router-link>
           </div>

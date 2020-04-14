@@ -335,14 +335,6 @@ export default {
           type: "text"
         });
 
-        this.messages.push({
-          user: "bot",
-          text:
-            "https://www.indeed.com/jobs?q=${userResponse}&l=Columbus%2C+OH",
-
-          image: null,
-          type: "link"
-        });
       } else if (this.curriculum === "Curriculum") {
         this.messages.push({
           user: "User",
@@ -549,8 +541,41 @@ export default {
           image: null,
           type: "link"
         });
+      }
+      else if (this.findJob === "Find a Job") {
+           let jobStringIndeed = "https://www.indeed.com/jobs?q=" +this.userMessage+ "&l=Columbus%2C+OH&sort=date"
+          //let jobStringLinkedin = "https://www.linkedin.com/jobs/search?keywords=" + this.userMessage + "&location=Columbus%2C%20Ohio%2C%20United%20States&trk=homepage-jobseeker_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0"
+          //  let jobStringDice = "https://www.dice.com/jobs?q=" + this.userMessage +"&location=Columbus,%20OH,%20USA&latitude=39.9611755&longitude=-82.99879419999999&countryCode=US&locationPrecision=City&adminDistrictCode=OH&radius=30&radiusUnit=mi&page=1&pageSize=20&language=en"
+           
+           this.messages.push({
+           user: "User",
+           text: this.userMessage,
+           image: null,
+           type: "text"
+          });
+           
+           this.messages.push({
+            user: "bot",
+            text: "Awesome! Here is a link from indeed that might help you:",
+            image: null,
+            type: "text"
+          });
+  
+          this.messages.push({
+            user: "bot",
+            text: jobStringIndeed,
+            image: null,
+            type: "link"
+          });
 
-        this.messages.push({
+
+          // this.messages.push({
+          //   user: "bot",
+          //   text: jobStringLinkedin,
+          //   type: "link"
+          // });
+        
+          this.messages.push({
           user: "bot",
           image: null,
           type: "findAJob",
@@ -729,13 +754,16 @@ export default {
 }
 
 .msg-text {
-  padding: 10px 15px;
+  padding: 12px 15px;
   border-radius: 20px;
-  max-width: 400px;
+  width: max-content;
+  max-width: 345px;
   font-weight: bold;
 }
+
 .left-msg .msg-text {
   background: var(--left-msg-bg);
+  max-width: 345px;
 }
 .right-msg .msg-text {
   float: right;
@@ -763,8 +791,9 @@ export default {
   border-radius: 0.4em;
   -webkit-box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
-  max-width: 600px;
   width: max-content;
+  max-width: 350px;
+  word-wrap: break-word;
 }
 
 .right-msg {
