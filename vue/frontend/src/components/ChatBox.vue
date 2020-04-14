@@ -211,21 +211,6 @@ export default {
       //     label: "Exit."
       //   }
       // ]
-      
-            // findAJobActions: [
-      //   {
-      //     name: "findAJob-search-again",
-      //     label: "Search Again"
-      //   },
-      //   {
-      //     name: "help-topics",
-      //     label: "Help"
-      //   },
-      //   {
-      //     name: "exit",
-      //     label: "Exit."
-      //   }
-      // ]
 
 
     };
@@ -519,7 +504,7 @@ export default {
       } 
       
       else if (this.findJob === "Find a Job") {
-           let jobStringIndeed = <a>"https://www.indeed.com/jobs?q=" +this.userMessage+ "&l=Columbus%2C+OH&sort=date" </a>
+           let jobStringIndeed = "https://www.indeed.com/jobs?q=" +this.userMessage+ "&l=Columbus%2C+OH&sort=date"
            
            this.messages.push({
            user: "User",
