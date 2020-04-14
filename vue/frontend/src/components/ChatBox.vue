@@ -501,7 +501,7 @@ export default {
       } 
       
       else if (this.findJob === "Find a Job") {
-           let jobStringIndeed = "https://www.indeed.com/jobs?q=" +this.userMessage+ "&l=Columbus%2C+OH"
+           let jobStringIndeed = "https://www.indeed.com/jobs?q=" +this.userMessage+ "&l=Columbus%2C+OH&sort=date"
           //  let jobStringLinkedin = "https://www.linkedin.com/jobs/search?keywords=" + this.userMessage+ "&location=Columbus%2C%20Ohio%2C%20United%20States&trk=homepage-jobseeker_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0"
           //  let jobStringDice = "https://www.dice.com/jobs?q=" + this.userMessage +"&location=Columbus,%20OH,%20USA&latitude=39.9611755&longitude=-82.99879419999999&countryCode=US&locationPrecision=City&adminDistrictCode=OH&radius=30&radiusUnit=mi&page=1&pageSize=20&language=en"
            
