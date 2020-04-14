@@ -305,47 +305,39 @@ export default {
       return `background-image: url(${imgUrl})`;
     },
 
-    sendMessage(input) {
+    sendMessage() {
       let response;
-         if (input === "M") {
-             this.messages.push({
-               user: "bot",
-               text: "We all have hard moments... " + response.message + " by " + response.author,
-               image: null,
-               type: "text"
-            });
+     
+     // BEGINS THE MESSAGE PROCESS FOR CURRICULUM
 
-
-        }
-      else if (this.curriculum === "Curriculum") {
+     if (this.curriculum === "Curriculum") {
         this.messages.push({
           user: "User",
           text: this.userMessage,
-          // time: new Date().toTimeString().split(' GMT')[0],
           image: null,
           type: "text"
         });
 
         response = this.findCurriculum(this.userMessage.toLowerCase());
-        this.scrollDown("before loader >>>>");
+       
         if (response == null) {
-          this.messages.push({
+         setTimeout(() => { this.messages.push({
             user: "bot",
             text: "I did not find anything on " + this.userMessage + ".",
             image: null,
             type: "text"
-          });
+          })},300);
 
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
             image: null,
             type: "curriculumAction",
             actions: this.curriculumActions
-          });
-          this.scrollDown("before loader >>>>");
+          })},600);
+        
         } else {
           
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
             text:
               "Here is what I found on " +
@@ -354,9 +346,9 @@ export default {
               response.message,
             image: null,
             type: "text"
-          });
-          this.scrollDown("after bot message >>>>>");
-          this.messages.push({
+         })},300);
+          
+         setTimeout(() => { this.messages.push({
             user: "bot",
             text:
               "Here is an article that might be helpful, " +
@@ -365,20 +357,17 @@ export default {
    
             image: null,
             type: "text"
-          });
-          this.scrollDown("after bot message >>>>>");
+          })},700);
+         
  
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
-            text:
-     
-              response.readingLink,
+            text: response.readingLink,
             image: null,
             type: "link"
-          });
-          this.scrollDown("after bot message >>>>>");
+          })},1100);
 
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
             text:
               "Here is a video that might be helpful, " +
@@ -386,27 +375,29 @@ export default {
               " found at: ", 
             image: null,
             type: "text"
-          });
-          this.scrollDown("after bot message >>>>>");
-
-    
-          this.messages.push({
+          })},1500);
+          
+          setTimeout(() => { this.messages.push({
             user: "bot",
             text: response.videoLink,
             image: null,
             type: "link"
-          });
-          this.scrollDown("after bot message >>>>>");
+          })},1900);
 
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
             image: null,
             type: "curriculumAction",
             actions: this.curriculumActions
-          });
-           this.scrollDown("after bot message >>>>>");
+          })},2300);
         }
-      } else if (this.pathway === "Pathway") {
+      } 
+      
+      // END OF THE CURRICULUM MESSAGE PROCESS
+      
+      // PATHWAY MESSAGE PROCESS BEGINS
+
+      else if (this.pathway === "Pathway") {
         this.messages.push({
           user: "User",
           text: this.userMessage,
@@ -527,12 +518,7 @@ export default {
             type: "link"
           });
 
-          // this.messages.push({
-          //   user: "bot",
-          //   text: jobStringLinkedin,
-          //   type: "link"
-          // });
-        
+    
           this.messages.push({
           user: "bot",
           image: null,
@@ -600,7 +586,6 @@ export default {
           this.messages.push({
             user: "bot",
             text: userResponse,
-            // time: new Date().toTimeString().split(' GMT')[0],
             image: null,
             isLoading: true,
             type: "text"
@@ -651,7 +636,6 @@ export default {
   width: 100%;
   max-width: 867px;
   margin: 25px 10px;
-  /* height: calc(100% - 50px); */
   height: 30em;
   border: var(--border);
   border-radius: 5px;
@@ -749,6 +733,7 @@ export default {
   width: max-content;
   max-width: 350px;
   word-wrap: break-word;
+  animation: pulse 0.8s;
 }
 
 .right-msg {
