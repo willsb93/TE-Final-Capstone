@@ -542,7 +542,6 @@ export default {
             type: "link"
           });
 
-
           // this.messages.push({
           //   user: "bot",
           //   text: jobStringLinkedin,
