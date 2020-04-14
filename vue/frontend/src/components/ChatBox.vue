@@ -33,7 +33,8 @@
             v-bind:href="message.text"
             target="_blank"
           >{{ message.text }}</a>
-          <!--RB-->
+         
+
           <div v-if="message.type === 'action'">
             <ul id="topicContainer">
               <li
@@ -210,6 +211,23 @@ export default {
       //     label: "Exit."
       //   }
       // ]
+      
+            // findAJobActions: [
+      //   {
+      //     name: "findAJob-search-again",
+      //     label: "Search Again"
+      //   },
+      //   {
+      //     name: "help-topics",
+      //     label: "Help"
+      //   },
+      //   {
+      //     name: "exit",
+      //     label: "Exit."
+      //   }
+      // ]
+
+
     };
   },
   methods: {
@@ -302,8 +320,36 @@ export default {
 
     sendMessage() {
       let response;
-    
-      if (this.curriculum === "Curriculum") {
+         if (this.motivation ==="Motivation") {
+             this.messages.push({
+               user: "bot",
+               text: "We all have hard moments... " + response.message + " by " + response.author,
+               image: null,
+               type: "text"
+            });
+
+        } else if(this.findJob === "Find a job"){
+            this.messages.push ({
+            user: "bot",
+            text:
+              "Here is what I found on " +
+              this.userMessage +
+              ":" ,
+            image: null,
+            type: "text"
+            });
+          
+           this.messages.push ({
+            user: "bot",
+            text: "https://www.indeed.com/jobs?q=${userResponse}&l=Columbus%2C+OH",
+              
+            image: null,
+            type: "link"
+            });
+      
+
+        }
+      else if (this.curriculum === "Curriculum") {
         this.messages.push({
           user: "User",
           text: this.userMessage,
@@ -348,18 +394,16 @@ export default {
               "Here is an article that might be helpful, " +
               response.readingTitle +
               " found at: ",
-            // response.readingLink,
+   
             image: null,
             type: "text"
           });
           this.scrollDown("after bot message >>>>>");
-          //<!--RB Add-->
+ 
           this.messages.push({
             user: "bot",
             text:
-              // "Here is an article that might be helpful, " +
-              // response.readingTitle +
-              // " found at: " +
+     
               response.readingLink,
             image: null,
             type: "link"
@@ -371,20 +415,16 @@ export default {
             text:
               "Here is a video that might be helpful, " +
               response.videoTitle +
-              " found at: ", //+ response.videoLink,
+              " found at: ", 
             image: null,
             type: "text"
           });
           this.scrollDown("after bot message >>>>>");
 
-          //RB ADD
+    
           this.messages.push({
             user: "bot",
-            text:
-              // "Here is a video that might be helpful, " +
-              // response.videoTitle +
-              // " found at: " +
-              response.videoLink,
+            text: response.videoLink,
             image: null,
             type: "link"
           });
@@ -429,13 +469,6 @@ export default {
             actions: this.pathwayActions
           });
 
-          //  } else if (this.motivation ==="Motivation") {
-          //    this.messages.push({
-          //      user: "bot",
-          //      text: "We all have hard moments... " + response.message + " by " + response.author,
-          //      image: null,
-          //      type: "text"
-          //    });
         } else {
           this.messages.push({
             user: "bot",
