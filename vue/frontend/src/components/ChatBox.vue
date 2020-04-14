@@ -1,3 +1,4 @@
+
 <template>
   <section class="msger">
     <header class="msger-header">
@@ -12,7 +13,7 @@
       </div>
     </header>
 
-    <main class="msger-chat">
+    <main class="msger-chat" v-chat-scroll>
       <div v-for="(message, i) in messages" :key="i" :class="addMessageClass(message)">
         <div class="msg-img" :style="getImageStyle(message)"></div>
         <div v-if="message.isLoading" class="msg-bubble">
@@ -24,7 +25,7 @@
           </div>
         </div>
 
-        <div v-else class="msg-bubble">
+        <div v-else class="msg-bubble" v-chat-scroll>
           <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
           <a
             v-if="message.type === 'link'"
@@ -264,7 +265,6 @@ export default {
             this.curriculum = null;
             this.pathway = null;
             this.findJob = actionTopicName;
-           
           
       } else if (actionTopicName === "curriculum-search-again") {
         this.doRequest("Curriculum");
@@ -330,6 +330,7 @@ export default {
           });
           this.scrollDown("before loader >>>>");
         } else {
+          
           this.messages.push({
             user: "bot",
             text:
@@ -495,7 +496,8 @@ export default {
           user: "bot",
           image: null,
           type: "pathwayAction",
-          actions: this.pathwayActions
+          actions: this.pathwayActions,
+          
         });
         this.scrollDown("before loader >>>>");
       } 
@@ -548,6 +550,7 @@ export default {
       }
 
       this.userMessage = "";
+      
     },
 
     findCurriculum(topicName) {
@@ -625,12 +628,13 @@ export default {
       const scrollTop =
         document.getElementsByClassName("msger-chat")[0].scrollHeight -
         document.getElementsByClassName("msger-chat")[0].offsetHeight;
+      
       if (scrollTop !== 0) {
         document.getElementsByClassName("msger-chat")[0].scrollTop =
-          scrollTop + 100;
+          scrollTop + 1;
       }
     }
-  }
+  }	
 };
 </script>
  
@@ -910,6 +914,7 @@ input.msger-input:focus {
   align-content: flex-end;
 }
 
+
 #chatInput {
   width: 100%;
   line-height: 3em;
@@ -969,4 +974,6 @@ input.msger-input:focus {
   font-size: 1.2em;
   font-weight: bold;
 }
+
 </style>
+
