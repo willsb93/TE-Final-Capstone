@@ -328,25 +328,6 @@ export default {
                type: "text"
             });
 
-        } else if(this.findJob === "Find a job"){
-            this.messages.push ({
-            user: "bot",
-            text:
-              "Here is what I found on " +
-              this.userMessage +
-              ":" ,
-            image: null,
-            type: "text"
-            });
-          
-           this.messages.push ({
-            user: "bot",
-            text: "https://www.indeed.com/jobs?q=${userResponse}&l=Columbus%2C+OH",
-              
-            image: null,
-            type: "link"
-            });
-      
 
         }
       else if (this.curriculum === "Curriculum") {
