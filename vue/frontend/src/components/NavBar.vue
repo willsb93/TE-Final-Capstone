@@ -14,6 +14,7 @@
         </div>
         <div class="navbar-menu">
           <div class="navbar-start">
+            
             <!-- <router-link :to="{ name: 'features' }" class="navbar-item">Features</router-link> -->
             <router-link :to="{ name: 'demonstration' }" class="navbar-item nav-links">Demo Increment++</router-link>
             <router-link :to="{ name: 'meettheteam' }" class="navbar-item nav-links">Meet The Team</router-link>
@@ -52,9 +53,16 @@ export default {
 
 
 
+/*fixed nav-bar at top*/
 #nav-bar {
   height: 5em;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  overflow: hidden;
 }
+
+
 #nav-bar-container {
   height: 5em;
 }

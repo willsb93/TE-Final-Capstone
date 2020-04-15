@@ -621,6 +621,7 @@ export default {
  
 <style>
 
+
 .msger {
   display: flex;
   flex-flow: column wrap;
@@ -961,4 +962,6 @@ input.msger-input:focus {
   font-weight: bold;
 }
 </style>
+
+
 
