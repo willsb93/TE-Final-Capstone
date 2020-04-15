@@ -626,14 +626,7 @@ export default {
  
 <style>
 
-/*.backgroundIMG{
-    background-image: url("https://i.pinimg.com/originals/f0/b9/52/f0b9523dacbecc5bd4e2aae496a9c8c2.jpg");
-    background-attachment: fixed;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    -webkit-font-smoothing: antialiased; 
-} */
+
 
 .msger {
   display: flex;
@@ -977,7 +970,7 @@ input.msger-input:focus {
   font-size: 1.2em;
   font-weight: bold; }
 
-  
+
 </style>
 
 

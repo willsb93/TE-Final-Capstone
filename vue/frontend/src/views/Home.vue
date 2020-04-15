@@ -12,7 +12,7 @@
           <div class="container">
             <div class="columns is-vcentered">
               <div class="column is-6">
-                <h1 class="title is-spaced" style="color:#3273dc;">Increment++</h1>
+                <h1 class="title is-spaced" style="color:#03A6ED;">Increment++</h1>
                 <p class="subtitle is-3">A Chatbot for Education</p>
                 <p class="subtitle">We believe that academic support is critical for your students' success, so we created a next-gen chatbot that drives student success by providing students the resources they need on demand.</p>
               
@@ -93,11 +93,13 @@
               <div class="column is-10">
                 <h2 class="title is-spaced is-4"><span class="product-name-body">Expandable</span></h2>
                 <p class="subtitle is-6">The content in <span class= "product-name-body">Increment++</span> can be easily expanded to meet your students' specific needs. Some logical additions might include: </p>
-                <ul>
+                <ul> 
                      <li> &#10122; Resources for data science and analytics</li>
                      <li> &#10123; Resources for machine learning and AI</li>
                      <li> &#10124; Access to recommended reading lists or books</li> 
+                  
                   </ul>
+                
               </div>
             </div>
         </div>
