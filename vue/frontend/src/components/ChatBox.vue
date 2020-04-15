@@ -551,7 +551,7 @@ export default {
       return null;
     },
     findMotivation() {
-      let max = this.motivations.length;
+      let max = this.motivations.length - 1;
       let min = 1;
      
       return this.motivations[Math.floor(Math.random() * (max - min + 1)) + min];
