@@ -12,7 +12,7 @@
           <div class="container">
             <div class="columns is-vcentered">
               <div class="column is-6">
-                <h1 class="title is-spaced">Increment++</h1>
+                <h1 class="title is-spaced" style="color:#3273dc;">Increment++</h1>
                 <p class="subtitle is-3">A Chatbot for Education</p>
                 <p class="subtitle">We believe that academic support is critical for your students' success, so we created a next-gen chatbot that drives student success by providing students the resources they need on demand.</p>
               
