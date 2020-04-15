@@ -40,14 +40,10 @@ export default {
   #company-logo-img {
     width: auto;
     height: 4em;
-    /* padding: 0em; 
-    margin: 1em;
-    */
    }
 
   #company-logo-img:hover {
     background-color: #fafafa;
-
   }
 
 #nav-bar-container {
@@ -62,6 +58,5 @@ height: 5em;
  overflow: hidden;
 
 }
-
 
 </style>
