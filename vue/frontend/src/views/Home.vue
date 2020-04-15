@@ -187,7 +187,7 @@ html {
 
 .product-name-body {
  color: #3273dc;
-  font-weight: bold;
+ font-weight: bold;
 }
 
 .image-row {
@@ -215,7 +215,6 @@ html {
 
 .content-container {
   width: 28%;
-  
   height: auto;
   padding-top: 1%;
   padding-left: 1%;
@@ -228,12 +227,6 @@ html {
   border-radius: 3px;
 
 }
-.product-name-body {
- color: #3273dc;
-  font-weight: bold;
-
-}
-
 
 /* 
 .home-page-img {

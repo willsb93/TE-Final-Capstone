@@ -641,7 +641,8 @@ export default {
   justify-content: space-between;
   width: 100%;
   max-width: 867px;
-  margin: 25px 25px;
+  padding-top: 9px;
+  margin: auto;
   height: 40em;
   border: var(--border);
   border-radius: 5px;
