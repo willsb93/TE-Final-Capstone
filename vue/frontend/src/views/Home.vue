@@ -19,7 +19,8 @@
                
                  <div class="buttons"> <a class="button is-primary"><router-link :to="{ name: 'demonstration' }">Demo Increment++</router-link></a></div>
               </div>
-              <div class="column is-6"><img src="https://media.giphy.com/media/QumDpxxWqWjZXEsQ8I/giphy.gif" alt=""></div>
+              <div class="column is-6"><img src="https://media.giphy.com/media/loAfSPB98B5jO9oNcT/giphy.gif" alt=""></div>
+              <!-- https://media.giphy.com/media/QumDpxxWqWjZXEsQ8I/giphy.gif old gif link -->
             </div>
           </div>
         </div>
