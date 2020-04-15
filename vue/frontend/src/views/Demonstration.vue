@@ -1,8 +1,14 @@
 
 <template>
+  
+    
+ <div class = "backgroundIMG">
       <div>
         <chatbox />
       </div>
+ </div>  
+  
+      
 </template>
 <script>
 

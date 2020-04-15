@@ -76,6 +76,7 @@
 
 
   </div>
+  
 </template>
 
 <script>
@@ -84,6 +85,8 @@ export default {
 
 
 }
+
+
 </script>
 
 
@@ -167,9 +170,6 @@ export default {
 
 }
 
-
-
-
   #company-logo-img-full {
     width: 50em;
     height: 35em;
@@ -177,7 +177,6 @@ export default {
     margin-bottom: -13em;
 
   } */
-
 
 </style>
 
