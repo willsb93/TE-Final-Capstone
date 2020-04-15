@@ -1,5 +1,9 @@
 
 <template> 
+<div>
+<br>
+<br>
+<br>
   <section class="msger">
     <header class="msger-header">
       <div class="msger-header-title">
@@ -102,7 +106,7 @@
       <button type="submit" class="msger-send-btn">Send</button>
     </form>
   </section>
-
+</div>
 </template>
  
 <script>

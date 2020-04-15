@@ -1,9 +1,12 @@
 <template>
+
 <!-- HERO 1 -->
 <div>
+  <br>
+  <br>
+  <br>
   <div>
 <div class="container is-fluid">
-             <br><br><br>   
       <section class="hero">
         <div class="hero-body">
           <div class="container">
