@@ -1,9 +1,12 @@
 <template>
+
 <!-- HERO 1 -->
 <div>
+  <br>
+  <br>
+  <br>
   <div>
 <div class="container is-fluid">
-             <br><br><br>   
       <section class="hero">
         <div class="hero-body">
           <div class="container">
@@ -13,7 +16,8 @@
                 <p class="subtitle is-3">A Chatbot for Education</p>
                 <p class="subtitle">We believe that academic support is critical for your students' success, so we created a next-gen chatbot that drives student success by providing students the resources they need on demand.</p>
               
-                <div class="buttons"><a class="button is-primary" href="#">Demo it now!</a></div>
+               
+                 <div class="buttons"> <a class="button is-primary"><router-link :to="{ name: 'demonstration' }">Demo Increment++</router-link></a></div>
               </div>
               <div class="column is-6"><img src="https://media.giphy.com/media/QumDpxxWqWjZXEsQ8I/giphy.gif" alt=""></div>
             </div>

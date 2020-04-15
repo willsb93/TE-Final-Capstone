@@ -1,5 +1,9 @@
 
 <template> 
+<div>
+<br>
+<br>
+<br>
   <section class="msger">
     <header class="msger-header">
       <div class="msger-header-title">
@@ -103,7 +107,7 @@
     </form>
 
   </section>
-
+</div>
 </template>
  
 <script>
