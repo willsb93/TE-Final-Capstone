@@ -620,10 +620,6 @@ export default {
 </script>
  
 <style>
-.background{
-   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
-}
-
 
 .msger {
   display: flex;
