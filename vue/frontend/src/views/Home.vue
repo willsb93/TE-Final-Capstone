@@ -104,9 +104,6 @@
       </div>  
     </section>
   </div>
-<<<<<<< HEAD
-  
-=======
       <div class="container is-fluid">
                 
       <section class="section">
@@ -149,7 +146,6 @@
     </div>
     </div>
 
->>>>>>> 368cfe9913c266e2d00ce42e153556ab93ef9914
 </template>
 
 <script>
@@ -158,8 +154,6 @@ export default {
 
 
 }
-
-
 </script>
 
 
@@ -253,6 +247,9 @@ html {
 
 }
 
+
+
+
   #company-logo-img-full {
     width: 50em;
     height: 35em;
@@ -260,6 +257,7 @@ html {
     margin-bottom: -13em;
 
   } */
+
 
 </style>
 
