@@ -43,16 +43,15 @@ export default {
     /* padding: 0em; 
     margin: 1em;
     */
-    
+   }
+
+  #company-logo-img:hover {
+    background-color: #fafafa;
+
   }
 
-
 #nav-bar-container {
-  height: 4em;
-}
-
-.nav-links {
-  font-size: 1.2em;
+height: 5em;
 }
 
 #nav-bar {

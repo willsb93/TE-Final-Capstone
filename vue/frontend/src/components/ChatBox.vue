@@ -105,6 +105,7 @@
       />
       <button type="submit" class="msger-send-btn">Send</button>
     </form>
+
   </section>
 </div>
 </template>
@@ -550,7 +551,7 @@ export default {
       return null;
     },
     findMotivation() {
-      let max = this.motivations.length;
+      let max = this.motivations.length - 1;
       let min = 1;
      
       return this.motivations[Math.floor(Math.random() * (max - min + 1)) + min];
@@ -625,6 +626,14 @@ export default {
  
 <style>
 
+/*.backgroundIMG{
+    background-image: url("https://i.pinimg.com/originals/f0/b9/52/f0b9523dacbecc5bd4e2aae496a9c8c2.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    -webkit-font-smoothing: antialiased; 
+} */
 
 .msger {
   display: flex;
@@ -632,7 +641,8 @@ export default {
   justify-content: space-between;
   width: 100%;
   max-width: 867px;
-  margin: 25px 25px;
+  padding-top: 9px;
+  margin: auto;
   height: 40em;
   border: var(--border);
   border-radius: 5px;
@@ -659,10 +669,12 @@ export default {
   width: 6px;
 }
 .msger-chat::-webkit-scrollbar-track {
-  background: #ddd;
+  background: #83c9a0;
+  /* background: #ddd; old color */
 }
 .msger-chat::-webkit-scrollbar-thumb {
-  background: #bdbdbd;
+  background:#cadbd1;
+  /*   background: #bdbdbd; old color*/
 }
 .msg {
   display: flex;
@@ -965,6 +977,7 @@ input.msger-input:focus {
   font-size: 1.2em;
   font-weight: bold;
 }
+
 </style>
 
 

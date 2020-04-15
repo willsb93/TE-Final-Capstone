@@ -21,7 +21,6 @@
               </div>
               <h5 class="title is-5"><a href="mailto:william.rabuske@Standrew.dev"><span class="dev-name">William Rabuske</span></a></h5>
               <p class="subtitle is-6">Software Developer | Java Bean Taster</p>
-              <!-- <p>A teacher asked us if anybody knew the names of the continents. I was sooo excited. I was like, Damn it! It's my first day of 7th grade, I'm in junior high and I know this answer. So I raised my hand, I was the first one, and I said A-E-I-O-U!</p> -->
               <p>I’m not going to buy my kids an encyclopedia. Let them walk to school like I did.</p>
             
             </div>

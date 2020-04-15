@@ -12,7 +12,7 @@
           <div class="container">
             <div class="columns is-vcentered">
               <div class="column is-6">
-                <h1 class="title is-spaced">Increment++</h1>
+                <h1 class="title is-spaced" style="color:#3273dc;">Increment++</h1>
                 <p class="subtitle is-3">A Chatbot for Education</p>
                 <p class="subtitle">We believe that academic support is critical for your students' success, so we created a next-gen chatbot that drives student success by providing students the resources they need on demand.</p>
               
@@ -189,7 +189,7 @@ html {
 
 .product-name-body {
  color: #3273dc;
-  font-weight: bold;
+ font-weight: bold;
 }
 
 .image-row {
@@ -217,7 +217,6 @@ html {
 
 .content-container {
   width: 28%;
-  
   height: auto;
   padding-top: 1%;
   padding-left: 1%;
@@ -230,13 +229,6 @@ html {
   border-radius: 3px;
 
 }
-
-.product-name-body {
- color: #3273dc;
-  font-weight: bold;
-
-}
-
 
 /* 
 .home-page-img {
