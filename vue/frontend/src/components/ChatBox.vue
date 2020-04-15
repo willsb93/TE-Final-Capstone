@@ -975,9 +975,9 @@ input.msger-input:focus {
 #product-name-2title {
   color: #3273dc;
   font-size: 1.2em;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
+  
 </style>
 
 

@@ -39,7 +39,7 @@ export default {
 <style>
   #company-logo-img {
     width: 2.5em;
-    height: 4em;
+    height: 6em;
     /* padding: 0em; 
     margin: 1em;
     */
