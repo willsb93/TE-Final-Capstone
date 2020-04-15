@@ -254,6 +254,11 @@ html {
   } */
 
 
+#company-logo-img-small {
+  height: 1em;
+  width: auto;
+}
+
 </style>
 
 
