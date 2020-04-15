@@ -3,10 +3,12 @@
     <section class="hero">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <!-- <h2 class="subtitle"> Standrew Products and Services, Inc.</h2><br> -->
           <br>
-                  <h1 id="product-name-title">Increment++ <span class='title'><br> A Chatbot for Your Students</span></h1>
-
+            <h1 id="product-name-title">Increment++ <span class='title'><br> A Chatbot for Education</span></h1>
+          <br>
+           <h3 class="title">Academic support is critical for your students' success</h3>
+          <h3><span class="product-name-body">Increment++</span> is a next-gen chatbot that drives student success by providing students the resources they need on demand.</h3>.
+        
           
         </div>
       </div>
@@ -15,11 +17,7 @@
       <section class="section" id="product-title-home">
       <div class="container has-text-centered is-fluid">
         <div class="block">
-          <!-- <img class="is-16by9" id="features-main-img" src="@/assets/BlogImage_Chat.jpg" alt="drawing of person surrounded by chat bubbles" />  -->
-           <br>
-           <h2 class="title">Academic support is critical for your students' success</h2>
-          <h3><span class="product-name-body">Increment++</span> is a next-gen chatbot that drives student success that provides students the exact resources they need on demand.</h3>.
-        
+           
         </div>
       <div class="image-row">
         
@@ -32,7 +30,7 @@
 <div class="content-row" id="product-features">
           <div class="content-container">
             <div class="column is-10">
-                <h2 class="title is-spaced is-4">Rich Resource Library</h2>
+                <h2 class="title is-spaced is-4"><span class="product-name-body">Rich Resource Library</span></h2>
                 <p class="subtitle is-6"><span class= "product-name-body">Increment++</span> provides on-demand access to numerous learning resources in technical and non-technical areas including: </p>
                   <ul>
                      <li>&#10122; Beginner to advanced programming topics</li>
@@ -43,7 +41,7 @@
               </div>
             <div class="content-container" >
               <div class="column is-10">
-                <h2 class="title is-spaced is-4">Always Available</h2>
+                <h2 class="title is-spaced is-4"><span class="product-name-body">Always Available</span></h2>
                 <p
                   class="subtitle is-6"
                 >Your team needs to eat and sleep, but <span class= "product-name-body">Increment++</span> finds that <strong>boring</strong>. Students can get the support they need 24/7 with 99.9% up-time. </p>
@@ -59,7 +57,7 @@
             <div class="content-container" >
          
               <div class="column is-10">
-                <h2 class="title is-spaced is-4">Expandable</h2>
+                <h2 class="title is-spaced is-4"><span class="product-name-body">Expandable</span></h2>
                 <p class="subtitle is-6">The content in <span class= "product-name-body">Increment++</span> can be easily expanded to meet your students' specific needs. Some logical additions might include: </p>
                 <ul>
                      <li> &#10122; Resources for data science and analytics</li>
@@ -90,6 +88,13 @@ export default {
 
 
 <style>
+
+.hero {
+  background-image: url("https://s3.envato.com/files/235229666/101417%20(3).jpg");
+  margin-bottom: .5em;
+
+}
+
 #product-name-title {
   color: #3273dc;
   font-size: 2.5em;
@@ -141,6 +146,12 @@ export default {
   text-align: left;
   border: solid #3273dc 1px;
   border-radius: 3px;
+
+}
+.product-name-body {
+ color: #3273dc;
+  font-weight: bold;
+
 }
 
 
@@ -156,10 +167,7 @@ export default {
 
 }
 
-.product-name-body {
- color: #3273dc;
-  font-weight: bold;
-}
+
 
 
   #company-logo-img-full {

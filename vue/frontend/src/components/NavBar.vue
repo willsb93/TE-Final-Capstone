@@ -1,10 +1,10 @@
 <template>
   <div>
-    <nav class="navbar">
-      <div class="container">
+    <nav class="navbar" id="nav-bar">
+      <div class="container" id="nav-bar-container"> 
        
         <div class="navbar-brand">
-          <router-link :to="{ name: 'home' }" class="navbar-item" exact><img id="company-logo-img" src ="@/assets/newprofile.png" /></router-link>
+          <router-link :to="{ name: 'home' }" class="navbar-item nav-links" exact><img id="company-logo-img" src ="@/assets/newprofile.png" /></router-link>
           <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false">
           
             <span aria-hidden="true"></span>
@@ -15,8 +15,8 @@
         <div class="navbar-menu">
           <div class="navbar-start">
             <!-- <router-link :to="{ name: 'features' }" class="navbar-item">Features</router-link> -->
-            <router-link :to="{ name: 'demonstration' }" class="navbar-item">Demo Increment++</router-link>
-            <router-link :to="{ name: 'meettheteam' }" class="navbar-item">Meet The Team</router-link>
+            <router-link :to="{ name: 'demonstration' }" class="navbar-item nav-links">Demo Increment++</router-link>
+            <router-link :to="{ name: 'meettheteam' }" class="navbar-item nav-links">Meet The Team</router-link>
           </div>
         </div>
 
@@ -37,14 +37,31 @@ export default {
 
 <style>
   #company-logo-img {
-    width: 2em;
-    height: 2em;
+    width: 2.5em;
+    height: 4em;
+    /* padding: 0em; 
+    margin: 1em;
+    */
+    
   }
 
-  #company-logo-img-full {
-    width: 10em;
-    height: 5em;
+  #company-logo-img:hover {
+    background-color: #fafafa;
 
   }
+
+
+
+#nav-bar {
+  height: 5em;
+}
+#nav-bar-container {
+  height: 5em;
+}
+
+.nav-links {
+  font-size: 1.2em;
+}
+
 
 </style>
