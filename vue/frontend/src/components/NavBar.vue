@@ -4,7 +4,7 @@
       <div class="container" id="nav-bar-container"> 
        
         <div class="navbar-brand">
-          <router-link :to="{ name: 'home' }" class="navbar-item nav-links" exact><img id="company-logo-img" src ="@/assets/newprofile.png" /></router-link>
+          <router-link :to="{ name: 'home' }" class="navbar-item nav-links" exact><img id="company-logo-img" src ="@/assets/newprofile.png" /> Home</router-link>
           <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false">
           
             <span aria-hidden="true"></span>
@@ -38,7 +38,7 @@ export default {
 
 <style>
   #company-logo-img {
-    width: 2.5em;
+    width: auto;
     height: 4em;
     /* padding: 0em; 
     margin: 1em;
@@ -46,14 +46,9 @@ export default {
     
   }
 
-  #company-logo-img:hover {
-    background-color: #fafafa;
-
-  }
-
 
 #nav-bar-container {
-  height: 5em;
+  height: 4em;
 }
 
 .nav-links {
@@ -61,11 +56,12 @@ export default {
 }
 
 #nav-bar {
- height: 5em;
+ height: 4em;
  position: fixed;
  width: 100%;
  top: 0;
  overflow: hidden;
+
 }
 
 

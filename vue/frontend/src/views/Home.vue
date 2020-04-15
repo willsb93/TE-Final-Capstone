@@ -93,11 +93,13 @@
               <div class="column is-10">
                 <h2 class="title is-spaced is-4"><span class="product-name-body">Expandable</span></h2>
                 <p class="subtitle is-6">The content in <span class= "product-name-body">Increment++</span> can be easily expanded to meet your students' specific needs. Some logical additions might include: </p>
-                <ul>
+                <ul> 
                      <li> &#10122; Resources for data science and analytics</li>
                      <li> &#10123; Resources for machine learning and AI</li>
                      <li> &#10124; Access to recommended reading lists or books</li> 
+                  
                   </ul>
+                
               </div>
             </div>
         </div>
@@ -228,6 +230,7 @@ html {
   border-radius: 3px;
 
 }
+
 .product-name-body {
  color: #3273dc;
   font-weight: bold;
