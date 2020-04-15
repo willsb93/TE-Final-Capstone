@@ -13,7 +13,7 @@
       </div>
       
     </header>
-   
+    
     <main class="msger-chat" v-chat-scroll>
       <div v-for="(message, i) in messages" :key="i" :class="addMessageClass(message)">
         <div class="msg-img" :style="getImageStyle(message)"></div>
@@ -91,7 +91,7 @@
       </div>
   
     </main>
-     
+
     <form class="msger-inputarea" @submit.prevent="sendMessage">
       <input
         type="text"

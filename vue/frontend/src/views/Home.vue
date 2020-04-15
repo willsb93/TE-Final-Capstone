@@ -27,7 +27,7 @@
 
          </div>
        
-<div class="content-row" id="product-features">
+        <div class="content-row" id="product-features">
           <div class="content-container">
             <div class="column is-10">
                 <h2 class="title is-spaced is-4"><span class="product-name-body">Rich Resource Library</span></h2>
@@ -66,15 +66,9 @@
                   </ul>
               </div>
             </div>
-          
-
-</div>
-      
-
-        </div>  
-</section>
-
-
+        </div>
+      </div>  
+    </section>
   </div>
 </template>
 
@@ -90,8 +84,10 @@ export default {
 <style>
 
 .hero {
-  background-image: url("https://s3.envato.com/files/235229666/101417%20(3).jpg");
-  margin-bottom: .5em;
+    background-image: url("https://i.dlpng.com/static/png/3946370-circuit-board-vector-circuit-board-electronic-pattern-png-and-circuit-png-403_298_preview.webp");
+      /* background-image: url("https://img.pngio.com/hd-circuit-diagram-printed-electric-circuit-board-png-free-circuit-board-pngs-hd-2754_1506.png");  */
+      
+  margin-bottom: 1em;
 
 }
 
