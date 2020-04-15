@@ -53,10 +53,14 @@ export default {
 
 
 #nav-bar {
-  height: 5em;
+height: 5em;
+position: fixed;
+width: 100%;
+top: 0;
+overflow: hidden; 
 }
 #nav-bar-container {
-  height: 5em;
+  height: 3em;
 }
 
 .nav-links {
