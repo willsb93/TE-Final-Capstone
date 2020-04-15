@@ -342,9 +342,7 @@ export default {
           setTimeout(() => { this.messages.push({
             user: "bot",
             text:
-              "Here is what I found on " +
-              this.userMessage +
-              "...." +
+              "Here is what I found!" + " " +
               response.message,
             image: null,
             type: "text"
@@ -392,7 +390,9 @@ export default {
             type: "curriculumAction",
             actions: this.curriculumActions
           })},2300);
+       
         }
+
       } 
       
       // END OF THE CURRICULUM MESSAGE PROCESS
@@ -433,9 +433,7 @@ export default {
           setTimeout(() => { this.messages.push({
             user: "bot",
             text:
-              "Here is what I found on " +
-              this.userMessage +
-              "...." +
+              "Here is what I found!" + " " +
               response.message,
             image: null,
             type: "text"
@@ -530,8 +528,7 @@ export default {
       }
 
     // END FIND A JOB MESSAGE PROCESS  
-
-      this.userMessage = "";
+     this.userMessage = "";  
     },
 
     findCurriculum(topicName) {
@@ -626,7 +623,9 @@ export default {
  
 <style>
 
-
+#product-name-2title{
+  color:#03A6ED !important;
+}
 
 .msger {
   display: flex;
