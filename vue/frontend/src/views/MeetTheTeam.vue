@@ -2,7 +2,7 @@
     <div class="container is-fluid">
                 
       <section class="section"><div class="container has-text-centered">
-          <h2 class="title"><span id="product-name-2title">Increment++</span> Creators</h2>
+          <h2 class="title" id="team-title-text"><span id="product-name-2title">Increment++</span> Creators</h2>
           <p class="subtitle">We are the guys that made this whole thing possible</p>
           <div class="columns">
             <div class="column is-4">
@@ -67,6 +67,10 @@ export default {
 #mission-text {
   font-size: .75em;
   font-style: italic;
+}
+
+#team-title-text {
+  margin-top: 1.3em;
 }
 
 </style>

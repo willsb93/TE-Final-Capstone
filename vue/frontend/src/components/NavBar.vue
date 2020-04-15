@@ -4,7 +4,9 @@
       <div class="container" id="nav-bar-container"> 
        
         <div class="navbar-brand">
-          <router-link :to="{ name: 'home' }" class="navbar-item nav-links" exact><img id="company-logo-img" src ="@/assets/newprofile.png" /></router-link>
+          <!-- <router-link :to="{ name: 'home' }" class="navbar-item nav-links" exact></router-link> -->
+                    <router-link :to="{ name: 'home' }" class="navbar-item nav-links" exact><img id="company-logo-img" src ="@/assets/newprofile.png" /></router-link>
+
           <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false">
           
             <span aria-hidden="true"></span>
@@ -14,7 +16,8 @@
         </div>
         <div class="navbar-menu">
           <div class="navbar-start">
-            
+                      <!-- <router-link :to="{ name: 'home' }" class="navbar-item nav-links" exact><img id="company-logo-img" src ="@/assets/newprofile.png" /></router-link> -->
+
             <!-- <router-link :to="{ name: 'features' }" class="navbar-item">Features</router-link> -->
             <router-link :to="{ name: 'demonstration' }" class="navbar-item nav-links">Demo Increment++</router-link>
             <router-link :to="{ name: 'meettheteam' }" class="navbar-item nav-links">Meet The Team</router-link>
@@ -38,12 +41,10 @@ export default {
 
 <style>
   #company-logo-img {
-    width: 2.5em;
-    height: 4em;
-    /* padding: 0em; 
-    margin: 1em;
-    */
-    
+    width: auto;
+    height: 80%;
+  
+ 
   }
 
   #company-logo-img:hover {
