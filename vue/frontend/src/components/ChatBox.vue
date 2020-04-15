@@ -13,7 +13,7 @@
       </div>
       
     </header>
-   
+    
     <main class="msger-chat" v-chat-scroll>
       <div v-for="(message, i) in messages" :key="i" :class="addMessageClass(message)">
         <div class="msg-img" :style="getImageStyle(message)"></div>
@@ -91,7 +91,7 @@
       </div>
   
     </main>
-     
+
     <form class="msger-inputarea" @submit.prevent="sendMessage">
       <input
         type="text"
@@ -631,14 +631,13 @@ export default {
     -webkit-font-smoothing: antialiased; 
 } */
 
-
-.msger{
+.msger {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
   width: 100%;
   max-width: 867px;
-  margin: auto;
+  margin: 25px 25px;
   height: 40em;
   border: var(--border);
   border-radius: 5px;
@@ -795,11 +794,6 @@ input.msger-input:focus {
   background-color: #fcfcfe;
   background-image: url("https://i.pinimg.com/originals/f0/b9/52/f0b9523dacbecc5bd4e2aae496a9c8c2.jpg");
 }
-
-
-
-
-
 
 /* this is the new loader */
 
@@ -980,4 +974,6 @@ input.msger-input:focus {
 }
 
 </style>
+
+
 
