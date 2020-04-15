@@ -1,5 +1,5 @@
 
-<template>
+<template> 
   <section class="msger">
     <header class="msger-header">
       <div class="msger-header-title">
@@ -11,8 +11,9 @@
           <i class="fas fa-times"></i>
         </a>
       </div>
+      
     </header>
-
+   
     <main class="msger-chat" v-chat-scroll>
       <div v-for="(message, i) in messages" :key="i" :class="addMessageClass(message)">
         <div class="msg-img" :style="getImageStyle(message)"></div>
@@ -33,7 +34,6 @@
             v-bind:href="message.text"
             target="_blank"
           >{{ message.text }}</a>
-         
 
           <div v-if="message.type === 'action'">
             <ul id="topicContainer">
@@ -67,7 +67,7 @@
               >{{action.label}}</li>
             </ul>
           </div>
-           <div v-if="message.type === 'findAJob'">
+           <div v-if="message.type === 'motivationAction'">
             <ul id="topicContainer">
               <li
                 v-for="(action, i) in message.actions"
@@ -77,24 +77,21 @@
               >{{action.label}}</li>
             </ul>
           </div>
-
-          <!-- <div v-else>
+          <div v-if="message.type === 'findAJob'">
             <ul id="topicContainer">
               <li
-                v-for="(post, i) in posts"
+                v-for="(action, i) in message.actions"
                 :key="i"
                 class="topics"
-                @click="doRequest(post.topicName)"
-              >{{post.topicName}}</li>
+                @click="doRequest(action.name)"
+              >{{action.label}}</li>
             </ul>
-          </div>-->
+          </div>
         </div>
       </div>
-      <!-- <div class="msg left-msg">
-
-      </div>-->
+  
     </main>
-
+     
     <form class="msger-inputarea" @submit.prevent="sendMessage">
       <input
         type="text"
@@ -105,6 +102,7 @@
       <button type="submit" class="msger-send-btn">Send</button>
     </form>
   </section>
+
 </template>
  
 <script>
@@ -128,9 +126,8 @@ export default {
       curriculum: null,
       pathways: [],
       pathway: null,
-      motivations:[],
-      motivation:null,
-      // findJobs: [],
+      motivations: [],
+      motivation: null,
       findJob: null,
 
       actions: [
@@ -156,10 +153,6 @@ export default {
         {
           name: "help-topics",
           label: "Help"
-        },
-        {
-          name: "exit",
-          label: "Exit."
         }
       ],
 
@@ -171,12 +164,8 @@ export default {
         {
           name: "help-topics",
           label: "Help"
-        },
-        {
-          name: "exit",
-          label: "Exit."
         }
-      ], 
+      ],
 
       findAJobActions: [
         {
@@ -186,34 +175,19 @@ export default {
         {
           name: "help-topics",
           label: "Help"
+        }
+      ],
+       motivationActions: [
+       {
+          name: "motivation-search-again",
+          label: "Another one!"
         },
         {
-          name: "exit",
-          label: "Exit."
-        }
-      ] 
-      
-      
-      
-      //,
-
-      // motivationActions: [
-      //   {
-      //     name: "motivation-search-again",
-      //     label: "Search Again"
-      //   },
-      //   {
-      //     name: "help-topics",
-      //     label: "Help"
-      //   },
-      //   {
-      //     name: "exit",
-      //     label: "Exit."
-      //   }
-      // ]
-
-
-    };
+           name: "help-topics",
+           label: "Help"
+       },
+      ]
+  };
   },
   methods: {
     doRequest(actionTopicName) {
@@ -228,10 +202,13 @@ export default {
               "What topic do you need help with? You can search terms like 'object' or 'variables'"
             );
             this.pathway = null;
+            this.motivation = null;
             this.findJob = null;
             this.curriculum = actionTopicName;
+
+            
           });
-        this.scrollDown("before loader >>>>");
+
       } else if (actionTopicName === "Pathway") {
         axios
           .get("http://localhost:8080/AuthenticationApplication/api/pathway")
@@ -239,51 +216,54 @@ export default {
             this.pathways = response.data;
             console.log("response data==>>", response.data);
 
-            this.sendBotMessage("What Pathway topic do you need help with? You can search for terms like resume or LinkedIn");
+            this.sendBotMessage(
+              "What Pathway topic do you need help with? You can search for terms like 'resume' or 'LinkedIn'"
+            );
+            this.motivation = null;
             this.curriculum = null;
             this.findJob = null;
             this.pathway = actionTopicName;
           });
-        this.scrollDown("before loader >>>>");
-      }
-
-       else if (actionTopicName === "Motivation"){
-       axios
-       .get("http://localhost:8080/AuthenticationApplication/api/motivation")
+        
+      } else if (actionTopicName === "Motivation") {
+        axios
+          .get("http://localhost:8080/AuthenticationApplication/api/motivation")
           .then(response => {
-            this.pathways = response.data;
+            this.motivations = response.data;
             console.log("response data==>>", response.data);
-
-            this.sendMessage("M");
             this.curriculum = null;
             this.findJob = null;
-            this.pathway = actionTopicName;
-          });
-        this.scrollDown("before loader >>>>");
-       }
-       
-      else if (actionTopicName === "Find a Job") {
-
-            this.sendBotMessage("What position are you interested in? e.g. java engineer, front-end developer");
-            
-            
-            this.curriculum = null;
             this.pathway = null;
-            this.findJob = actionTopicName;
-          
+            this.motivation = actionTopicName;
+            console.log("this.motivation =>>>", this.motivation)
+            this.motivationMessage();
+            
+            
+          });
+      } else if (actionTopicName === "Find a Job") {
+        this.sendBotMessage(
+          "What position are you interested in? e.g. java engineer, front-end developer"
+        );
+
+        this.motivation = null;
+        this.curriculum = null;
+        this.pathway = null;
+        this.findJob = actionTopicName;
       } else if (actionTopicName === "curriculum-search-again") {
         this.doRequest("Curriculum");
-        this.scrollDown("after loader >>>>");
+    
       } else if (actionTopicName === "pathway-search-again") {
         this.doRequest("Pathway");
-        this.scrollDown("after loader >>>>");
-      }else if (actionTopicName === "Search-another-Job") {
+       
+      } else if (actionTopicName === "Search-another-Job") {
         this.doRequest("Find a Job");
-        this.scrollDown("after loader >>>>");
-      }
-      else if (actionTopicName === "help-topics") {
+       
+      }  else if (actionTopicName === "motivation-search-again") {
+        this.doRequest("Motivation");
+     
+      } else if (actionTopicName === "help-topics") {
         this.sendBotMessage("help");
-        this.scrollDown("after loader >>>>");
+    
       } else {
         console.log(actionTopicName);
       }
@@ -304,11 +284,28 @@ export default {
           : userImage;
       return `background-image: url(${imgUrl})`;
     },
+    motivationMessage(){
+      let response = this.findMotivation();
+      setTimeout(() => { this.messages.push({
+          user: "bot",
+          text: '"' + response.message +'"'+ "-" + " " + response.author,
+          image: null,
+          type: "text"
+         })},300);
+         setTimeout(() => { this.messages.push({
+             user: "bot",
+             image: null,
+             text: "test",
+             type: "motivationAction",
+             actions: this.motivationActions
+           })},1000);
+
+    },
 
     sendMessage() {
       let response;
-     
-     // BEGINS THE MESSAGE PROCESS FOR CURRICULUM
+
+    // START OF THE CURRICULUM MESSAGE PROCESS
 
      if (this.curriculum === "Curriculum") {
         this.messages.push({
@@ -323,7 +320,7 @@ export default {
         if (response == null) {
          setTimeout(() => { this.messages.push({
             user: "bot",
-            text: "I did not find anything on " + this.userMessage + ".",
+            text: "Sorry, I did not find anything on that. I will send a message to my creators about your request! Meanwhile, try searching for 'object', 'vue' or 'agile'",
             image: null,
             type: "text"
           })},300);
@@ -354,7 +351,7 @@ export default {
               "Here is an article that might be helpful, " +
               response.readingTitle +
               " found at: ",
-   
+
             image: null,
             type: "text"
           })},700);
@@ -372,7 +369,7 @@ export default {
             text:
               "Here is a video that might be helpful, " +
               response.videoTitle +
-              " found at: ", 
+              " found at: ",
             image: null,
             type: "text"
           })},1500);
@@ -395,13 +392,13 @@ export default {
       
       // END OF THE CURRICULUM MESSAGE PROCESS
       
-      // PATHWAY MESSAGE PROCESS BEGINS
+     
+     // PATHWAY MESSAGE PROCESS BEGINS
 
       else if (this.pathway === "Pathway") {
         this.messages.push({
           user: "User",
           text: this.userMessage,
-          // time: new Date().toTimeString().split(' GMT')[0],
           image: null,
           type: "text"
         });
@@ -414,22 +411,21 @@ export default {
         );
 
         if (response == null) {
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
-            text: "I did not find anything on " + this.userMessage + ".",
+            text: "Sorry, I did not find anything on that. I will send a message to my creators about your request! Meanwhile, try searching for 'star questions', 'resume' or 'linkedin'",
             image: null,
             type: "text"
-          });
+           })},300);
 
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
             image: null,
             type: "pathwayAction",
             actions: this.pathwayActions
-          });
-
+         })},600);
         } else {
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
             text:
               "Here is what I found on " +
@@ -438,63 +434,56 @@ export default {
               response.message,
             image: null,
             type: "text"
-          });
+           })},300);
 
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
             text:
               "Here is an article that might be helpful, " +
               response.readingTitle +
-              " found at: ", //+
-            // response.readingLink,
+              " found at: ",
             image: null,
             type: "text"
-          });
+           })},700);
 
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
-            text:
-              // "Here is an article that might be helpful, " +
-              // response.readingTitle +
-              // " found at: " +
-              response.readingLink,
+            text: response.readingLink,
             image: null,
             type: "link"
-          });
+           })},1100);
 
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
             text:
               "Here is a video that might be helpful, " +
               response.videoTitle +
-              " found at: ", // +
-            // response.videoLink,
+              " found at: ",
             image: null,
             type: "text"
-          });
+           })},1500);
 
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
-            text:
-              // "Here is a video that might be helpful, " +
-              // response.videoTitle +
-              // " found at: " +
-              response.videoLink,
+            text: response.videoLink,
             image: null,
             type: "link"
-          });
-        }
-        this.messages.push({
+           })},1900);
+
+          setTimeout(() => { this.messages.push({
           user: "bot",
           image: null,
           type: "pathwayAction",
-          actions: this.pathwayActions,
-          
-        });
-        this.scrollDown("before loader >>>>");
+          actions: this.pathwayActions
+          })},2300);
+        }
       } 
-      
-      else if (this.findJob === "Find a Job") {
+     
+     //END OF PATHWAY MESSAGE PROCESS
+     
+     // START FIND A JOB MESSAGE PROCESS
+
+     else if (this.findJob === "Find a Job") {
            let jobStringIndeed = "https://www.indeed.com/jobs?q=" +this.userMessage+ "&l=Columbus%2C+OH&sort=date"
            
            this.messages.push({
@@ -504,44 +493,40 @@ export default {
            type: "text"
           });
            
-           this.messages.push({
+           setTimeout(() => { this.messages.push({
             user: "bot",
             text: "Awesome! Here is a link from indeed that might help you:",
             image: null,
             type: "text"
-          });
+       })},300);
   
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
             user: "bot",
             text: jobStringIndeed,
             image: null,
             type: "link"
-          });
+         })},700);
 
-    
-          this.messages.push({
+          setTimeout(() => { this.messages.push({
           user: "bot",
           image: null,
           type: "findAJob",
           actions: this.findAJobActions
-        });
-        this.scrollDown("before loader >>>>");
-      }
-    
-      else {
+      })},1100);
+        
+      } else {
         this.messages.push({
           user: "User",
           text: this.userMessage,
-          // time: new Date().toTimeString().split(' GMT')[0],
           image: null,
           type: "text"
         });
-        this.scrollDown("before bot >>>>");
         this.sendBotMessage(this.userMessage);
       }
 
+    // END FIND A JOB MESSAGE PROCESS  
+
       this.userMessage = "";
-      
     },
 
     findCurriculum(topicName) {
@@ -559,6 +544,12 @@ export default {
         }
       }
       return null;
+    },
+    findMotivation() {
+      let max = this.motivations.length;
+      let min = 1;
+     
+      return this.motivations[Math.floor(Math.random() * (max - min + 1)) + min];
     },
 
     sendBotMessage(userResponse) {
@@ -594,7 +585,7 @@ export default {
           this.scrollDown("after loader >>>>");
         }
       }, 200);
-      this.scrollDown('after bot message >>>>>');
+      this.scrollDown("after bot message >>>>>");
       setTimeout(() => {
         this.messages[lastMessageIndex].isLoading = false;
         const question = this.questions[this.questionIndex];
@@ -618,25 +609,30 @@ export default {
       const scrollTop =
         document.getElementsByClassName("msger-chat")[0].scrollHeight -
         document.getElementsByClassName("msger-chat")[0].offsetHeight;
-      
+
       if (scrollTop !== 0) {
         document.getElementsByClassName("msger-chat")[0].scrollTop =
           scrollTop + 1;
       }
     }
-  }	
+  }
 };
 </script>
  
 <style>
+.background{
+   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
+}
+
+
 .msger {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
   width: 100%;
   max-width: 867px;
-  margin: 25px 10px;
-  height: 30em;
+  margin: 25px 25px;
+  height: 40em;
   border: var(--border);
   border-radius: 5px;
   background: var(--msger-bg);
@@ -733,7 +729,7 @@ export default {
   width: max-content;
   max-width: 350px;
   word-wrap: break-word;
-  animation: pulse 0.8s;
+  animation: pulse 0.7s;
 }
 
 .right-msg {
@@ -891,6 +887,7 @@ input.msger-input:focus {
   display: inline-block;
   transition: all 0.3s ease 0s;
   font-size: 0.9em;
+  font-weight: bold;
 }
 
 .topics:hover {
@@ -907,7 +904,6 @@ input.msger-input:focus {
   display: flex;
   align-content: flex-end;
 }
-
 
 #chatInput {
   width: 100%;
@@ -968,6 +964,5 @@ input.msger-input:focus {
   font-size: 1.2em;
   font-weight: bold;
 }
-
 </style>
 
