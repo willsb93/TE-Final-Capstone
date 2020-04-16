@@ -2,7 +2,7 @@ export default {
   /**
    * Returns the authentication token from local storage.
    */
-  getToken: function() {
+  getToken: function () {
     try {
       return localStorage.getItem('Authorization');
     } catch {

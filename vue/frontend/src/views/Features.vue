@@ -2,119 +2,66 @@
   <div>
     <section class="section">
       <div class="container has-text-centered is-fluid">
-        <h1 id="product-name-title">Increment++ <br> <span class='title'>Student Chatbot</span></h1>
-        <div class="block">
-          <!-- <img class="is-16by9" id="features-main-img" src="@/assets/BlogImage_Chat.jpg" alt="drawing of person surrounded by chat bubbles" />  -->
-           
+        <h1 id="product-name-title">
+          Increment++
+          <br>
+          <span class="title">Student Chatbot</span>
+        </h1>
+        <div class="block"></div>
+        <div class="image-row">
+          <img
+            class="features-page-img"
+            src="@/assets/messyPileOfBooks2.jpg"
+            alt="large messy pile of books"
+          >
+          <img class="features-page-img" src="@/assets/maclisa.jpg" alt="Mac Lisa 1980s">
+          <img
+            class="features-page-img"
+            src="@/assets/serverRoom.jpg"
+            alt="large room full of servers"
+          >
         </div>
-      <div class="image-row">
-        
-           <img class="features-page-img" src="@/assets/messyPileOfBooks2.jpg" alt="large messy pile of books" />
-           <img class="features-page-img" src="@/assets/maclisa.jpg" alt="Mac Lisa 1980s" /> 
-          <img class="features-page-img" src="@/assets/serverRoom.jpg" alt="large room full of servers" />
 
-         </div>
-       
-<div class="content-row">
+        <div class="content-row">
           <div class="content-container">
-                <h2 class="title is-spaced is-4">Rich Resource Library</h2>
-                <p
-                  class="subtitle is-6"
-                ><span class= "product-name-body">Increment++</span> provides on-demand access to numerous learning resources in technical and non-tecnical areas including: </p>
-                  <ul>
-                     <li>&#10122; Beginner to advanced programming topics</li>
-                     <li>&#10123; Resume and networking tips</li>
-                     <li>&#10124; Smart Job Search</li> 
-                  </ul>
-              </div>
-            <div class="content-container" >
-           
-     
-              <div class="column is-10">
-                <h2 class="title is-spaced is-4">Always Available</h2>
-                <p
-                  class="subtitle is-6"
-                >Your team needs to eat and sleep, but <span class= "product-name-body">Increment++</span> finds that <strong>boring</strong>. Students can get the support they need 24/7 with 99.9% up-time. </p>
-                
-
-              </div>
+            <h2 class="title is-spaced is-4">Rich Resource Library</h2>
+            <p class="subtitle is-6">
+              <span class="product-name-body">Increment++</span> provides on-demand access to numerous learning resources in technical and non-tecnical areas including:
+            </p>
+            <ul>
+              <li>&#10122; Beginner to advanced programming topics</li>
+              <li>&#10123; Resume and networking tips</li>
+              <li>&#10124; Smart Job Search</li>
+            </ul>
           </div>
-   
-            <div class="content-container" >
-         
-              <div class="column is-10">
-                <h2 class="title is-spaced is-4">Expandable</h2>
-                <p
-                  class="subtitle is-6"
-                >The content in <span class= "product-name-body">Increment++</span> can be easily expanded to meet your students' specific needs. Some logical additions might include: </p>
-                <ul>
-                     <li> &#10122; Resources for data science and analytics</li>
-                     <li> &#10123; Resources for machine learning and AI</li>
-                     <li> &#10124; Access to recommended reading lists or books</li> 
-                  </ul>
-              </div>
-            </div>
-          
-
-</div>
-      
-
-        </div>  
-</section>
-<!--
-        <div class="columns has-text-left">
-          <div class="column is-4">
-            <div class="columns">
-         
-              <div class="column is-10">
-                <h2 class="title is-spaced is-4">Rich Resource Library</h2>
-                <p
-                  class="subtitle is-6"
-                ><span class= "product-name-body">Increment++</span> provides on-demand access to numerous learning resources in technical and non-tecnical areas including: </p>
-                  <ul>
-                     <li>&#10122; Beginner to advanced programming topics</li>
-                     <li>&#10123; Resume and networking tips</li>
-                     <li>&#10124; Smart Job Search</li> 
-                  </ul>
-              </div>
-            </div>
-          </div>
-          
-          <div class="column is-4">
-            <div class="columns">
-     
-              <div class="column is-10">
-                <h2 class="title is-spaced is-4">Always Available</h2>
-                <p
-                  class="subtitle is-6"
-                >Your team needs to eat and sleep, but <span class= "product-name-body">Increment++</span> finds that <strong>boring</strong>. Students can get the support they need 24/7 with 99.9% up-time. </p>
-                
-
-              </div>
-
-
-            </div>
-          </div>
-          <div class="column is-4">
-            <div class="columns">
-       
-              <div class="column is-10">
-                <h2 class="title is-spaced is-4">Expandable</h2>
-                <p
-                  class="subtitle is-6"
-                >The content in <span class= "product-name-body">Increment++</span> can be easily expanded to meet your students' specific needs. Some logical additions might include: </p>
-                <ul>
-                     <li> &#10122; Resources for data science and analytics</li>
-                     <li> &#10123; Resources for machine learning and AI</li>
-                     <li> &#10124; Access to recommended reading lists or books</li> 
-                  </ul>
-              </div>
+          <div class="content-container">
+            <div class="column is-10">
+              <h2 class="title is-spaced is-4">Always Available</h2>
+              <p class="subtitle is-6">
+                Your team needs to eat and sleep, but
+                <span class="product-name-body">Increment++</span> finds that
+                <strong>boring</strong>. Students can get the support they need 24/7 with 99.9% up-time.
+              </p>
             </div>
           </div>
 
+          <div class="content-container">
+            <div class="column is-10">
+              <h2 class="title is-spaced is-4">Expandable</h2>
+              <p class="subtitle is-6">
+                The content in
+                <span class="product-name-body">Increment++</span> can be easily expanded to meet your students' specific needs. Some logical additions might include:
+              </p>
+              <ul>
+                <li>&#10122; Resources for data science and analytics</li>
+                <li>&#10123; Resources for machine learning and AI</li>
+                <li>&#10124; Access to recommended reading lists or books</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </section>  -->
+    </section>
   </div>
 </template>
 
@@ -132,7 +79,7 @@ export default {
 }
 
 .product-name-body {
- color: #3273dc;
+  color: #3273dc;
   font-weight: bold;
 }
 
@@ -145,8 +92,6 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
-
 }
 
 .features-page-img {
@@ -165,7 +110,7 @@ export default {
 
 .content-container {
   width: 28%;
-  
+
   height: auto;
   padding-top: 1%;
   padding-left: 1%;
@@ -176,5 +121,4 @@ export default {
   text-align: left;
   border: solid #3273dc 1px;
 }
-
 </style>

@@ -1,113 +1,110 @@
 
-<template> 
-<div>
-<br>
-<br>
-<br>
-  <section class="msger">
-    <header class="msger-header">
-      <div class="msger-header-title">
-        <i class="fas fa-comment"></i>
-        <span id="product-name-2title">Increment++</span>
-      </div>
-      <div class="msger-header-options">
-        <a href="#" class="text-danger">
-          <i class="fas fa-times"></i>
-        </a>
-      </div>
-      
-    </header>
-    
-    <main class="msger-chat" v-chat-scroll>
-      <div v-for="(message, i) in messages" :key="i" :class="addMessageClass(message)">
-        <div class="msg-img" :style="getImageStyle(message)"></div>
-        <div v-if="message.isLoading" class="msg-bubble">
-          <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+<template>
+  <div>
+    <br>
+    <br>
+    <br>
+    <section class="msger">
+      <header class="msger-header">
+        <div class="msger-header-title">
+          <i class="fas fa-comment"></i>
+          <span id="product-name-2title">Increment++</span>
+        </div>
+        <div class="msger-header-options">
+          <a href="#" class="text-danger">
+            <i class="fas fa-times"></i>
+          </a>
+        </div>
+      </header>
+
+      <main class="msger-chat" v-chat-scroll>
+        <div v-for="(message, i) in messages" :key="i" :class="addMessageClass(message)">
+          <div class="msg-img" :style="getImageStyle(message)"></div>
+          <div v-if="message.isLoading" class="msg-bubble">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+
+          <div v-else class="msg-bubble" v-chat-scroll>
+            <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
+            <a
+              v-if="message.type === 'link'"
+              class="msg-text"
+              v-bind:href="message.text"
+              target="_blank"
+            >{{ message.text }}</a>
+
+            <div v-if="message.type === 'action'">
+              <ul id="topicContainer">
+                <li
+                  v-for="(action, i) in message.actions"
+                  :key="i"
+                  class="topics"
+                  @click="doRequest(action.topicName)"
+                >{{action.topicName}}</li>
+              </ul>
+            </div>
+
+            <div v-if="message.type === 'curriculumAction'">
+              <ul id="topicContainer">
+                <li
+                  v-for="(action, i) in message.actions"
+                  :key="i"
+                  class="topics"
+                  @click="doRequest(action.name)"
+                >{{action.label}}</li>
+              </ul>
+            </div>
+
+            <div v-if="message.type === 'pathwayAction'">
+              <ul id="topicContainer">
+                <li
+                  v-for="(action, i) in message.actions"
+                  :key="i"
+                  class="topics"
+                  @click="doRequest(action.name)"
+                >{{action.label}}</li>
+              </ul>
+            </div>
+            <div v-if="message.type === 'motivationAction'">
+              <ul id="topicContainer">
+                <li
+                  v-for="(action, i) in message.actions"
+                  :key="i"
+                  class="topics"
+                  @click="doRequest(action.name)"
+                >{{action.label}}</li>
+              </ul>
+            </div>
+            <div v-if="message.type === 'findAJob'">
+              <ul id="topicContainer">
+                <li
+                  v-for="(action, i) in message.actions"
+                  :key="i"
+                  class="topics"
+                  @click="doRequest(action.name)"
+                >{{action.label}}</li>
+              </ul>
+            </div>
           </div>
         </div>
+      </main>
 
-        <div v-else class="msg-bubble" v-chat-scroll>
-          <div v-if="message.type === 'text'" class="msg-text">{{message.text}}</div>
-          <a
-            v-if="message.type === 'link'"
-            class="msg-text"
-            v-bind:href="message.text"
-            target="_blank"
-          >{{ message.text }}</a>
-
-          <div v-if="message.type === 'action'">
-            <ul id="topicContainer">
-              <li
-                v-for="(action, i) in message.actions"
-                :key="i"
-                class="topics"
-                @click="doRequest(action.topicName)"
-              >{{action.topicName}}</li>
-            </ul>
-          </div>
-
-          <div v-if="message.type === 'curriculumAction'">
-            <ul id="topicContainer">
-              <li
-                v-for="(action, i) in message.actions"
-                :key="i"
-                class="topics"
-                @click="doRequest(action.name)"
-              >{{action.label}}</li>
-            </ul>
-          </div>
-
-          <div v-if="message.type === 'pathwayAction'">
-            <ul id="topicContainer">
-              <li
-                v-for="(action, i) in message.actions"
-                :key="i"
-                class="topics"
-                @click="doRequest(action.name)"
-              >{{action.label}}</li>
-            </ul>
-          </div>
-           <div v-if="message.type === 'motivationAction'">
-            <ul id="topicContainer">
-              <li
-                v-for="(action, i) in message.actions"
-                :key="i"
-                class="topics"
-                @click="doRequest(action.name)"
-              >{{action.label}}</li>
-            </ul>
-          </div>
-          <div v-if="message.type === 'findAJob'">
-            <ul id="topicContainer">
-              <li
-                v-for="(action, i) in message.actions"
-                :key="i"
-                class="topics"
-                @click="doRequest(action.name)"
-              >{{action.label}}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-  
-    </main>
-
-    <form class="msger-inputarea" @submit.prevent="sendMessage">
-      <input
-        type="text"
-        class="msger-input"
-        placeholder="Enter your message..."
-        v-model="userMessage"
-      />
-      <button type="submit" class="msger-send-btn">Send</button>
-    </form>
-
-  </section>
-</div>
+      <form class="msger-inputarea" @submit.prevent="sendMessage">
+        <input
+          type="text"
+          class="msger-input"
+          placeholder="Enter your message..."
+          v-model="userMessage"
+        >
+        <button type="submit" class="msger-send-btn">Send</button>
+      </form>
+    </section>
+  </div>
 </template>
  
 <script>
@@ -182,17 +179,17 @@ export default {
           label: "Help"
         }
       ],
-       motivationActions: [
-       {
+      motivationActions: [
+        {
           name: "motivation-search-again",
           label: "Another one!"
         },
         {
-           name: "help-topics",
-           label: "Help"
-       },
+          name: "help-topics",
+          label: "Help"
+        }
       ]
-  };
+    };
   },
   methods: {
     doRequest(actionTopicName) {
@@ -210,10 +207,7 @@ export default {
             this.motivation = null;
             this.findJob = null;
             this.curriculum = actionTopicName;
-
-            
           });
-
       } else if (actionTopicName === "Pathway") {
         axios
           .get("http://localhost:8080/AuthenticationApplication/api/pathway")
@@ -229,7 +223,6 @@ export default {
             this.findJob = null;
             this.pathway = actionTopicName;
           });
-        
       } else if (actionTopicName === "Motivation") {
         axios
           .get("http://localhost:8080/AuthenticationApplication/api/motivation")
@@ -240,10 +233,8 @@ export default {
             this.findJob = null;
             this.pathway = null;
             this.motivation = actionTopicName;
-            console.log("this.motivation =>>>", this.motivation)
+            console.log("this.motivation =>>>", this.motivation);
             this.motivationMessage();
-            
-            
           });
       } else if (actionTopicName === "Find a Job") {
         this.sendBotMessage(
@@ -256,19 +247,14 @@ export default {
         this.findJob = actionTopicName;
       } else if (actionTopicName === "curriculum-search-again") {
         this.doRequest("Curriculum");
-    
       } else if (actionTopicName === "pathway-search-again") {
         this.doRequest("Pathway");
-       
       } else if (actionTopicName === "Search-another-Job") {
         this.doRequest("Find a Job");
-       
-      }  else if (actionTopicName === "motivation-search-again") {
+      } else if (actionTopicName === "motivation-search-again") {
         this.doRequest("Motivation");
-     
       } else if (actionTopicName === "help-topics") {
         this.sendBotMessage("help");
-    
       } else {
         console.log(actionTopicName);
       }
@@ -289,30 +275,33 @@ export default {
           : userImage;
       return `background-image: url(${imgUrl})`;
     },
-    motivationMessage(){
+    motivationMessage() {
       let response = this.findMotivation();
-      setTimeout(() => { this.messages.push({
+      setTimeout(() => {
+        this.messages.push({
           user: "bot",
-          text: '"' + response.message +'"'+ "-" + " " + response.author,
+          text: '"' + response.message + '"' + "-" + " " + response.author,
           image: null,
           type: "text"
-         })},300);
-         setTimeout(() => { this.messages.push({
-             user: "bot",
-             image: null,
-             text: "test",
-             type: "motivationAction",
-             actions: this.motivationActions
-           })},1000);
-
+        });
+      }, 300);
+      setTimeout(() => {
+        this.messages.push({
+          user: "bot",
+          image: null,
+          text: "test",
+          type: "motivationAction",
+          actions: this.motivationActions
+        });
+      }, 1000);
     },
 
     sendMessage() {
       let response;
 
-    // START OF THE CURRICULUM MESSAGE PROCESS
+      // START OF THE CURRICULUM MESSAGE PROCESS
 
-     if (this.curriculum === "Curriculum") {
+      if (this.curriculum === "Curriculum") {
         this.messages.push({
           user: "User",
           text: this.userMessage,
@@ -321,85 +310,93 @@ export default {
         });
 
         response = this.findCurriculum(this.userMessage.toLowerCase());
-       
+
         if (response == null) {
-         setTimeout(() => { this.messages.push({
-            user: "bot",
-            text: "Sorry, I did not find anything on that. I will send a message to my creators about your request! Meanwhile, try searching for 'object', 'vue' or 'agile'",
-            image: null,
-            type: "text"
-          })},300);
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text:
+                "Sorry, I did not find anything on that. I will send a message to my creators about your request! Meanwhile, try searching for 'object', 'vue' or 'agile'",
+              image: null,
+              type: "text"
+            });
+          }, 300);
 
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            image: null,
-            type: "curriculumAction",
-            actions: this.curriculumActions
-          })},600);
-        
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              image: null,
+              type: "curriculumAction",
+              actions: this.curriculumActions
+            });
+          }, 600);
         } else {
-          
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            text:
-              "Here is what I found!" + " " +
-              response.message,
-            image: null,
-            type: "text"
-         })},300);
-          
-         setTimeout(() => { this.messages.push({
-            user: "bot",
-            text:
-              "Here is an article that might be helpful, " +
-              response.readingTitle +
-              " found at: ",
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text: "Here is what I found!" + " " + response.message,
+              image: null,
+              type: "text"
+            });
+          }, 300);
 
-            image: null,
-            type: "text"
-          })},700);
-         
- 
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            text: response.readingLink,
-            image: null,
-            type: "link"
-          })},1100);
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text:
+                "Here is an article that might be helpful, " +
+                response.readingTitle +
+                " found at: ",
 
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            text:
-              "Here is a video that might be helpful, " +
-              response.videoTitle +
-              " found at: ",
-            image: null,
-            type: "text"
-          })},1500);
-          
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            text: response.videoLink,
-            image: null,
-            type: "link"
-          })},1900);
+              image: null,
+              type: "text"
+            });
+          }, 700);
 
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            image: null,
-            type: "curriculumAction",
-            actions: this.curriculumActions
-          })},2300);
-       
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text: response.readingLink,
+              image: null,
+              type: "link"
+            });
+          }, 1100);
+
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text:
+                "Here is a video that might be helpful, " +
+                response.videoTitle +
+                " found at: ",
+              image: null,
+              type: "text"
+            });
+          }, 1500);
+
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text: response.videoLink,
+              image: null,
+              type: "link"
+            });
+          }, 1900);
+
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              image: null,
+              type: "curriculumAction",
+              actions: this.curriculumActions
+            });
+          }, 2300);
         }
+      }
 
-      } 
-      
       // END OF THE CURRICULUM MESSAGE PROCESS
-      
-     
-     // PATHWAY MESSAGE PROCESS BEGINS
 
+      // PATHWAY MESSAGE PROCESS BEGINS
       else if (this.pathway === "Pathway") {
         this.messages.push({
           user: "User",
@@ -416,107 +413,129 @@ export default {
         );
 
         if (response == null) {
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            text: "Sorry, I did not find anything on that. I will send a message to my creators about your request! Meanwhile, try searching for 'star questions', 'resume' or 'linkedin'",
-            image: null,
-            type: "text"
-           })},300);
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text:
+                "Sorry, I did not find anything on that. I will send a message to my creators about your request! Meanwhile, try searching for 'star questions', 'resume' or 'linkedin'",
+              image: null,
+              type: "text"
+            });
+          }, 300);
 
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            image: null,
-            type: "pathwayAction",
-            actions: this.pathwayActions
-         })},600);
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              image: null,
+              type: "pathwayAction",
+              actions: this.pathwayActions
+            });
+          }, 600);
         } else {
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            text:
-              "Here is what I found!" + " " +
-              response.message,
-            image: null,
-            type: "text"
-           })},300);
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text: "Here is what I found!" + " " + response.message,
+              image: null,
+              type: "text"
+            });
+          }, 300);
 
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            text:
-              "Here is an article that might be helpful, " +
-              response.readingTitle +
-              " found at: ",
-            image: null,
-            type: "text"
-           })},700);
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text:
+                "Here is an article that might be helpful, " +
+                response.readingTitle +
+                " found at: ",
+              image: null,
+              type: "text"
+            });
+          }, 700);
 
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            text: response.readingLink,
-            image: null,
-            type: "link"
-           })},1100);
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text: response.readingLink,
+              image: null,
+              type: "link"
+            });
+          }, 1100);
 
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            text:
-              "Here is a video that might be helpful, " +
-              response.videoTitle +
-              " found at: ",
-            image: null,
-            type: "text"
-           })},1500);
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text:
+                "Here is a video that might be helpful, " +
+                response.videoTitle +
+                " found at: ",
+              image: null,
+              type: "text"
+            });
+          }, 1500);
 
-          setTimeout(() => { this.messages.push({
-            user: "bot",
-            text: response.videoLink,
-            image: null,
-            type: "link"
-           })},1900);
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              text: response.videoLink,
+              image: null,
+              type: "link"
+            });
+          }, 1900);
 
-          setTimeout(() => { this.messages.push({
-          user: "bot",
-          image: null,
-          type: "pathwayAction",
-          actions: this.pathwayActions
-          })},2300);
+          setTimeout(() => {
+            this.messages.push({
+              user: "bot",
+              image: null,
+              type: "pathwayAction",
+              actions: this.pathwayActions
+            });
+          }, 2300);
         }
-      } 
-     
-     //END OF PATHWAY MESSAGE PROCESS
-     
-     // START FIND A JOB MESSAGE PROCESS
+      }
 
-     else if (this.findJob === "Find a Job") {
-           let jobStringIndeed = "https://www.indeed.com/jobs?q=" +this.userMessage+ "&l=Columbus%2C+OH&sort=date"
-           
-           this.messages.push({
-           user: "User",
-           text: this.userMessage,
-           image: null,
-           type: "text"
-          });
-           
-           setTimeout(() => { this.messages.push({
+      //END OF PATHWAY MESSAGE PROCESS
+
+      // START FIND A JOB MESSAGE PROCESS
+      else if (this.findJob === "Find a Job") {
+        let jobStringIndeed =
+          "https://www.indeed.com/jobs?q=" +
+          this.userMessage +
+          "&l=Columbus%2C+OH&sort=date";
+
+        this.messages.push({
+          user: "User",
+          text: this.userMessage,
+          image: null,
+          type: "text"
+        });
+
+        setTimeout(() => {
+          this.messages.push({
             user: "bot",
             text: "Awesome! Here is a link from indeed that might help you:",
             image: null,
             type: "text"
-       })},300);
-  
-          setTimeout(() => { this.messages.push({
+          });
+        }, 300);
+
+        setTimeout(() => {
+          this.messages.push({
             user: "bot",
             text: jobStringIndeed,
             image: null,
             type: "link"
-         })},700);
+          });
+        }, 700);
 
-          setTimeout(() => { this.messages.push({
-          user: "bot",
-          image: null,
-          type: "findAJob",
-          actions: this.findAJobActions
-      })},1100);
-        
+        setTimeout(() => {
+          this.messages.push({
+            user: "bot",
+            image: null,
+            type: "findAJob",
+            actions: this.findAJobActions
+          });
+        }, 1100);
       } else {
         this.messages.push({
           user: "User",
@@ -527,8 +546,8 @@ export default {
         this.sendBotMessage(this.userMessage);
       }
 
-    // END FIND A JOB MESSAGE PROCESS  
-     this.userMessage = "";  
+      // END FIND A JOB MESSAGE PROCESS
+      this.userMessage = "";
     },
 
     findCurriculum(topicName) {
@@ -550,8 +569,10 @@ export default {
     findMotivation() {
       let max = this.motivations.length - 1;
       let min = 1;
-     
-      return this.motivations[Math.floor(Math.random() * (max - min + 1)) + min];
+
+      return this.motivations[
+        Math.floor(Math.random() * (max - min + 1)) + min
+      ];
     },
 
     sendBotMessage(userResponse) {
@@ -622,9 +643,8 @@ export default {
 </script>
  
 <style>
-
-#product-name-2title{
-  color:#03A6ED !important;
+#product-name-2title {
+  color: #03a6ed !important;
 }
 
 .msger {
@@ -665,7 +685,7 @@ export default {
   /* background: #ddd; old color */
 }
 .msger-chat::-webkit-scrollbar-thumb {
-  background:#cadbd1;
+  background: #cadbd1;
   /*   background: #bdbdbd; old color*/
 }
 .msg {
@@ -967,9 +987,8 @@ input.msger-input:focus {
 #product-name-2title {
   color: #3273dc;
   font-size: 1.2em;
-  font-weight: bold; }
-
-
+  font-weight: bold;
+}
 </style>
 
 

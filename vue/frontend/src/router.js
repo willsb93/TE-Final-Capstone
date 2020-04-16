@@ -40,7 +40,7 @@ const router = new Router({
       path: '/team',
       name: 'meettheteam',
       component: MeetTheTeam
-     }
+    }
 
 
   ]
