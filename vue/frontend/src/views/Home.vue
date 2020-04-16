@@ -23,7 +23,7 @@
                   </div>
                 </div>
                 <div class="column is-6">
-                  <img src="@/assets/giphy.mp4" alt>
+                  <img src="@/assets/giphy.gif" alt>
                 </div>
                 <!-- https://media.giphy.com/media/QumDpxxWqWjZXEsQ8I/giphy.gif old gif link -->
               </div>
