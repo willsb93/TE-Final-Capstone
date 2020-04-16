@@ -23,7 +23,7 @@
                   </div>
                 </div>
                 <div class="column is-6">
-                  <img src="https://media.giphy.com/media/loAfSPB98B5jO9oNcT/giphy.gif" alt>
+                  <img src="@/assets/giphy.mp4" alt>
                 </div>
                 <!-- https://media.giphy.com/media/QumDpxxWqWjZXEsQ8I/giphy.gif old gif link -->
               </div>
@@ -118,7 +118,7 @@
                   <figure class="image is-128x128">
                     <img
                       class="is-rounded"
-                      src="https://media-exp1.licdn.com/dms/image/C4E03AQGtsKYPGOm_3w/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=DQPHX4ZMn9CIm_l68irnGkTqHzSAeFXMyqpsu3YOGq0"
+                      src="@/assets/steve.jpeg"
                       alt
                     >
                   </figure>
@@ -136,7 +136,7 @@
                   <figure class="image is-128x128">
                     <img
                       class="is-rounded"
-                      src="https://media-exp1.licdn.com/dms/image/C5603AQHnfv5_E_l24w/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=L_1vF3bGaMShjRe9L84i84guOr36hpzHrVAz9C5Uomo"
+                      src="@/assets/john.jpeg"
                       alt
                     >
                   </figure>
@@ -154,7 +154,7 @@
                   <figure class="image is-128x128">
                     <img
                       class="is-rounded"
-                      src="https://media-exp1.licdn.com/dms/image/C4E03AQHfPGtpeRNXLg/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=owiScQEAr6hfnctiRwqjB8FIapDm1vce_NOXbRsBVCI"
+                      src="@/assets/larry.jpeg"
                       alt
                     >
                   </figure>

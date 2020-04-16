@@ -13,7 +13,7 @@
                 <figure class="image is-128x128">
                   <img
                     class="is-rounded"
-                    src="https://media-exp1.licdn.com/dms/image/C4E03AQGKoi8H0XUGsQ/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=73LL-nR_Qj4ANbI6rA-NvNJNUB84F1fC9Bavnq_kv_o"
+                    src="@/assets/mark.jpeg"
                     alt
                   >
                 </figure>
@@ -33,7 +33,7 @@
                 <figure class="image is-128x128">
                   <img
                     class="is-rounded"
-                    src="https://media-exp1.licdn.com/dms/image/C4E03AQENN8LmwXkdZg/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=oxHSkQU8RJu4DmMIt81lyd6IDAGG2Wid_pBV9RgUWaA"
+                    src="@/assets/william.jpeg"
                     alt
                   >
                 </figure>
@@ -53,7 +53,7 @@
                 <figure class="image is-128x128">
                   <img
                     class="is-rounded"
-                    src="https://media-exp1.licdn.com/dms/image/C5103AQHVca0dwTBi4g/profile-displayphoto-shrink_200_200/0?e=1591833600&v=beta&t=LeIGYAIUnfvPUILKse7YwQJyD7Hmp9NfWepDW2J3f_8"
+                    src="@/assets/ryan.jpeg"
                     alt
                   >
                 </figure>
